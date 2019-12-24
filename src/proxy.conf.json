@@ -1,0 +1,15 @@
+{
+  "/api/*": {
+    "target": "http://localhost:8080",
+    "secure": false,
+    "logLevel": "debug"
+  },
+  "/image": {
+    "target": "http://localhost:8080/image",
+    "secure": false,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/image": ""
+    }
+  }
+}
