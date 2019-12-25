@@ -20,6 +20,8 @@ export class BlogCreateComponent implements OnInit {
   tagList: Tag[];
   BlogForm: FormGroup;
   blog: Blog;
+  currentThumpnail: string;
+
   constructor(private fb: FormBuilder,
               private router: Router,
               private blogService: BlogService) {
@@ -30,6 +32,7 @@ export class BlogCreateComponent implements OnInit {
     this.BlogForm = this.fb.group({
       tittle: [''],
       description: [''],
+      thumbnail: [''],
       tagList: this.fb.array([]),
       content: []
     });
@@ -60,5 +63,9 @@ export class BlogCreateComponent implements OnInit {
       let index = tagFormArray.controls.findIndex(x => x.value === id);
       tagFormArray.removeAt(index);
     }
+  }
+
+  onChangeThumpnailUrl(event) {
+    this.currentThumpnail = event.target.value;
   }
 }

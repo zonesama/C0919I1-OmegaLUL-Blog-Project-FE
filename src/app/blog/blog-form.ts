@@ -1,10 +1,8 @@
-import {Tag} from './tag';
-
-export class Blog {
+export class BlogForm {
   id: number;
   tittle: string;
   description: string;
   thumbnail: string;
-  tagList: Tag[];
+  tagList: number[];
   content: string;
 }

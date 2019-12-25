@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Tag} from './tag';
 import {Blog} from './blog';
+import {BlogForm} from './blog-form';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class BlogService {
     return this.http.get<Tag[]>(this.ApiUrl + 'tagList');
   }
 
-  createNewBlog(blog: Blog): Observable<Blog> {
-    return this.http.post<Blog>(this.ApiUrl + 'newBlog', blog);
+  createNewBlog(blogForm: BlogForm): Observable<Blog> {
+    return this.http.post<Blog>(this.ApiUrl + 'newBlog', blogForm);
   }
 }
