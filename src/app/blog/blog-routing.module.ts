@@ -3,6 +3,7 @@ import {BlogCreateComponent} from './blog-create/blog-create.component';
 import {BlogDetailComponent} from './blog-detail/blog-detail.component';
 import {NgModule} from '@angular/core';
 import {BlogListComponent} from './blog-list/blog-list.component';
+import {BlogEditComponent} from './blog-edit/blog-edit.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: '',
     component: BlogListComponent
+  },
+  {
+    path: 'editBlog',
+    component: BlogEditComponent
   }
 ];
 

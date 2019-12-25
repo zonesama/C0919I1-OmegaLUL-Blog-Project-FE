@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Blog} from '../blog';
+import {Router} from '@angular/router';
+import {DataTranferService} from '../../data-tranfer.service';
 
 @Component({
   selector: 'app-blog-detail',
@@ -6,10 +9,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./blog-detail.component.scss']
 })
 export class BlogDetailComponent implements OnInit {
-
-  constructor() { }
+  blog: Blog;
+  constructor(private router: Router,
+              private dataTransferService: DataTranferService) { }
 
   ngOnInit() {
+    this.blog = this.dataTransferService.getData();
   }
-
 }

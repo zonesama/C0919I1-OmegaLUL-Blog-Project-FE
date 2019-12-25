@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Blog} from '../blog';
 
 @Component({
@@ -8,9 +8,18 @@ import {Blog} from '../blog';
 })
 export class BlogPostComponent implements OnInit {
   @Input() blog: Blog;
+  @Output() viewClicked = new EventEmitter();
+  @Output() editClicked = new EventEmitter();
   constructor() { }
 
   ngOnInit() {
   }
 
+  emitView() {
+    this.viewClicked.emit();
+  }
+
+  emitEdit() {
+    this.editClicked.emit();
+  }
 }

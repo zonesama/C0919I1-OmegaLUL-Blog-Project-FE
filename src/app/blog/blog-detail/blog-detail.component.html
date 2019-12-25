@@ -1,1 +1,15 @@
-<p>blog-detail works!</p>
+<div class="row">
+  <form>
+    <div class="form-group row">
+     <h2 style="text-align: center; text-shadow: #5cb85c 2px 2px 7px">{{blog.tittle}}</h2>
+    </div>
+    <div class="form-group row">
+      <div [innerHTML]="blog.content | safeHtml"></div>
+    </div>
+    <div class="form-group row">
+      <button class="btn-info" type="Button" routerLink="/blog">Back</button>
+    </div>
+  </form>
+</div>
+
+

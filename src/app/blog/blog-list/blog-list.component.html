@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-4" *ngFor="let item of blogList |  paginate:{itemsPerPage: count, currentPage: p}" style="padding-top: 10px;">
-    <app-blog-post [blog]="item"></app-blog-post>
+    <app-blog-post [blog]="item" (viewClicked)="goToBlogDetail(item)" (editClicked)="goToEditBlog(item)"></app-blog-post>
   </div>
 </div>
 <div class="text-center" style="margin-top: 30px">

@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Blog} from '../blog';
 import {BlogService} from '../blog.service';
+import {Router} from '@angular/router';
+import {DataTranferService} from '../../data-tranfer.service';
 
 @Component({
   selector: 'app-blog-list',
@@ -9,10 +11,12 @@ import {BlogService} from '../blog.service';
 })
 export class BlogListComponent implements OnInit {
   blogList: Blog[];
-  count = 3;
+  count = 6;
   p = 1;
 
-  constructor(private blogService: BlogService) {
+  constructor(private blogService: BlogService,
+              private router: Router,
+              private dataTransferService: DataTranferService) {
   }
 
   ngOnInit() {
@@ -23,5 +27,15 @@ export class BlogListComponent implements OnInit {
     this.blogService.getBlogList().subscribe(data => {
       this.blogList = data;
     });
+  }
+
+  goToBlogDetail(item: Blog) {
+    this.dataTransferService.setData(item);
+    this.router.navigateByUrl('/blog/blogDetail');
+  }
+
+  goToEditBlog(item: Blog) {
+    this.dataTransferService.setData(item);
+    this.router.navigateByUrl('/blog/editBlog');
   }
 }

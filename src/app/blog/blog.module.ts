@@ -11,10 +11,12 @@ import {BlogService} from './blog.service';
 import { BlogPostComponent } from './blog-post/blog-post.component';
 import { BlogListComponent } from './blog-list/blog-list.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { BlogEditComponent } from './blog-edit/blog-edit.component';
+import {SafeHtmlPipe} from './SafeHtmlPipe';
 
 
 @NgModule({
-  declarations: [BlogCreateComponent, BlogDetailComponent, BlogPostComponent, BlogListComponent],
+    declarations: [BlogCreateComponent, BlogDetailComponent, BlogPostComponent, BlogListComponent, BlogEditComponent, SafeHtmlPipe],
   imports: [
     CommonModule, BlogRouting, HttpClientModule, RouterModule, CKEditorModule, ReactiveFormsModule, FormsModule, NgxPaginationModule
   ],

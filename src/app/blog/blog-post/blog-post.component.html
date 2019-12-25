@@ -1,10 +1,10 @@
 <div class="card" style="width: 18rem;">
   <img [src]="blog.thumbnail" class="card-img-top" alt="...">
   <div class="card-body">
-    <h5 class="card-title"> {{ blog.tittle }}</h5>
+    <h5 class="card-title" style="color: blue; text-shadow: magenta 2px 2px 6px" (click)="emitView()"> {{ blog.tittle }}</h5>
     <p class="card-text"> {{ blog.description }} </p>
 
-<!--    <button href="#" class="btn btn-primary" (click)="emitBuyClick()">Mua hàng</button>-->
-<!--    <button href="#" class="btn btn-danger" (click)="deleteProduct()">Xóa</button>-->
+    <button class="btn btn-primary" (click)="emitView()">View</button>
+    <button  class="btn btn-danger" style="margin-left: 50%" (click)="emitEdit()">Edit</button>
   </div>
 </div>

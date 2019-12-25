@@ -25,4 +25,12 @@ export class BlogService {
   getBlogList(): Observable<Blog[]> {
     return this.http.get<Blog[]>(this.ApiUrl + 'blogList');
   }
+
+  updateBlog(blogForm: BlogForm): Observable<Blog> {
+    return this.http.put<Blog>(this.ApiUrl + 'updateBlog', blogForm);
+  }
+
+  deleteBlog(id: number): Observable<Blog> {
+    return this.http.delete<Blog>(this.ApiUrl + 'deleteBlog/' + id);
+  }
 }
