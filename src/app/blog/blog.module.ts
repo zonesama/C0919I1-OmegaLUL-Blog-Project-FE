@@ -10,12 +10,13 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BlogService} from './blog.service';
 import { BlogPostComponent } from './blog-post/blog-post.component';
 import { BlogListComponent } from './blog-list/blog-list.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 @NgModule({
   declarations: [BlogCreateComponent, BlogDetailComponent, BlogPostComponent, BlogListComponent],
   imports: [
-    CommonModule, BlogRouting, HttpClientModule, RouterModule, CKEditorModule, ReactiveFormsModule, FormsModule
+    CommonModule, BlogRouting, HttpClientModule, RouterModule, CKEditorModule, ReactiveFormsModule, FormsModule, NgxPaginationModule
   ],
   providers: [BlogService]
 })

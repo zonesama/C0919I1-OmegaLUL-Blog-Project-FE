@@ -50,6 +50,7 @@ export class BlogCreateComponent implements OnInit {
         console.log(data);
         this.blog = data;
         alert('Create Blog: ' + this.blog.tittle);
+        this.router.navigateByUrl('/blog');
       });
     }
   }

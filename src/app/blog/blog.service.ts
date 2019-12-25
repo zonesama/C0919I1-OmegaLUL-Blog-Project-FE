@@ -21,4 +21,8 @@ export class BlogService {
   createNewBlog(blogForm: BlogForm): Observable<Blog> {
     return this.http.post<Blog>(this.ApiUrl + 'newBlog', blogForm);
   }
+
+  getBlogList(): Observable<Blog[]> {
+    return this.http.get<Blog[]>(this.ApiUrl + 'blogList');
+  }
 }
