@@ -7,4 +7,6 @@ export class Blog {
   thumbnail: string;
   tagList: Tag[];
   content: string;
+  createdDate: Date;
+  lastUpdatedDate: Date;
 }

@@ -11,7 +11,7 @@ import {DataTranferService} from '../../data-tranfer.service';
 })
 export class BlogListComponent implements OnInit {
   blogList: Blog[];
-  count = 6;
+  count = 9;
   p = 1;
 
   constructor(private blogService: BlogService,

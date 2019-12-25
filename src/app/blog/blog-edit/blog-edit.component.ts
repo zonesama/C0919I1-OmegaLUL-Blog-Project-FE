@@ -53,11 +53,13 @@ export class BlogEditComponent implements OnInit {
   }
 
   onSubmit() {
-    this.blogService.updateBlog(this.blogForm.value).subscribe(result => {
-      const editedBlog = result;
-      alert('Updated Blog: Id = ' + editedBlog.id + ' with Tittle =' + editedBlog.tittle);
-      this.router.navigateByUrl('/blog');
-    });
+    if (confirm('Are You Sure?')) {
+      this.blogService.updateBlog(this.blogForm.value).subscribe(result => {
+        const editedBlog = result;
+        alert('Updated Blog: Id = ' + editedBlog.id + ' with Tittle =' + editedBlog.tittle);
+        this.router.navigateByUrl('/blog');
+      });
+    }
   }
 
 
@@ -88,7 +90,9 @@ export class BlogEditComponent implements OnInit {
 
   checkedTag(id: number, tagList: Tag[]) {
     for (let item of tagList) {
-      if (id === item.id) return true;
+      if (id === item.id) {
+        return true;
+      }
     }
     return false;
   }
