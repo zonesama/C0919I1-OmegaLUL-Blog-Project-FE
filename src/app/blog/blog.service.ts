@@ -17,7 +17,7 @@ export class BlogService {
     return this.http.get<Tag[]>(this.ApiUrl + 'tagList');
   }
 
-  createNewBlog(blog: Blog) {
-    return this.http.post(this.ApiUrl + 'newBlog', blog);
+  createNewBlog(blog: Blog): Observable<Blog> {
+    return this.http.post<Blog>(this.ApiUrl + 'newBlog', blog);
   }
 }

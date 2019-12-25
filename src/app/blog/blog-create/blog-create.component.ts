@@ -3,6 +3,7 @@ import {Tag} from '../tag';
 import {FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
 import {BlogService} from '../blog.service';
+import {Blog} from '../blog';
 
 @Component({
   selector: 'app-blog-create',
@@ -18,7 +19,7 @@ export class BlogCreateComponent implements OnInit {
   };
   tagList: Tag[];
   BlogForm: FormGroup;
-
+  blog: Blog;
   constructor(private fb: FormBuilder,
               private router: Router,
               private blogService: BlogService) {
@@ -41,9 +42,13 @@ export class BlogCreateComponent implements OnInit {
   }
 
   onSubmit() {
-    this.blogService.createNewBlog(this.BlogForm.value).subscribe(data => {
-      console.log(data);
-    });
+    if (confirm('Are You Sure?')) {
+      this.blogService.createNewBlog(this.BlogForm.value).subscribe(data => {
+        console.log(data);
+        this.blog = data;
+        alert('Create Blog: ' + this.blog.tittle);
+      });
+    }
   }
 
   onChangeBox(id: number, checked: boolean) {
