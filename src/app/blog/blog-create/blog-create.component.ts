@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Tag} from '../tag';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
 import {BlogService} from '../blog.service';
 
@@ -29,8 +29,8 @@ export class BlogCreateComponent implements OnInit {
     this.BlogForm = this.fb.group({
       tittle: [''],
       description: [''],
-      tagList: [''],
-      content: ['']
+      tagList: this.fb.array([]),
+      content: []
     });
   }
 
@@ -41,6 +41,19 @@ export class BlogCreateComponent implements OnInit {
   }
 
   onSubmit() {
-    this.blogService
+    this.blogService.createNewBlog(this.BlogForm.value).subscribe(data => {
+      console.log(data);
+    });
+  }
+
+  onChangeBox(id: number, checked: boolean) {
+    const tagFormArray = <FormArray> this.BlogForm.controls.tagList;
+
+    if (checked) {
+      tagFormArray.push(new FormControl(id));
+    } else {
+      let index = tagFormArray.controls.findIndex(x => x.value === id);
+      tagFormArray.removeAt(index);
+    }
   }
 }
