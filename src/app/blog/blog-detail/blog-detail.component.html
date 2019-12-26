@@ -4,7 +4,8 @@
      <h1 style="text-align: center; text-shadow: #5cb85c 2px 2px 7px">{{blog.tittle}}</h1>
     </div>
     <div class="form-group row">
-      <a>{{tags}}</a>
+      <a class="col-10">{{tags}}</a>
+      <button class="col-1" printSectionId="print-section" ngxPrint><i class="fa fa-print" aria-hidden="true"></i></button>
     </div>
     <div class="form-group row">
       <h6 style="text-align: center">Created On: {{blog.createdDate}}</h6>
@@ -15,7 +16,7 @@
     <div class="form-group row">
       <fieldset>
         <legend>Content</legend>
-        <div class="col-8 offset-1" [innerHTML]="blog.content | safeHtml"></div>
+          <div  id="print-section" class="col-8 offset-1" [innerHTML]="blog.content | safeHtml"></div>
       </fieldset>
     </div>
     <div class="form-group row">

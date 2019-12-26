@@ -8,17 +8,19 @@ import {BlogCreateComponent} from './blog-create/blog-create.component';
 import {BlogDetailComponent} from './blog-detail/blog-detail.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BlogService} from './blog.service';
-import { BlogPostComponent } from './blog-post/blog-post.component';
-import { BlogListComponent } from './blog-list/blog-list.component';
+import {BlogPostComponent} from './blog-post/blog-post.component';
+import {BlogListComponent} from './blog-list/blog-list.component';
 import {NgxPaginationModule} from 'ngx-pagination';
-import { BlogEditComponent } from './blog-edit/blog-edit.component';
+import {BlogEditComponent} from './blog-edit/blog-edit.component';
 import {SafeHtmlPipe} from './SafeHtmlPipe';
+import {NgxPrintModule} from 'ngx-print';
 
 
 @NgModule({
-    declarations: [BlogCreateComponent, BlogDetailComponent, BlogPostComponent, BlogListComponent, BlogEditComponent, SafeHtmlPipe],
+  declarations: [BlogCreateComponent, BlogDetailComponent, BlogPostComponent, BlogListComponent, BlogEditComponent, SafeHtmlPipe],
   imports: [
-    CommonModule, BlogRouting, HttpClientModule, RouterModule, CKEditorModule, ReactiveFormsModule, FormsModule, NgxPaginationModule
+    CommonModule, BlogRouting, HttpClientModule, RouterModule, CKEditorModule, ReactiveFormsModule, FormsModule, NgxPaginationModule,
+    NgxPrintModule
   ],
   providers: [BlogService]
 })
