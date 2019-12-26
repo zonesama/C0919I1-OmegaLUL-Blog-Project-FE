@@ -1,9 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {Blog} from '../blog';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {DataTranferService} from '../../data-tranfer.service';
-// import * as jspdf from 'jspdf';
-// import html2canvas from 'html2canvas';
+import {faFacebookSquare} from '@fortawesome/free-brands-svg-icons/faFacebookSquare';
+import {faTwitterSquare} from '@fortawesome/free-brands-svg-icons/faTwitterSquare';
+import {BlogService} from '../blog.service';
+
 
 @Component({
   selector: 'app-blog-detail',
@@ -11,15 +13,24 @@ import {DataTranferService} from '../../data-tranfer.service';
   styleUrls: ['./blog-detail.component.scss']
 })
 export class BlogDetailComponent implements OnInit {
+  fbIcon = faFacebookSquare;
+  tweetIcon = faTwitterSquare;
   blog: Blog;
   tags = 'Tags: ';
 
   constructor(private router: Router,
+              private route: ActivatedRoute,
+              private blogService: BlogService,
               private dataTransferService: DataTranferService) {
   }
 
   ngOnInit() {
-    this.blog = this.dataTransferService.getData();
+    // this.blog = this.dataTransferService.getData();
+    // tslint:disable-next-line:radix
+    const id = parseInt(this.route.snapshot.paramMap.get('id'));
+    this.blogService.getBlogById(id).subscribe(data => {
+      this.blog = data;
+    });
     for (let item of this.blog.tagList) {
       this.tags += item.name + '/';
     }

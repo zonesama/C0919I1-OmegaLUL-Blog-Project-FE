@@ -11,7 +11,7 @@ const routes: Routes = [
     component: BlogCreateComponent
   },
   {
-    path: 'blogDetail',
+    path: 'blogDetail/:id',
     component: BlogDetailComponent
   },
   {
@@ -19,7 +19,7 @@ const routes: Routes = [
     component: BlogListComponent
   },
   {
-    path: 'editBlog',
+    path: 'editBlog/:id',
     component: BlogEditComponent
   }
 ];

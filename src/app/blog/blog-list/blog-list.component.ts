@@ -30,12 +30,12 @@ export class BlogListComponent implements OnInit {
   }
 
   goToBlogDetail(item: Blog) {
-    this.dataTransferService.setData(item);
-    this.router.navigateByUrl('/blog/blogDetail');
+    // this.dataTransferService.setData(item);
+    this.router.navigateByUrl('/blog/blogDetail/' + item.id);
   }
 
   goToEditBlog(item: Blog) {
-    this.dataTransferService.setData(item);
-    this.router.navigateByUrl('/blog/editBlog');
+    // this.dataTransferService.setData(item);
+    this.router.navigateByUrl('/blog/editBlog/' + item.id);
   }
 }

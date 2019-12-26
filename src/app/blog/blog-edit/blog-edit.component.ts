@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Blog} from '../blog';
 import {FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {BlogService} from '../blog.service';
 import {DataTranferService} from '../../data-tranfer.service';
 import {Tag} from '../tag';
@@ -16,7 +16,7 @@ export class BlogEditComponent implements OnInit {
     filebrowserUploadUrl: 'http://localhost:4200/api/upload',
     filebrowserUploadMethod: 'form'
   };
-  tagList: Tag[];
+  tagList = [];
   blogForm: FormGroup;
   blog: Blog;
   currentThumpnail: string;
@@ -25,30 +25,46 @@ export class BlogEditComponent implements OnInit {
   constructor(private router: Router,
               private blogService: BlogService,
               private dataTransferService: DataTranferService,
+              private route: ActivatedRoute,
               private fb: FormBuilder) {
   }
 
   ngOnInit() {
+    // this.blogForm = this.fb.group({
+    //   id: [''],
+    //   tittle: [''],
+    //   description: [''],
+    //   thumbnail: [''],
+    //   content: ['']
+    // });
     this.loadTagList();
-    this.blog = this.dataTransferService.getData();
-    this.currentThumpnail = this.blog.thumbnail;
-    this.blogForm = this.fb.group({
-      id: [this.blog.id],
-      tittle: [this.blog.tittle],
-      description: [this.blog.description],
-      thumbnail: [this.blog.thumbnail],
-      tagList: this.fb.array([]),
-      content: [this.blog.content]
-    });
-    this.tagFormArray = <FormArray> this.blogForm.controls.tagList;
-    for (let item of this.blog.tagList) {
-      this.tagFormArray.push(new FormControl(item.id));
-    }
+    // this.blog = this.dataTransferService.getData();
+    this.loadBlog();
   }
 
   loadTagList() {
     this.blogService.getTag().subscribe(data => {
       this.tagList = data;
+    });
+  }
+
+  loadBlog() {
+    const id = parseInt(this.route.snapshot.paramMap.get('id'));
+    this.blogService.getBlogById(id).subscribe(data => {
+      this.blog = data;
+      this.currentThumpnail = this.blog.thumbnail;
+      this.blogForm = this.fb.group({
+        id: [this.blog.id],
+        tittle: [this.blog.tittle],
+        description: [this.blog.description],
+        thumbnail: [this.blog.thumbnail],
+        tagList: this.fb.array([]),
+        content: [this.blog.content]
+      });
+      this.tagFormArray = <FormArray> this.blogForm.controls.tagList;
+      for (let item of this.blog.tagList) {
+        this.tagFormArray.push(new FormControl(item.id));
+      }
     });
   }
 

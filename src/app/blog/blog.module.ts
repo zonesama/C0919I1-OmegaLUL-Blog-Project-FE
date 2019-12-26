@@ -14,13 +14,14 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import {BlogEditComponent} from './blog-edit/blog-edit.component';
 import {SafeHtmlPipe} from './SafeHtmlPipe';
 import {NgxPrintModule} from 'ngx-print';
+import {ShareButtonModule} from '@ngx-share/button';
 
 
 @NgModule({
   declarations: [BlogCreateComponent, BlogDetailComponent, BlogPostComponent, BlogListComponent, BlogEditComponent, SafeHtmlPipe],
   imports: [
     CommonModule, BlogRouting, HttpClientModule, RouterModule, CKEditorModule, ReactiveFormsModule, FormsModule, NgxPaginationModule,
-    NgxPrintModule
+    NgxPrintModule, ShareButtonModule,
   ],
   providers: [BlogService]
 })

@@ -13,7 +13,6 @@ export class BlogPostComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.blog);
   }
 
   emitView() {
