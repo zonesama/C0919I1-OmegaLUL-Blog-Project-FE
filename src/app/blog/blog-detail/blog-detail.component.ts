@@ -30,11 +30,11 @@ export class BlogDetailComponent implements OnInit {
     const id = parseInt(this.route.snapshot.paramMap.get('id'));
     this.blogService.getBlogById(id).subscribe(data => {
       this.blog = data;
+      for (let item of this.blog.tagList) {
+        this.tags += item.name + ', ';
+      }
+      this.tags = this.tags.substring(0, this.tags.length - 2);
     });
-    for (let item of this.blog.tagList) {
-      this.tags += item.name + '/';
-    }
-    this.tags = this.tags.substring(0, this.tags.length - 1);
   }
 
   // exportAsPDF() {
