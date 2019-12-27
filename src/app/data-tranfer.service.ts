@@ -15,7 +15,6 @@ export class DataTranferService {
 
   getData() {
     const tmp = this.data;
-    this.clearData();
     return tmp;
   }
 

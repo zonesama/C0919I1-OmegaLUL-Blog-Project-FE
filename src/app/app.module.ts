@@ -11,23 +11,25 @@ import {BlogCreateComponent} from './blog/blog-create/blog-create.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {DashbroadComponent} from './dashbroad/dashbroad.component';
 import {RouterModule} from '@angular/router';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FooterComponent} from './footer/footer.component';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        SideBarComponent,
-        NavbarComponent,
-        DashbroadComponent,
-        FooterComponent
-    ],
+  declarations: [
+    AppComponent,
+    SideBarComponent,
+    NavbarComponent,
+    DashbroadComponent,
+    FooterComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule,
     CKEditorModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -37,4 +37,8 @@ export class BlogService {
   getBlogById(id: number): Observable<Blog> {
     return this.http.get<Blog>(this.ApiUrl + 'blog/' + id);
   }
+
+  searchBlogByName(keyword: string): Observable<Blog[]> {
+    return this.http.get<Blog[]>(this.ApiUrl + 'blog/search/' + keyword);
+  }
 }
