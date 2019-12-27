@@ -99,7 +99,7 @@ export class BlogEditComponent implements OnInit {
         let deletedBlog: Blog;
         deletedBlog = result;
         alert('Deleted Blog: ' + deletedBlog.tittle);
-        this.router.navigateByUrl('/blog');
+        this.router.navigateByUrl('/blog').then(r => window.location.reload());
       });
     }
   }
