@@ -5,6 +5,9 @@ import {Router} from '@angular/router';
 import {BlogService} from '../blog.service';
 import {Blog} from '../blog';
 
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import SimpleUploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/simpleuploadadapter';
+
 @Component({
   selector: 'app-blog-create',
   templateUrl: './blog-create.component.html',
@@ -14,9 +17,31 @@ import {Blog} from '../blog';
 
 export class BlogCreateComponent implements OnInit {
   ckEditorConfig = {
+    extraPlugins: 'uploadimage',
+    width: 1100,
+    height: 500,
     filebrowserUploadUrl: 'http://localhost:4200/api/upload',
-    filebrowserUploadMethod: 'form'
+    filebrowserUploadMethod: 'form',
+    toolbarGroups: [
+      {name: 'insert', groups: ['insert']},
+      '/',
+      // {name: 'document', groups: ['mode', 'document', 'doctools']},
+      // {name: 'clipboard', groups: ['clipboard', 'undo']},
+      {name: 'editing', groups: ['find', 'selection']},
+      '/',
+      {name: 'basicstyles', groups: ['basicstyles', 'cleanup']},
+      {name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi', 'paragraph']},
+      {name: 'links', groups: ['links']},
+      '/',
+      {name: 'styles', groups: ['styles']},
+      {name: 'colors', groups: ['colors']},
+    ]
   };
+  // Editor = ClassicEditor;
+  // editorConfig = {
+  //   UploadUrl: 'http://localhost:4200/api/upload',
+  //   UploadMethod: 'form',
+  // };
   tagList: Tag[];
   BlogForm: FormGroup;
   blog: Blog;

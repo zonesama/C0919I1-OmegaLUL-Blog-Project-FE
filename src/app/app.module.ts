@@ -4,11 +4,8 @@ import {CKEditorModule} from 'ckeditor4-angular';
 
 import {AppComponent} from './app.component';
 import {SideBarComponent} from './side-bar/side-bar.component';
-import {BlogDetailComponent} from './blog/blog-detail/blog-detail.component';
 import {AppRoutingModule} from './app-routing.module';
 import {NavbarComponent} from './navbar/navbar.component';
-import {BlogCreateComponent} from './blog/blog-create/blog-create.component';
-import {ReactiveFormsModule} from '@angular/forms';
 import {DashbroadComponent} from './dashbroad/dashbroad.component';
 import {RouterModule} from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';

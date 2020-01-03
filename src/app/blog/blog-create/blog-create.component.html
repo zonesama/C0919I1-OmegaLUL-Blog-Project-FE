@@ -4,19 +4,19 @@
 <div class="row">
   <form [formGroup]="BlogForm" (ngSubmit)="onSubmit()">
     <div class="form-group row">
-      <label class="col-2 col-form-label">Tittle:</label>
+      <label class="col-3 col-form-label">Tittle:</label>
       <input class="col-6" formControlName="tittle" type="text">
     </div>
     <div class="form-group row">
-      <label class="col-2 col-form-label">Description:</label>
+      <label class="col-3 col-form-label">Description:</label>
       <textarea class="col-6" formControlName="description"></textarea>
     </div>
     <div class="form-group row">
-      <label class="col-2 col-form-label">Thumbnail Url:</label>
+      <label class="col-3 col-form-label">Thumbnail Url:</label>
       <input type="text" class="col-6" formControlName="thumbnail" (change)="onChangeThumpnailUrl($event)">
     </div>
     <div class="form-group row">
-      <label class="col-2 col-form-label">Thumbnail PreView:</label>
+      <label class="col-4 col-form-label">Thumbnail PreView:</label>
       <img *ngIf="currentThumpnail" src="{{currentThumpnail}}" style="height: 300px;width: 200px">
     </div>
     <div class="form-group row">
@@ -26,11 +26,12 @@
       </div>
     </div>
     <div class="form-group row">
-      <label for="blog-content" class="col-md-2 col-form-label">Content:</label>
+      <label class="col-2 col-form-label">Content:</label>
       <div class="col-10">
-        <ckeditor style="width: 100%" formControlName="content" id="blog-content"
+        <ckeditor class="editor" style="width: 100%" formControlName="content" id="blog-content"
                   [editorUrl]="'https://cdn.ckeditor.com/4.11.4/full-all/ckeditor.js'"
-                  [config]="ckEditorConfig" ></ckeditor>
+                  [config]="ckEditorConfig"></ckeditor>
+        <!--        <ckeditor style="min-height: 500px" formControlName="content" [editor]="Editor" [config]="editorConfig"></ckeditor>-->
       </div>
     </div>
     <div class="form-group row" style="margin-top: 50px">

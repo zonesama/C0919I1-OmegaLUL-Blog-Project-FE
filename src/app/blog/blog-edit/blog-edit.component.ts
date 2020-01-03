@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {BlogService} from '../blog.service';
 import {DataTranferService} from '../../data-tranfer.service';
 import {Tag} from '../tag';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-blog-edit',
@@ -16,6 +17,11 @@ export class BlogEditComponent implements OnInit {
     filebrowserUploadUrl: 'http://localhost:4200/api/upload',
     filebrowserUploadMethod: 'form'
   };
+  // Editor = ClassicEditor;
+  // editorConfig = {
+  //   UploadUrl: 'http://localhost:4200/api/upload',
+  //   UploadMethod: 'form',
+  // };
   tagList = [];
   blogForm: FormGroup;
   blog: Blog;
