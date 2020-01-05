@@ -14,8 +14,25 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 })
 export class BlogEditComponent implements OnInit {
   ckEditorConfig = {
+    extraPlugins: 'uploadimage',
+    minWidth: 500,
+    height: 800,
     filebrowserUploadUrl: 'http://localhost:4200/api/upload',
-    filebrowserUploadMethod: 'form'
+    filebrowserUploadMethod: 'form',
+    toolbarGroups: [
+      {name: 'insert', groups: ['insert']},
+      '/',
+      // {name: 'document', groups: ['mode', 'document', 'doctools']},
+      {name: 'clipboard', groups: ['clipboard', 'undo']},
+      {name: 'editing', groups: ['find', 'selection']},
+      '/',
+      {name: 'basicstyles', groups: ['basicstyles', 'cleanup']},
+      {name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi', 'paragraph']},
+      {name: 'links', groups: ['links']},
+      '/',
+      {name: 'styles', groups: ['styles']},
+      {name: 'colors', groups: ['colors']},
+    ]
   };
   // Editor = ClassicEditor;
   // editorConfig = {

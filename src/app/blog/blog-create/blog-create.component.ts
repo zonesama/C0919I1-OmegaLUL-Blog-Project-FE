@@ -18,15 +18,15 @@ import SimpleUploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/simpleu
 export class BlogCreateComponent implements OnInit {
   ckEditorConfig = {
     extraPlugins: 'uploadimage',
-    width: 1100,
-    height: 500,
+    minWidth: 500,
+    height: 800,
     filebrowserUploadUrl: 'http://localhost:4200/api/upload',
     filebrowserUploadMethod: 'form',
     toolbarGroups: [
       {name: 'insert', groups: ['insert']},
       '/',
       // {name: 'document', groups: ['mode', 'document', 'doctools']},
-      // {name: 'clipboard', groups: ['clipboard', 'undo']},
+      {name: 'clipboard', groups: ['clipboard', 'undo']},
       {name: 'editing', groups: ['find', 'selection']},
       '/',
       {name: 'basicstyles', groups: ['basicstyles', 'cleanup']},
