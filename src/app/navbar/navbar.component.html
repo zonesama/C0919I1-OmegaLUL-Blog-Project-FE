@@ -18,11 +18,28 @@
       </button>
     </div>
   </div>
-    <li>
-<!--      <a class="nav-item px-3 py-3" href="#">-->
-<!--        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>-->
-<!--        New Blog-->
-<!--      </a>-->
+  <div>
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Action
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+        <button class="dropdown-item" type="button">
+          <a (click)="goToNewBlog()">My Profile</a>
+        </button>
+        <button class="dropdown-item" type="button">
+          <a (click)="goToBlogList()">Setting</a>
+        </button>
+        <button class="dropdown-item" type="button">
+          <a (click)="goToNewBlog()">Logout</a>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div>
+  <li>
       <a class="nav-item px-3 py-3" href="#">Register/Login</a>
     </li>
+  </div>
 </nav>
