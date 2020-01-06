@@ -17,6 +17,7 @@ export class BlogCreateComponent implements OnInit {
     filebrowserUploadUrl: 'http://localhost:4200/api/upload',
     filebrowserUploadMethod: 'form'
   };
+
   tagList: Tag[];
   BlogForm: FormGroup;
   blog: Blog;
@@ -56,12 +57,12 @@ export class BlogCreateComponent implements OnInit {
   }
 
   onChangeBox(id: number, checked: boolean) {
-    const tagFormArray = <FormArray> this.BlogForm.controls.tagList;
+    const tagFormArray = this.BlogForm.controls.tagList as FormArray;
 
     if (checked) {
       tagFormArray.push(new FormControl(id));
     } else {
-      let index = tagFormArray.controls.findIndex(x => x.value === id);
+      const index = tagFormArray.controls.findIndex(x => x.value === id);
       tagFormArray.removeAt(index);
     }
   }
