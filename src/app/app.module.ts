@@ -14,6 +14,7 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import {httpInterceptorProviders} from './auth/auth-interceptor';
 import {ReactiveFormsModule} from '@angular/forms';
+import {RegisterComponent} from './auth/register/register.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     NavbarComponent,
     DashbroadComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

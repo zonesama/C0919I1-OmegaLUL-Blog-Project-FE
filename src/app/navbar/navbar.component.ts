@@ -2,8 +2,6 @@ import {DataTranferService} from '../data-tranfer.service';
 import {Router} from '@angular/router';
 import {BlogService} from '../blog/blog.service';
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {AuthService} from '../auth/auth.service';
-import {TokenStorageService} from '../auth/token-storage.service';
 
 @Component({
   selector: 'app-navbar',
@@ -15,8 +13,7 @@ export class NavbarComponent implements OnInit {
 
   constructor(private dataTransferService: DataTranferService,
               private router: Router,
-              private blogService: BlogService,
-              private tokenStorageService: TokenStorageService) {
+              private blogService: BlogService) {
   }
 
   ngOnInit() {
@@ -52,15 +49,7 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  isLoggedIn() {
-    if (sessionStorage.getItem('AuthUsernane') === null) {
-      return false;
-    }
-    return true;
-  }
-
-  LogOut() {
-    this.tokenStorageService.signOut();
-    this.router.navigateByUrl('/');
+  onLoginButtonClicked() {
+    document.getElementById('modalRegisterForm')
   }
 }
