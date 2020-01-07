@@ -14,6 +14,8 @@ import {RouterModule} from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FooterComponent} from './footer/footer.component';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {RegisterComponent} from './auth/register/register.component';
+import {LoginComponent} from './auth/login/login.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
     SideBarComponent,
     NavbarComponent,
     DashbroadComponent,
-    FooterComponent
+    FooterComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +33,8 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
     RouterModule,
     CKEditorModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
