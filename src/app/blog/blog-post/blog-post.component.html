@@ -5,7 +5,7 @@
         (click)="emitView()"> {{ blog.tittle }}</h5>
     <p class="card-text"> {{ blog.description }} </p>
     <button style="position: absolute; bottom: 2%" class="btn btn-primary" (click)="emitView()">View</button>
-    <button class="btn btn-danger" style="position: absolute; bottom: 2%;margin-left: 68%" (click)="emitEdit()">Edit
+    <button *ngIf="checkUser()" class="btn btn-danger" style="position: absolute; bottom: 2%;margin-left: 68%" (click)="emitEdit()">Edit
     </button>
   </div>
 </div>

@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Blog} from '../blog';
+import {TokenStorageService} from '../../auth/token-storage.service';
 
 @Component({
   selector: 'app-blog-post',
@@ -10,7 +11,9 @@ export class BlogPostComponent implements OnInit {
   @Input() blog: Blog;
   @Output() viewClicked = new EventEmitter();
   @Output() editClicked = new EventEmitter();
-  constructor() { }
+
+  constructor(private token: TokenStorageService) {
+  }
 
   ngOnInit() {
   }
@@ -21,5 +24,12 @@ export class BlogPostComponent implements OnInit {
 
   emitEdit() {
     this.editClicked.emit();
+  }
+
+  checkUser() {
+    if (this.blog.user.username === this.token.getUsername()) {
+      return true;
+    }
+    return false;
   }
 }
