@@ -6,6 +6,7 @@ import {BlogService} from '../blog.service';
 import {DataTranferService} from '../../data-tranfer.service';
 import {Tag} from '../tag';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import {TokenStorageService} from '../../auth/token-storage.service';
 
 @Component({
   selector: 'app-blog-edit',
@@ -18,7 +19,11 @@ export class BlogEditComponent implements OnInit {
     minWidth: 500,
     height: 800,
     filebrowserUploadUrl: 'http://localhost:4200/api/upload',
-    filebrowserUploadMethod: 'form',
+    filebrowserUploadMethod: 'xhr',
+    fileTools_requestHeaders: {
+      'X-Requested-With': 'XMLHttpRequest',
+      Authorization: 'Bearer ' + this.token.getToken()
+    },
     toolbarGroups: [
       {name: 'insert', groups: ['insert']},
       '/',
@@ -49,7 +54,8 @@ export class BlogEditComponent implements OnInit {
               private blogService: BlogService,
               private dataTransferService: DataTranferService,
               private route: ActivatedRoute,
-              private fb: FormBuilder) {
+              private fb: FormBuilder,
+              private token: TokenStorageService) {
   }
 
   ngOnInit() {
@@ -82,7 +88,8 @@ export class BlogEditComponent implements OnInit {
         description: [this.blog.description],
         thumbnail: [this.blog.thumbnail],
         tagList: this.fb.array([]),
-        content: [this.blog.content]
+        content: [this.blog.content],
+        username: [this.token.getUsername()]
       });
       this.tagFormArray = <FormArray> this.blogForm.controls.tagList;
       for (let item of this.blog.tagList) {

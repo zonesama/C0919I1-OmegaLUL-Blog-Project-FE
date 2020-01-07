@@ -7,6 +7,7 @@ import {Blog} from '../blog';
 
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import SimpleUploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/simpleuploadadapter';
+import {TokenStorageService} from '../../auth/token-storage.service';
 
 @Component({
   selector: 'app-blog-create',
@@ -21,7 +22,11 @@ export class BlogCreateComponent implements OnInit {
     minWidth: 500,
     height: 800,
     filebrowserUploadUrl: 'http://localhost:4200/api/upload',
-    filebrowserUploadMethod: 'form',
+    filebrowserUploadMethod: 'xhr',
+    fileTools_requestHeaders: {
+      'X-Requested-With': 'XMLHttpRequest',
+      Authorization: 'Bearer ' + this.token.getToken()
+    },
     toolbarGroups: [
       {name: 'insert', groups: ['insert']},
       '/',
@@ -49,7 +54,8 @@ export class BlogCreateComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private router: Router,
-              private blogService: BlogService) {
+              private blogService: BlogService,
+              private token: TokenStorageService) {
   }
 
   ngOnInit() {
@@ -59,7 +65,8 @@ export class BlogCreateComponent implements OnInit {
       description: [''],
       thumbnail: [''],
       tagList: this.fb.array([]),
-      content: []
+      content: [],
+      username: [this.token.getUsername()]
     });
   }
 

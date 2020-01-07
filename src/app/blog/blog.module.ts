@@ -16,6 +16,7 @@ import {NgxPrintModule} from 'ngx-print';
 import {ShareButtonModule} from '@ngx-share/button';
 
 import {CKEditorModule} from 'ckeditor4-angular';
+import {httpInterceptorProviders} from '../auth/auth-interceptor';
 
 
 @NgModule({
@@ -24,7 +25,7 @@ import {CKEditorModule} from 'ckeditor4-angular';
     CommonModule, BlogRouting, HttpClientModule, RouterModule, CKEditorModule, ReactiveFormsModule, FormsModule, NgxPaginationModule,
     NgxPrintModule, ShareButtonModule,
   ],
-  providers: [BlogService]
+  providers: [BlogService, httpInterceptorProviders]
 })
 export class BlogModule {
 }

@@ -2,6 +2,8 @@ import {DataTranferService} from '../data-tranfer.service';
 import {Router} from '@angular/router';
 import {BlogService} from '../blog/blog.service';
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AuthService} from '../auth/auth.service';
+import {TokenStorageService} from '../auth/token-storage.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +15,8 @@ export class NavbarComponent implements OnInit {
 
   constructor(private dataTransferService: DataTranferService,
               private router: Router,
-              private blogService: BlogService) {
+              private blogService: BlogService,
+              private tokenStorageService: TokenStorageService) {
   }
 
   ngOnInit() {
@@ -47,5 +50,17 @@ export class NavbarComponent implements OnInit {
       this.dataTransferService.setData(blogs);
       this.router.navigateByUrl('/blog');
     });
+  }
+
+  isLoggedIn() {
+    if (sessionStorage.getItem('AuthUsernane') === null) {
+      return false;
+    }
+    return true;
+  }
+
+  LogOut() {
+    this.tokenStorageService.signOut();
+    this.router.navigateByUrl('/');
   }
 }

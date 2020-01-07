@@ -1,4 +1,5 @@
 import {Tag} from './tag';
+import {User} from '../auth/user';
 
 export class Blog {
   id: number;
@@ -9,4 +10,5 @@ export class Blog {
   content: string;
   createdDate: Date;
   lastUpdatedDate: Date;
+  user: User;
 }

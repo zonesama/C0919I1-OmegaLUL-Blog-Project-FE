@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 
 import {RouterModule, Routes} from '@angular/router';
+import {LoginComponent} from './login/login.component';
 
 
 const routes: Routes = [
@@ -8,6 +9,10 @@ const routes: Routes = [
     path: 'blog',
     loadChildren: './blog/blog.module#BlogModule',
     runGuardsAndResolvers: 'always'
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   }
 ];
 

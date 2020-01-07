@@ -5,4 +5,5 @@ export class BlogForm {
   thumbnail: string;
   tagList: number[];
   content: string;
+  username: string;
 }
