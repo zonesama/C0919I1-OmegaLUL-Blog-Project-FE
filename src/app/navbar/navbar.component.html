@@ -1,18 +1,10 @@
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow" style="height: 7%;">
-  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">OmegaLUL</a>
-  <input class="form-control form-control-dark col-sm-3 col-md-5 mr-0" type="text" id="searchBox" #searchInput
-         placeholder="Search" aria-label="Search" (change)="SearchBlog($event)">
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Omega LuL</a>
+  <input class="form-control form-control-dark col-sm-3 col-md-5 mr-0" type="text" id="searchBox" #searchInput placeholder="Search" aria-label="Search" (change)="SearchBlog($event)">
   <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Action
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-           class="feather feather-plus-circle">
-        <circle cx="12" cy="12" r="10"></circle>
-        <line x1="12" y1="8" x2="12" y2="16"></line>
-        <line x1="8" y1="12" x2="16" y2="12"></line>
-      </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
       <button class="dropdown-item" type="button">
@@ -26,19 +18,28 @@
       </button>
     </div>
   </div>
-<!--  <ul class="nav navbar-nav navbar-right">-->
-<!--    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>-->
-<!--    <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Login</a>-->
-<!--      <div class="dropdown-menu" style="padding: 15px; padding-bottom: 10px;">-->
-<!--        <form class="form-horizontal"  class="container" [formGroup]="">-->
-<!--          <input id="sp_uname" class="form-control login" type="text" name="sp_uname" placeholder="Username.." />-->
-<!--          <input id="sp_pass" class="form-control login" type="password" name="sp_pass" placeholder="Password.."/>-->
-<!--          <input class="btn btn-primary" type="submit" name="submit" value="login" />-->
-<!--        </form>-->
-<!--      </div>-->
-<!--    </li>-->
-<!--  </ul>-->
-  <li *ngIf="isLoggedIn()">
-    <a class="nav-item px-3 py-3" href="" (click)="LogOut()">Logout</a>
-  </li>
+  <div>
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Action
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+        <button class="dropdown-item" type="button">
+          <a (click)="goToNewBlog()">My Profile</a>
+        </button>
+        <button class="dropdown-item" type="button">
+          <a (click)="goToBlogList()">Setting</a>
+        </button>
+        <button class="dropdown-item" type="button">
+          <a (click)="goToNewBlog()">Logout</a>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div>
+  <li>
+      <a class="nav-item px-3 py-3" href="#">Register/Login</a>
+    </li>
+  </div>
 </nav>
