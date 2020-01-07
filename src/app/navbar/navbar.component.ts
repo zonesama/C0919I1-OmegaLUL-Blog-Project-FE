@@ -2,6 +2,10 @@ import {DataTranferService} from '../data-tranfer.service';
 import {Router} from '@angular/router';
 import {BlogService} from '../blog/blog.service';
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {LoginForm} from '../auth/login-form';
+import {TokenStorageService} from '../auth/token-storage.service';
+import {AuthService} from '../auth/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,13 +14,22 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
   @ViewChild('searchInput', {static: false}) searchInput: ElementRef;
+  loginInfo: FormGroup;
+  loginForm: LoginForm;
 
   constructor(private dataTransferService: DataTranferService,
               private router: Router,
-              private blogService: BlogService) {
+              private blogService: BlogService,
+              private fb: FormBuilder,
+              private token: TokenStorageService,
+              private authService: AuthService) {
   }
 
   ngOnInit() {
+    this.loginInfo = this.fb.group({
+      username: [''],
+      password: [''],
+    });
   }
 
   SearchBlog(event) {
@@ -50,6 +63,28 @@ export class NavbarComponent implements OnInit {
   }
 
   onLoginButtonClicked() {
-    document.getElementById('modalRegisterForm')
+    document.getElementById('modalRegisterForm');
+  }
+
+  onSubmit() {
+    this.loginForm = this.loginInfo.value;
+    this.authService.signIn(this.loginForm).subscribe(data => {
+      this.token.saveToken(data.accessToken);
+      this.token.saveUsername(data.username);
+      this.token.saveAuthorities(data.authorities);
+      window.location.reload();
+    });
+  }
+
+  logOut() {
+    this.token.signOut();
+    window.location.reload();
+  }
+
+  isLoggedIn() {
+    if (sessionStorage.length === 0) {
+      return false;
+    }
+    return true;
   }
 }
