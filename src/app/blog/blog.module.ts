@@ -17,11 +17,13 @@ import {ShareButtonModule} from '@ngx-share/button';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {CKEditorModule} from 'ckeditor4-angular';
 import {httpInterceptorProviders} from '../auth/auth-interceptor';
-import { UserSpecificBlogListComponent } from './user-specific-blog-list/user-specific-blog-list.component';
+import {UserSpecificBlogListComponent} from './user-specific-blog-list/user-specific-blog-list.component';
+
 
 
 @NgModule({
-  declarations: [BlogCreateComponent, BlogDetailComponent, BlogPostComponent, BlogListComponent, BlogEditComponent, SafeHtmlPipe, UserSpecificBlogListComponent],
+  declarations: [BlogCreateComponent, BlogDetailComponent, BlogPostComponent, BlogListComponent, BlogEditComponent, SafeHtmlPipe,
+    UserSpecificBlogListComponent],
   imports: [
     CommonModule, BlogRouting, HttpClientModule, RouterModule, CKEditorModule, ReactiveFormsModule, FormsModule, NgxPaginationModule,
     NgxPrintModule, ShareButtonModule, MatSlideToggleModule

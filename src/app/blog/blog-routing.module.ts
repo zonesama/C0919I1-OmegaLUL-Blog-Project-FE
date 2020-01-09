@@ -5,11 +5,13 @@ import {NgModule} from '@angular/core';
 import {BlogListComponent} from './blog-list/blog-list.component';
 import {BlogEditComponent} from './blog-edit/blog-edit.component';
 import {UserSpecificBlogListComponent} from './user-specific-blog-list/user-specific-blog-list.component';
+import {AuthGuard} from '../auth/auth.guard';
 
 const routes: Routes = [
   {
     path: 'newBlog',
-    component: BlogCreateComponent
+    component: BlogCreateComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'blogDetail/:id',
@@ -21,11 +23,13 @@ const routes: Routes = [
   },
   {
     path: 'editBlog/:id',
-    component: BlogEditComponent
+    component: BlogEditComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'userBlogList',
-    component: UserSpecificBlogListComponent
+    component: UserSpecificBlogListComponent,
+    canActivate: [AuthGuard]
   }
 ];
 
