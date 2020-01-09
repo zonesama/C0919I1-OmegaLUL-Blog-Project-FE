@@ -3,6 +3,7 @@ import {Blog} from '../blog';
 import {BlogService} from '../blog.service';
 import {NavigationEnd, Router} from '@angular/router';
 import {DataTranferService} from '../../data-tranfer.service';
+import {InitBlogListDataService} from '../../init-blog-list-data.service';
 
 @Component({
   selector: 'app-user-specific-blog-list',
@@ -17,7 +18,8 @@ export class UserSpecificBlogListComponent implements OnInit, OnDestroy {
 
   constructor(private blogService: BlogService,
               private router: Router,
-              private dataTransferService: DataTranferService) {
+              private dataTransferService: DataTranferService,
+              private initBlogListDataService: InitBlogListDataService) {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       // If it is a NavigationEnd event re-initalise the component
       if (e instanceof NavigationEnd) {
@@ -31,7 +33,10 @@ export class UserSpecificBlogListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.fetchBlogList();
+    this.blogService.getUserSpecificBlog().subscribe(data => {
+      this.initBlogListDataService.setUserFullBlogList(data);
+      this.fetchBlogList();
+    });
   }
 
   fetchBlogList() {
@@ -44,9 +49,7 @@ export class UserSpecificBlogListComponent implements OnInit, OnDestroy {
   }
 
   loadBlogList() {
-    this.blogService.getUserSpecificBlog().subscribe(data => {
-      this.blogList = data;
-    });
+    this.blogList = this.initBlogListDataService.getUserFullBlogList();
   }
 
   goToBlogDetail(item: Blog) {
@@ -67,17 +70,14 @@ export class UserSpecificBlogListComponent implements OnInit, OnDestroy {
 
   searchList(event) {
     const keyword = event.target.value;
-    this.blogService.getUserSpecificBlog().subscribe(data => {
-      const fullBlogList: Blog[] = data;
-      console.log(fullBlogList);
-      let searchedBlogs = [];
-      for (let item of fullBlogList) {
-        if (item.tittle.toLowerCase().includes(keyword.toLowerCase())) {
-          searchedBlogs.push(item);
-        }
+    let searchedBlogs = [];
+    const fullBlogList = this.initBlogListDataService.getUserFullBlogList();
+    for (let item of fullBlogList) {
+      if (item.tittle.toLowerCase().includes(keyword.toLowerCase())) {
+        searchedBlogs.push(item);
       }
-      this.dataTransferService.setData(searchedBlogs);
-      this.router.navigateByUrl('/blog/userBlogList');
-    });
+    }
+    this.dataTransferService.setData(searchedBlogs);
+    this.router.navigateByUrl('/blog/userBlogList');
   }
 }

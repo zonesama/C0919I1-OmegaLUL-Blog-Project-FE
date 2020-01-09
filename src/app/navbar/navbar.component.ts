@@ -6,6 +6,8 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {LoginForm} from '../auth/login-form';
 import {TokenStorageService} from '../auth/token-storage.service';
 import {AuthService} from '../auth/auth.service';
+import {InitBlogListDataService} from '../init-blog-list-data.service';
+import {Blog} from '../blog/blog';
 
 @Component({
   selector: 'app-navbar',
@@ -22,7 +24,8 @@ export class NavbarComponent implements OnInit {
               private blogService: BlogService,
               private fb: FormBuilder,
               private token: TokenStorageService,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private initBlogListDataService: InitBlogListDataService) {
   }
 
   ngOnInit() {
@@ -34,18 +37,19 @@ export class NavbarComponent implements OnInit {
 
   SearchBlog(event) {
     const keyword = event.target.value;
+    const blogs: Blog[] = this.initBlogListDataService.getFullBlogList();
     if (keyword === '') {
-      this.blogService.getBlogList().subscribe(data => {
-        const blogs = data;
-        this.dataTransferService.setData(blogs);
-        this.router.navigateByUrl('/blog');
-      });
+      this.dataTransferService.setData(blogs);
+      this.router.navigateByUrl('/blog');
     } else {
-      this.blogService.searchBlogByName(keyword).subscribe(data => {
-        const blogs = data;
-        this.dataTransferService.setData(blogs);
-        this.router.navigateByUrl('/blog');
-      });
+      let searchedBlogLists = [];
+      for (let item of blogs) {
+        if (item.tittle.toLowerCase().includes(keyword.toLowerCase())) {
+          searchedBlogLists.push(item);
+        }
+      }
+      this.dataTransferService.setData(searchedBlogLists);
+      this.router.navigateByUrl('/blog');
     }
   }
 
@@ -54,12 +58,7 @@ export class NavbarComponent implements OnInit {
   }
 
   goToBlogList() {
-    this.blogService.getBlogList().subscribe(data => {
-      this.searchInput.nativeElement.value = '';
-      const blogs = data;
-      this.dataTransferService.setData(blogs);
-      this.router.navigateByUrl('/blog');
-    });
+      this.router.navigateByUrl('/blog/userBlogList');
   }
 
   onLoginButtonClicked() {
