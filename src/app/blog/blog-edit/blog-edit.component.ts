@@ -6,6 +6,7 @@ import {BlogService} from '../blog.service';
 import {DataTranferService} from '../../data-tranfer.service';
 import {Tag} from '../tag';
 import {TokenStorageService} from '../../auth/token-storage.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-blog-edit',
@@ -54,7 +55,8 @@ export class BlogEditComponent implements OnInit {
               private dataTransferService: DataTranferService,
               private route: ActivatedRoute,
               private fb: FormBuilder,
-              private token: TokenStorageService) {
+              private token: TokenStorageService,
+              private location: Location) {
   }
 
   ngOnInit() {
@@ -97,7 +99,7 @@ export class BlogEditComponent implements OnInit {
       this.blogService.updateBlog(this.blogForm.value).subscribe(result => {
         const editedBlog = result;
         alert('Updated Blog: Id = ' + editedBlog.id + ' with Tittle =' + editedBlog.tittle);
-        this.router.navigateByUrl('/blog');
+        this.goBack();
       });
     }
   }
@@ -123,7 +125,7 @@ export class BlogEditComponent implements OnInit {
         let deletedBlog: Blog;
         deletedBlog = result;
         alert('Deleted Blog: ' + deletedBlog.tittle);
-        this.router.navigateByUrl('/blog').then(r => window.location.reload());
+        this.goBack();
       });
     }
   }
@@ -142,5 +144,9 @@ export class BlogEditComponent implements OnInit {
       return true;
     }
     return false;
+  }
+
+  goBack() {
+    this.location.back();
   }
 }

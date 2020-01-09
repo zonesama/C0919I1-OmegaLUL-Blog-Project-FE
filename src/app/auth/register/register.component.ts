@@ -12,6 +12,7 @@ import {SignUpForm} from '../sign-up-form';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
+  errorMessage;
 
   constructor(private fb: FormBuilder,
               private authService: AuthService,
@@ -39,6 +40,8 @@ export class RegisterComponent implements OnInit {
       this.registerForm.get('email').value.toString(), this.registerForm.get('pwGroup').get('password').value.toString(), ['user']);
     this.authService.signUp(signUpForm).subscribe(data => {
       this.router.navigateByUrl('/');
+    }, error => {
+      this.errorMessage = error.error.message;
     });
   }
 

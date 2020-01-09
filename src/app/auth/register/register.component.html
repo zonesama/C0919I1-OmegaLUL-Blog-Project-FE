@@ -1,15 +1,24 @@
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="mt-4 col-md-6 offset-md-2">
+<form [formGroup]="registerForm" (ngSubmit)=" registerForm.valid && onSubmit()" class="mt-4 col-md-6 offset-md-2">
+  <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+    {{errorMessage}}
+  </div>
   <div class="form-group row">
     <label class="col">
       Name
       <input class="form-control" formControlName="name">
     </label>
   </div>
+  <div class="alert alert-danger" role="alert" *ngIf="registerForm.get('name').invalid && registerForm.get('name').touched">
+    Please enter your name :)
+  </div>
   <div class="form-group row">
     <label class="col">
       Username
       <input class="form-control" formControlName="username">
     </label>
+  </div>
+  <div class="alert alert-danger" role="alert" *ngIf="registerForm.get('username').invalid && registerForm.get('username').touched">
+    Please enter an username :)
   </div>
   <div class="form-group row">
     <label class="col">
@@ -34,6 +43,10 @@
       </label>
     </div>
   </fieldset>
+  <div class="alert alert-danger" role="alert" *ngIf="registerForm.get('pwGroup').get('password').invalid && registerForm.get('pwGroup').get('password').touched">
+    <div *ngIf="registerForm.get('pwGroup').get('password').errors.required">Password is required</div>
+    <div *ngIf="registerForm.get('pwGroup').get('password').errors.minlength">Password must be at least 6 characters</div>
+  </div>
   <div class="alert alert-danger" role="alert" *ngIf="registerForm.hasError('passwordnotmatch', ['pwGroup']) &&
       registerForm.get('pwGroup').touched">
     Password does not match!
@@ -81,7 +94,7 @@
 <!--    <span *ngIf="registerForm.get('phone').hasError('pattern')">Phone must start with +84 followed by 9 or 10 digits.</span>-->
 <!--  </div>-->
   <div class="form-group">
-    <button class="btn btn-info col-12" type="submit">Submit</button>
+    <button class="btn btn-info col-12"  type="submit">Submit</button>
   </div>
 </form>
 

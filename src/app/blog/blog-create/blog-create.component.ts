@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {Tag} from '../tag';
-import {FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {BlogService} from '../blog.service';
 import {Blog} from '../blog';
 import {TokenStorageService} from '../../auth/token-storage.service';
+import {Location} from '@angular/common';
 import {BlogForm} from '../blog-form';
 
 @Component({
@@ -40,11 +41,6 @@ export class BlogCreateComponent implements OnInit {
       {name: 'colors', groups: ['colors']},
     ]
   };
-  // Editor = ClassicEditor;
-  // editorConfig = {
-  //   UploadUrl: 'http://localhost:4200/api/upload',
-  //   UploadMethod: 'form',
-  // };
   tagList: Tag[];
   BlogForm: FormGroup;
   blog: Blog;
@@ -54,17 +50,18 @@ export class BlogCreateComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private router: Router,
               private blogService: BlogService,
-              private token: TokenStorageService) {
+              private token: TokenStorageService,
+              private location: Location) {
   }
 
   ngOnInit() {
     this.loadTagList();
     this.BlogForm = this.fb.group({
-      tittle: [''],
-      description: [''],
-      thumbnail: [''],
+      tittle: ['', Validators.required],
+      description: ['', Validators.required],
+      thumbnail: ['', Validators.required],
       tagList: this.fb.array([]),
-      content: [],
+      content: [Validators.required],
       username: [this.token.getUsername()],
       isPrivate: []
     })
@@ -84,7 +81,7 @@ export class BlogCreateComponent implements OnInit {
         console.log(data);
         this.blog = data;
         alert('Create Blog: ' + this.blog.tittle);
-        this.router.navigateByUrl('/blog');
+        this.goBack();
       });
     }
   }
@@ -102,6 +99,10 @@ export class BlogCreateComponent implements OnInit {
 
   onChangeThumpnailUrl(event) {
     this.currentThumpnail = event.target.value;
+  }
+
+  goBack() {
+    this.location.back();
   }
 
   // changePrivateState() {

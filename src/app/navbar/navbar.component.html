@@ -11,7 +11,7 @@
         <a (click)="goToNewBlog()">New Blog</a>
       </button>
       <button class="dropdown-item" type="button">
-        <a (click)="goToBlogList()">List</a>
+        <a (click)="goToBlogList()">My Blogs</a>
       </button>
       <button class="dropdown-item" type="button">
         <a href="#">Toang</a>
@@ -49,7 +49,7 @@
      aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-     <form [formGroup]="loginInfo" (ngSubmit)="onSubmit()">
+     <form [formGroup]="loginInfo" (ngSubmit)="loginInfo.valid && onSubmit()" novalidate>
        <div class="modal-header text-center">
          <h4 class="modal-title w-100 font-weight-bold">Sign up</h4>
          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -57,21 +57,25 @@
          </button>
        </div>
        <div class="modal-body mx-3">
-         <!--        <div class="md-form mb-3">-->
-         <!--&lt;!&ndash;          <i class="fas fa-user prefix grey-text"></i>&ndash;&gt;-->
-         <!--          <label data-error="wrong" data-success="right" for="orangeForm-name">Your name</label>-->
-         <!--          <input type="text" id="orangeForm-name" class="form-control validate">-->
-         <!--        </div>-->
+
          <div class="md-form mb-3">
-           <!--          <i class="fas fa-envelope prefix grey-text"></i>-->
            <label data-error="wrong" data-success="right" for="orangeForm-email">Username</label>
            <input type="text" id="orangeForm-email" class="form-control validate" formControlName="username">
          </div>
-
+         <div class="alert alert-danger" role="alert" *ngIf="loginInfo.get('username').invalid && loginInfo.get('username').touched">
+           Please enter username :)
+         </div>
          <div class="md-form mb-4">
            <!--          <i class="fas fa-lock prefix grey-text"></i>-->
            <label data-error="wrong" data-success="right" for="orangeForm-pass">Password</label>
            <input type="password" id="orangeForm-pass" class="form-control validate" formControlName="password">
+         </div>
+         <div class="alert alert-danger" role="alert" *ngIf="loginInfo.get('password').invalid && loginInfo.get('password').touched">
+           <div *ngIf="loginInfo.get('password').errors.required">Password is required</div>
+           <div *ngIf="loginInfo.get('password').errors.minlength">Password must be at least 6 characters</div>
+         </div>
+         <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+           {{errorMessage}}
          </div>
          <div>
            Don't have an account?

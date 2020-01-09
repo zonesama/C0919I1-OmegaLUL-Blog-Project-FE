@@ -2,7 +2,7 @@ import {DataTranferService} from '../data-tranfer.service';
 import {Router} from '@angular/router';
 import {BlogService} from '../blog/blog.service';
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {LoginForm} from '../auth/login-form';
 import {TokenStorageService} from '../auth/token-storage.service';
 import {AuthService} from '../auth/auth.service';
@@ -18,6 +18,7 @@ export class NavbarComponent implements OnInit {
   @ViewChild('searchInput', {static: false}) searchInput: ElementRef;
   loginInfo: FormGroup;
   loginForm: LoginForm;
+  errorMessage = '';
 
   constructor(private dataTransferService: DataTranferService,
               private router: Router,
@@ -30,8 +31,8 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.loginInfo = this.fb.group({
-      username: [''],
-      password: [''],
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
@@ -58,7 +59,7 @@ export class NavbarComponent implements OnInit {
   }
 
   goToBlogList() {
-      this.router.navigateByUrl('/blog/userBlogList');
+    this.router.navigateByUrl('/blog/userBlogList');
   }
 
   onLoginButtonClicked() {
@@ -72,6 +73,12 @@ export class NavbarComponent implements OnInit {
       this.token.saveUsername(data.username);
       this.token.saveAuthorities(data.authorities);
       window.location.reload();
+    }, error => {
+      if(error.error.message === 'Error -> Unauthorized'){
+        this.errorMessage = 'Wrong Password';
+      }else{
+        this.errorMessage = error.error.message;
+      }
     });
   }
 
