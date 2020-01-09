@@ -40,7 +40,7 @@ export class UserSpecificBlogListComponent implements OnInit, OnDestroy {
   }
 
   fetchBlogList() {
-    const tmp = this.dataTransferService.getData();
+    const tmp = this.dataTransferService.getSearchedOwnBlog();
     if (tmp === undefined) {
       this.loadBlogList();
     } else {
@@ -77,7 +77,7 @@ export class UserSpecificBlogListComponent implements OnInit, OnDestroy {
         searchedBlogs.push(item);
       }
     }
-    this.dataTransferService.setData(searchedBlogs);
+    this.dataTransferService.setSearchedOwnBlog(searchedBlogs);
     this.router.navigateByUrl('/blog/userBlogList');
   }
 }

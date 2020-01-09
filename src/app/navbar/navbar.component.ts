@@ -40,7 +40,7 @@ export class NavbarComponent implements OnInit {
     const keyword = event.target.value;
     const blogs: Blog[] = this.initBlogListDataService.getFullBlogList();
     if (keyword === '') {
-      this.dataTransferService.setData(blogs);
+      this.dataTransferService.setSearchedBlog(blogs);
       this.router.navigateByUrl('/blog');
     } else {
       let searchedBlogLists = [];
@@ -49,7 +49,7 @@ export class NavbarComponent implements OnInit {
           searchedBlogLists.push(item);
         }
       }
-      this.dataTransferService.setData(searchedBlogLists);
+      this.dataTransferService.setSearchedBlog(searchedBlogLists);
       this.router.navigateByUrl('/blog');
     }
   }

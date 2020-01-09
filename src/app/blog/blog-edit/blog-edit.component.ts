@@ -1,12 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {Blog} from '../blog';
-import {FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {BlogService} from '../blog.service';
 import {DataTranferService} from '../../data-tranfer.service';
 import {Tag} from '../tag';
 import {TokenStorageService} from '../../auth/token-storage.service';
 import {Location} from '@angular/common';
+import {InitBlogListDataService} from '../../init-blog-list-data.service';
 
 @Component({
   selector: 'app-blog-edit',
@@ -56,7 +57,8 @@ export class BlogEditComponent implements OnInit {
               private route: ActivatedRoute,
               private fb: FormBuilder,
               private token: TokenStorageService,
-              private location: Location) {
+              private location: Location,
+              private initBlogListDataService: InitBlogListDataService) {
   }
 
   ngOnInit() {
@@ -78,14 +80,14 @@ export class BlogEditComponent implements OnInit {
       this.currentThumpnail = this.blog.thumbnail;
       this.blogForm = this.fb.group({
         id: [this.blog.id],
-        tittle: [this.blog.tittle],
-        description: [this.blog.description],
-        thumbnail: [this.blog.thumbnail],
+        tittle: [this.blog.tittle, Validators.required],
+        description: [this.blog.description, Validators.required],
+        thumbnail: [this.blog.thumbnail, Validators.required],
         tagList: this.fb.array([]),
-        content: [this.blog.content],
+        content: [this.blog.content, Validators.required],
         username: [this.token.getUsername()],
         isPrivate: [this.blog.isPrivate]
-      });
+      }, {validators: checkTags});
       this.tagFormArray = <FormArray> this.blogForm.controls.tagList;
       for (let item of this.blog.tagList) {
         this.tagFormArray.push(new FormControl(item.id));
@@ -99,6 +101,12 @@ export class BlogEditComponent implements OnInit {
       this.blogService.updateBlog(this.blogForm.value).subscribe(result => {
         const editedBlog = result;
         alert('Updated Blog: Id = ' + editedBlog.id + ' with Tittle =' + editedBlog.tittle);
+        this.blogService.getBlogList().subscribe(data => {
+          this.initBlogListDataService.setFullBlogList(data);
+        });
+        this.blogService.getUserSpecificBlog().subscribe(data => {
+          this.initBlogListDataService.setUserFullBlogList(data);
+        });
         this.goBack();
       });
     }
@@ -149,4 +157,11 @@ export class BlogEditComponent implements OnInit {
   goBack() {
     this.location.back();
   }
+}
+
+function checkTags(c: AbstractControl) {
+  const v = c.value;
+  return (v.tagList.length !== 0) ? null : {
+    emptyTagList: true
+  };
 }

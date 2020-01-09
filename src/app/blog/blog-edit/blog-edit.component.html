@@ -1,4 +1,7 @@
-<form [formGroup]="blogForm" (ngSubmit)="onSubmit()">
+<div class="alert alert-danger" role="alert" *ngIf="blogForm.invalid && blogForm.touched">
+  Please fill in all the informations
+</div>
+<form [formGroup]="blogForm" (ngSubmit)="blogForm.valid && onSubmit()">
   <div class="accordion" id="accordionExample">
     <div class="card">
       <div class="card-header" id="headingOne">
@@ -75,6 +78,5 @@
     <button class="btn btn-danger" style="margin-left: 100px" (click)="deleteBlog()" type="Button">Delete</button>
   </div>
 </form>
-
 
 

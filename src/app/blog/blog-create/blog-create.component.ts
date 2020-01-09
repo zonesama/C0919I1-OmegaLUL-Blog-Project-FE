@@ -1,12 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {Tag} from '../tag';
-import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {BlogService} from '../blog.service';
 import {Blog} from '../blog';
 import {TokenStorageService} from '../../auth/token-storage.service';
 import {Location} from '@angular/common';
 import {BlogForm} from '../blog-form';
+import {InitBlogListDataService} from '../../init-blog-list-data.service';
+
 
 @Component({
   selector: 'app-blog-create',
@@ -45,13 +47,13 @@ export class BlogCreateComponent implements OnInit {
   BlogForm: FormGroup;
   blog: Blog;
   currentThumpnail: string;
-  checked = true;
 
   constructor(private fb: FormBuilder,
               private router: Router,
               private blogService: BlogService,
               private token: TokenStorageService,
-              private location: Location) {
+              private location: Location,
+              private initBlogListDataService: InitBlogListDataService) {
   }
 
   ngOnInit() {
@@ -61,11 +63,10 @@ export class BlogCreateComponent implements OnInit {
       description: ['', Validators.required],
       thumbnail: ['', Validators.required],
       tagList: this.fb.array([]),
-      content: [Validators.required],
+      content: ['', Validators.required],
       username: [this.token.getUsername()],
       isPrivate: []
-    })
-    ;
+    }, {validators: checkTags});
   }
 
   loadTagList() {
@@ -78,7 +79,9 @@ export class BlogCreateComponent implements OnInit {
     console.log(this.BlogForm.value);
     if (confirm('Are You Sure?')) {
       this.blogService.createNewBlog(this.BlogForm.value).subscribe(data => {
-        console.log(data);
+        this.blogService.getBlogList().subscribe(blogs => {
+          this.initBlogListDataService.setFullBlogList(blogs);
+        });
         this.blog = data;
         alert('Create Blog: ' + this.blog.tittle);
         this.goBack();
@@ -104,13 +107,11 @@ export class BlogCreateComponent implements OnInit {
   goBack() {
     this.location.back();
   }
+}
 
-  // changePrivateState() {
-  //   const isPrivate = this.BlogForm.get('isPrivate').value;
-  //   if (isPrivate) {
-  //     this.BlogForm.controls['isPrivate'].setValue(false);
-  //   } else {
-  //     this.BlogForm.controls['isPrivate'].setValue(true);
-  //   }
-  // }
+function checkTags(c: AbstractControl) {
+  const v = c.value;
+  return (v.tagList.length !== 0) ? null : {
+    emptyTagList: true
+  };
 }

@@ -4,21 +4,29 @@ import {Injectable} from '@angular/core';
   providedIn: 'root'
 })
 export class DataTranferService {
-  private data;
+  private searchedBlogs;
+  private searchedOwnBlogs;
 
   constructor() {
   }
 
-  setData(data) {
-    this.data = data;
+  setSearchedBlog(data) {
+    this.searchedBlogs = data;
   }
 
-  getData() {
-    const tmp = this.data;
-    return tmp;
+  getSearchedBlog() {
+    return this.searchedBlogs;
   }
 
-  clearData() {
-    this.data = undefined;
+  setSearchedOwnBlog(data) {
+    this.searchedOwnBlogs = data;
   }
+
+  getSearchedOwnBlog() {
+    return this.searchedOwnBlogs;
+  }
+
+  // clearData() {
+  //   this.data = undefined;
+  // }
 }

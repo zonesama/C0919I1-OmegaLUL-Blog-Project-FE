@@ -51,7 +51,7 @@
     <div class="modal-content">
      <form [formGroup]="loginInfo" (ngSubmit)="loginInfo.valid && onSubmit()" novalidate>
        <div class="modal-header text-center">
-         <h4 class="modal-title w-100 font-weight-bold">Sign up</h4>
+         <h4 class="modal-title w-100 font-weight-bold">Log In</h4>
          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
            <span aria-hidden="true">&times;</span>
          </button>
@@ -60,7 +60,7 @@
 
          <div class="md-form mb-3">
            <label data-error="wrong" data-success="right" for="orangeForm-email">Username</label>
-           <input type="text" id="orangeForm-email" class="form-control validate" formControlName="username">
+           <input type="text" id="orangeForm-email" class="form-control validate mainLoginInput" placeholder="&#61447;" formControlName="username">
          </div>
          <div class="alert alert-danger" role="alert" *ngIf="loginInfo.get('username').invalid && loginInfo.get('username').touched">
            Please enter username :)
@@ -68,7 +68,7 @@
          <div class="md-form mb-4">
            <!--          <i class="fas fa-lock prefix grey-text"></i>-->
            <label data-error="wrong" data-success="right" for="orangeForm-pass">Password</label>
-           <input type="password" id="orangeForm-pass" class="form-control validate" formControlName="password">
+           <input type="password" id="orangeForm-pass" class="form-control validate mainLoginInput" placeholder="&#61475;" formControlName="password">
          </div>
          <div class="alert alert-danger" role="alert" *ngIf="loginInfo.get('password').invalid && loginInfo.get('password').touched">
            <div *ngIf="loginInfo.get('password').errors.required">Password is required</div>
