@@ -11,4 +11,5 @@ export class Blog {
   createdDate: Date;
   lastUpdatedDate: Date;
   user: User;
+  isPrivate: boolean;
 }

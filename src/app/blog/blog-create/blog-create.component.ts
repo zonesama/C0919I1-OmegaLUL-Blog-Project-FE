@@ -4,10 +4,8 @@ import {FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
 import {BlogService} from '../blog.service';
 import {Blog} from '../blog';
-
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import SimpleUploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/simpleuploadadapter';
 import {TokenStorageService} from '../../auth/token-storage.service';
+import {BlogForm} from '../blog-form';
 
 @Component({
   selector: 'app-blog-create',
@@ -51,6 +49,7 @@ export class BlogCreateComponent implements OnInit {
   BlogForm: FormGroup;
   blog: Blog;
   currentThumpnail: string;
+  checked = true;
 
   constructor(private fb: FormBuilder,
               private router: Router,
@@ -66,8 +65,10 @@ export class BlogCreateComponent implements OnInit {
       thumbnail: [''],
       tagList: this.fb.array([]),
       content: [],
-      username: [this.token.getUsername()]
-    });
+      username: [this.token.getUsername()],
+      isPrivate: []
+    })
+    ;
   }
 
   loadTagList() {
@@ -77,6 +78,7 @@ export class BlogCreateComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this.BlogForm.value);
     if (confirm('Are You Sure?')) {
       this.blogService.createNewBlog(this.BlogForm.value).subscribe(data => {
         console.log(data);
@@ -101,4 +103,13 @@ export class BlogCreateComponent implements OnInit {
   onChangeThumpnailUrl(event) {
     this.currentThumpnail = event.target.value;
   }
+
+  // changePrivateState() {
+  //   const isPrivate = this.BlogForm.get('isPrivate').value;
+  //   if (isPrivate) {
+  //     this.BlogForm.controls['isPrivate'].setValue(false);
+  //   } else {
+  //     this.BlogForm.controls['isPrivate'].setValue(true);
+  //   }
+  // }
 }

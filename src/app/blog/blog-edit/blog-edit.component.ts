@@ -5,7 +5,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {BlogService} from '../blog.service';
 import {DataTranferService} from '../../data-tranfer.service';
 import {Tag} from '../tag';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {TokenStorageService} from '../../auth/token-storage.service';
 
 @Component({
@@ -59,15 +58,7 @@ export class BlogEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.blogForm = this.fb.group({
-    //   id: [''],
-    //   tittle: [''],
-    //   description: [''],
-    //   thumbnail: [''],
-    //   content: ['']
-    // });
     this.loadTagList();
-    // this.blog = this.dataTransferService.getData();
     this.loadBlog();
   }
 
@@ -81,6 +72,7 @@ export class BlogEditComponent implements OnInit {
     const id = parseInt(this.route.snapshot.paramMap.get('id'));
     this.blogService.getBlogById(id).subscribe(data => {
       this.blog = data;
+      console.log(this.blog.isPrivate);
       this.currentThumpnail = this.blog.thumbnail;
       this.blogForm = this.fb.group({
         id: [this.blog.id],
@@ -89,13 +81,15 @@ export class BlogEditComponent implements OnInit {
         thumbnail: [this.blog.thumbnail],
         tagList: this.fb.array([]),
         content: [this.blog.content],
-        username: [this.token.getUsername()]
+        username: [this.token.getUsername()],
+        isPrivate: [this.blog.isPrivate]
       });
       this.tagFormArray = <FormArray> this.blogForm.controls.tagList;
       for (let item of this.blog.tagList) {
         this.tagFormArray.push(new FormControl(item.id));
       }
     });
+    console.log(this.blogForm.value);
   }
 
   onSubmit() {
@@ -139,6 +133,13 @@ export class BlogEditComponent implements OnInit {
       if (id === item.id) {
         return true;
       }
+    }
+    return false;
+  }
+
+  checkPrivateStatus() {
+    if (this.blog.isPrivate === true) {
+      return true;
     }
     return false;
   }

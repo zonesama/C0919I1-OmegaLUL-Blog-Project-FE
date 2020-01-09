@@ -41,7 +41,7 @@ export class NavbarComponent implements OnInit {
         this.router.navigateByUrl('/blog');
       });
     } else {
-      this.blogService.searchBlogByName(event.target.value).subscribe(data => {
+      this.blogService.searchBlogByName(keyword).subscribe(data => {
         const blogs = data;
         this.dataTransferService.setData(blogs);
         this.router.navigateByUrl('/blog');
@@ -77,8 +77,10 @@ export class NavbarComponent implements OnInit {
   }
 
   logOut() {
-    this.token.signOut();
-    window.location.reload();
+    if (confirm('Are You Sure ?')) {
+      this.token.signOut();
+      window.location.reload();
+    }
   }
 
   isLoggedIn() {

@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {Tag} from './tag';
 import {Blog} from './blog';
 import {BlogForm} from './blog-form';
+import {TokenStorageService} from '../auth/token-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,8 @@ import {BlogForm} from './blog-form';
 export class BlogService {
   private ApiUrl = 'http://localhost:8080/api/';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private token: TokenStorageService) {
   }
 
   getTag(): Observable<Tag[]> {
@@ -40,5 +42,9 @@ export class BlogService {
 
   searchBlogByName(keyword: string): Observable<Blog[]> {
     return this.http.get<Blog[]>(this.ApiUrl + 'blog/search/' + keyword);
+  }
+
+  getUserSpecificBlog(): Observable<Blog[]> {
+    return this.http.get<Blog[]>(this.ApiUrl+ 'blog/userBlogs/' + this.token.getUsername());
   }
 }

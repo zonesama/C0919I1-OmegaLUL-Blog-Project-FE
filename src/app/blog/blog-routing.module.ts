@@ -4,6 +4,7 @@ import {BlogDetailComponent} from './blog-detail/blog-detail.component';
 import {NgModule} from '@angular/core';
 import {BlogListComponent} from './blog-list/blog-list.component';
 import {BlogEditComponent} from './blog-edit/blog-edit.component';
+import {UserSpecificBlogListComponent} from './user-specific-blog-list/user-specific-blog-list.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'editBlog/:id',
     component: BlogEditComponent
+  },
+  {
+    path: 'userBlogList',
+    component: UserSpecificBlogListComponent
   }
 ];
 

@@ -35,7 +35,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    const signUpForm = new SignUpForm(this.registerForm.get('name').value.toString(), this.registerForm.get('username').value.toString(),
+    const signUpForm = new SignUpForm(0, this.registerForm.get('name').value.toString(), this.registerForm.get('username').value.toString(),
       this.registerForm.get('email').value.toString(), this.registerForm.get('pwGroup').get('password').value.toString(), ['user']);
     this.authService.signUp(signUpForm).subscribe(data => {
       this.router.navigateByUrl('/');
