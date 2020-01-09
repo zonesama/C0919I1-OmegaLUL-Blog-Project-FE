@@ -15,8 +15,7 @@ import {LoginComponent} from './login/login.component';
 import {httpInterceptorProviders} from './auth/auth-interceptor';
 import {ReactiveFormsModule} from '@angular/forms';
 import {RegisterComponent} from './auth/register/register.component';
-import {AuthGuardService} from './auth/auth-guard.service';
-import {JwtHelperService} from '@auth0/angular-jwt';
+
 
 @NgModule({
   declarations: [
