@@ -22,7 +22,7 @@ export class BlogCreateComponent implements OnInit {
     extraPlugins: 'uploadimage',
     minWidth: 500,
     height: 800,
-    filebrowserUploadUrl: 'http://localhost:4200/api/upload',
+    filebrowserUploadUrl: 'http://localhost:4200/api/files-upload',
     filebrowserUploadMethod: 'xhr',
     fileTools_requestHeaders: {
       'X-Requested-With': 'XMLHttpRequest',
