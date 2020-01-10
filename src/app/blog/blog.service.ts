@@ -5,12 +5,13 @@ import {Tag} from './tag';
 import {Blog} from './blog';
 import {BlogForm} from './blog-form';
 import {TokenStorageService} from '../auth/token-storage.service';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BlogService {
-  private ApiUrl = 'http://localhost:8080/api/';
+  private ApiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient,
               private token: TokenStorageService) {
@@ -45,6 +46,10 @@ export class BlogService {
   }
 
   getUserSpecificBlog(): Observable<Blog[]> {
-    return this.http.get<Blog[]>(this.ApiUrl+ 'blog/userBlogs/' + this.token.getUsername());
+    return this.http.get<Blog[]>(this.ApiUrl + 'blog/userBlogs/' + this.token.getUsername());
+  }
+
+  uploadMultipleImage(formData: FormData): Observable<string[]> {
+    return this.http.post<string[]>(this.ApiUrl + 'upload-multi', formData);
   }
 }

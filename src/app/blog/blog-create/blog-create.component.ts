@@ -8,6 +8,7 @@ import {TokenStorageService} from '../../auth/token-storage.service';
 import {Location} from '@angular/common';
 import {BlogForm} from '../blog-form';
 import {InitBlogListDataService} from '../../init-blog-list-data.service';
+import {environment} from '../../../environments/environment';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class BlogCreateComponent implements OnInit {
     extraPlugins: 'uploadimage',
     minWidth: 500,
     height: 800,
-    filebrowserUploadUrl: 'http://localhost:4200/api/files-upload',
+    filebrowserUploadUrl: environment.apiUrl + 'files-upload',
     filebrowserUploadMethod: 'xhr',
     fileTools_requestHeaders: {
       'X-Requested-With': 'XMLHttpRequest',
