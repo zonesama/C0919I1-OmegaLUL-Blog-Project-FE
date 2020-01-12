@@ -24,7 +24,7 @@ export class NavbarComponent implements OnInit {
               private router: Router,
               private blogService: BlogService,
               private fb: FormBuilder,
-              private token: TokenStorageService,
+              public token: TokenStorageService,
               private authService: AuthService,
               private initBlogListDataService: InitBlogListDataService) {
   }

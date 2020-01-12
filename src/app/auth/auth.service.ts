@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import {JwtResponse} from './jwt-response';
 import {SignUpForm} from './sign-up-form';
 import {TokenStorageService} from './token-storage.service';
+import {environment} from '../../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -15,8 +16,8 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
-  private loginUrl = 'http://localhost:8080/api/auth/signin';
-  private signupUrl = 'http://localhost:8080/api/auth/signup';
+  private loginUrl = environment.apiUrl + 'auth/signin';
+  private signupUrl = environment.apiUrl + 'auth/signup';
 
   constructor(private http: HttpClient,
               private token: TokenStorageService) {
