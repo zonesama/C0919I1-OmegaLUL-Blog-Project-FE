@@ -155,7 +155,10 @@ export class BlogEditComponent implements OnInit {
   }
 
   goBack() {
-    this.location.back();
+    // this.location.back();
+    this.router.navigateByUrl('/blog').then(() => {
+      window.location.reload();
+    });
   }
 }
 
