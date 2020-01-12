@@ -19,6 +19,7 @@ export class NavbarComponent implements OnInit {
   loginInfo: FormGroup;
   loginForm: LoginForm;
   errorMessage = '';
+  audioUrl = 'http://storage.googleapis.com/blogs-pj.appspot.com/zone.god.blogprojectbe/files/Sun%20Jan%2012%202020-[AudioTrimmer.com].mp3';
 
   constructor(private dataTransferService: DataTranferService,
               private router: Router,
@@ -72,11 +73,14 @@ export class NavbarComponent implements OnInit {
       this.token.saveToken(data.accessToken);
       this.token.saveUsername(data.username);
       this.token.saveAuthorities(data.authorities);
-      window.location.reload();
+      // @ts-ignore
+      new Audio(this.audioUrl).play().then(setTimeout(() => {
+        window.location.reload();
+      }, 1100));
     }, error => {
-      if(error.error.message === 'Error -> Unauthorized'){
+      if (error.error.message === 'Error -> Unauthorized') {
         this.errorMessage = 'Wrong Password';
-      }else{
+      } else {
         this.errorMessage = error.error.message;
       }
     });
@@ -96,3 +100,4 @@ export class NavbarComponent implements OnInit {
     return true;
   }
 }
+
