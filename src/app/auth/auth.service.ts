@@ -27,8 +27,8 @@ export class AuthService {
     return this.http.post<JwtResponse>(this.loginUrl, credentials, httpOptions);
   }
 
-  signUp(info: SignUpForm): Observable<string> {
-    return this.http.post<string>(this.signupUrl, info, httpOptions);
+  signUp(info: SignUpForm): Observable<any> {
+    return this.http.post<any>(this.signupUrl, info, httpOptions);
   }
 
   public isAuthenticated(): boolean {

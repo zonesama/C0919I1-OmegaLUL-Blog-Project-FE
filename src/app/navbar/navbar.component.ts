@@ -49,7 +49,7 @@ export class NavbarComponent implements OnInit {
     } else {
       let searchedBlogLists = [];
       for (let item of blogs) {
-        if (item.tittle.toLowerCase().includes(keyword.toLowerCase())) {
+        if (item.tittle.toLowerCase().includes(keyword.toLowerCase()) || item.content.toLowerCase().includes(keyword.toLowerCase())|| item.description.toLowerCase().includes(keyword.toLowerCase())) {
           searchedBlogLists.push(item);
         }
       }

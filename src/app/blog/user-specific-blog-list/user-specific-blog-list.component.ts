@@ -73,7 +73,7 @@ export class UserSpecificBlogListComponent implements OnInit, OnDestroy {
     let searchedBlogs = [];
     const fullBlogList = this.initBlogListDataService.getUserFullBlogList();
     for (let item of fullBlogList) {
-      if (item.tittle.toLowerCase().includes(keyword.toLowerCase())) {
+      if (item.tittle.toLowerCase().includes(keyword.toLowerCase()) || item.content.toLowerCase().includes(keyword.toLowerCase()) || item.description.toLowerCase().includes(keyword.toLowerCase())) {
         searchedBlogs.push(item);
       }
     }
