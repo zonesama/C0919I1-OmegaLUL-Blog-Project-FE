@@ -107,7 +107,7 @@ export class BlogCreateComponent implements OnInit {
 
   goBack() {
     // this.location.back();
-    this.router.navigateByUrl('/blog').then(() => {
+    this.router.navigateByUrl('/blog/userBlogList').then(() => {
       window.location.reload();
     });
   }

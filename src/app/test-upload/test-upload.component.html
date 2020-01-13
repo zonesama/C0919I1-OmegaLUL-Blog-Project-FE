@@ -1,3 +1,19 @@
 <p>test-upload works!</p>
 <input type="file" (change)="getImgs($event)" multiple>
-<p><button type="button" (click)="Submit()"></button></p>
+<p>
+  <button type="button" (click)="Submit()"></button>
+</p>
+<div class="row">
+  <div class="col-9 offset-3">
+    <table *ngIf="imagesUrl.length >0" class="table-bordered table-dark table-hover">
+      <thead>
+      <th>Image Preview</th>
+      <th>Select</th>
+      </thead>
+      <tbody *ngFor="let imgUrl of imagesUrl">
+      <td><img src="{{imgUrl}}" style="height: 200px;width: 300px"></td>
+      <td><input type="checkbox"></td>
+      </tbody>
+    </table>
+  </div>
+</div>

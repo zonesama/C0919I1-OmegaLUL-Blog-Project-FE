@@ -7,8 +7,8 @@ import {BlogService} from '../blog/blog.service';
   styleUrls: ['./test-upload.component.scss']
 })
 export class TestUploadComponent implements OnInit {
-  imagesUrl: string[];
-  images: File[];
+  imagesUrl = [];
+  images = [];
 
   constructor(private blogService: BlogService) {
   }
@@ -18,17 +18,25 @@ export class TestUploadComponent implements OnInit {
 
   getImgs(event) {
     const images = event.target.files;
-    this.images = images;
+    for (let img of images) {
+      this.images.push(img);
+      const reader = new FileReader();
+      reader.onload = e => this.imagesUrl.push(reader.result);
+      reader.readAsDataURL(img);
+    }
+    console.log(images.findIndex(0));
   }
 
   Submit() {
-    let formData = new FormData();
-    for (const item of this.images) {
-      formData.append('upload', item);
-    }
-    this.blogService.uploadMultipleImage(formData).subscribe(result => {
-      this.imagesUrl = result;
-      console.log(this.imagesUrl);
-    });
+    console.log(this.images);
+    console.log(this.imagesUrl);
+    // let formData = new FormData();
+    // for (const item of this.images) {
+    //   formData.append('upload', item);
+    // }
+    // this.blogService.uploadMultipleImage(formData).subscribe(result => {
+    //   this.imagesUrl = result;
+    //   console.log(this.imagesUrl);
+    // });
   }
 }

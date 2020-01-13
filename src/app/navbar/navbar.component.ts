@@ -76,7 +76,7 @@ export class NavbarComponent implements OnInit {
       // @ts-ignore
       new Audio(this.audioUrl).play().then(setTimeout(() => {
         window.location.reload();
-      }, 1100));
+      }, 1300));
     }, error => {
       if (error.error.message === 'Error -> Unauthorized') {
         this.errorMessage = 'Wrong Password';
