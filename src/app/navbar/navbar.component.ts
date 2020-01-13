@@ -31,6 +31,9 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.blogService.getBlogList().subscribe(data => {
+      this.initBlogListDataService.setFullBlogList(data);
+    });
     this.loginInfo = this.fb.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]],
