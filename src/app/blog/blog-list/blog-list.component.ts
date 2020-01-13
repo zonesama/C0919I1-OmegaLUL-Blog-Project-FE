@@ -35,8 +35,8 @@ export class BlogListComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.blogService.getBlogList().subscribe(data => {
       this.initBlogListDataService.setFullBlogList(data);
+      this.fetchBlogList();
     });
-    this.fetchBlogList();
   }
 
   fetchBlogList() {
