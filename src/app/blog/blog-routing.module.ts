@@ -6,6 +6,7 @@ import {BlogListComponent} from './blog-list/blog-list.component';
 import {BlogEditComponent} from './blog-edit/blog-edit.component';
 import {UserSpecificBlogListComponent} from './user-specific-blog-list/user-specific-blog-list.component';
 import {AuthGuard} from '../auth/auth.guard';
+import {TagsSpecificBlogListComponent} from './tags-specific-blog-list/tags-specific-blog-list.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,10 @@ const routes: Routes = [
     path: 'userBlogList',
     component: UserSpecificBlogListComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'tagsSearch',
+    component: TagsSpecificBlogListComponent
   }
 ];
 
