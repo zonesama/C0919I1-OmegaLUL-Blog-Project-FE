@@ -1,5 +1,5 @@
 <div class="row" style="margin-top: 2%">
-  <input class="col-5 offset-3 mainSearchInput" type="text" placeholder="&#61442;"(input)="searchList($event)">
+  <input class="col-5 offset-3 mainSearchInput" type="text" placeholder="&#61442;" (input)="searchList($event)">
 </div>
 <div class="row">
   <div class="col-3" *ngFor="let item of blogList |  paginate:{itemsPerPage: count, currentPage: p}" style="padding-top: 10px; margin-top: 10px">
