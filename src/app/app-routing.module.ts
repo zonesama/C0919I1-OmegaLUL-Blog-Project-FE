@@ -7,11 +7,16 @@ import {TestUploadComponent} from './test-upload/test-upload.component';
 
 
 
+
 const routes: Routes = [
   {
     path: 'blog',
     loadChildren: './blog/blog.module#BlogModule',
     runGuardsAndResolvers: 'always'
+  },
+  {
+    path: 'imgBlog',
+    loadChildren: './image-blog/image-blog.module#ImageBlogModule'
   },
   {
     path: 'login',

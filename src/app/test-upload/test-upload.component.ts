@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {BlogService} from '../blog/blog.service';
+import {ImageFile} from '../image-blog/image-file';
 
 @Component({
   selector: 'app-test-upload',
@@ -7,8 +8,9 @@ import {BlogService} from '../blog/blog.service';
   styleUrls: ['./test-upload.component.scss']
 })
 export class TestUploadComponent implements OnInit {
-  imagesUrl = [];
   images = [];
+  count = 5;
+  p = 1;
 
   constructor(private blogService: BlogService) {
   }
@@ -19,17 +21,18 @@ export class TestUploadComponent implements OnInit {
   getImgs(event) {
     const images = event.target.files;
     for (let img of images) {
-      this.images.push(img);
+      const imageFile = new ImageFile(img, '');
       const reader = new FileReader();
-      reader.onload = e => this.imagesUrl.push(reader.result);
+      reader.onload = e => imageFile.imgPreviewUrl = reader.result.toString();
       reader.readAsDataURL(img);
+      this.images.push(imageFile);
     }
-    console.log(images.findIndex(0));
+    let index = this.images.findIndex(x => x.imgFile === images[0]);
+    console.log(index);
   }
 
   Submit() {
     console.log(this.images);
-    console.log(this.imagesUrl);
     // let formData = new FormData();
     // for (const item of this.images) {
     //   formData.append('upload', item);

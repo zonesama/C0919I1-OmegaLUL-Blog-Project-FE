@@ -16,6 +16,7 @@ import {httpInterceptorProviders} from './auth/auth-interceptor';
 import {ReactiveFormsModule} from '@angular/forms';
 import {RegisterComponent} from './auth/register/register.component';
 import { TestUploadComponent } from './test-upload/test-upload.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { TestUploadComponent } from './test-upload/test-upload.component';
     CKEditorModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
