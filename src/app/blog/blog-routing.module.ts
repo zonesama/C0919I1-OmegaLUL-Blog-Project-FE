@@ -6,12 +6,19 @@ import {BlogListComponent} from './blog-list/blog-list.component';
 import {BlogEditComponent} from './blog-edit/blog-edit.component';
 import {UserSpecificBlogListComponent} from './user-specific-blog-list/user-specific-blog-list.component';
 import {AuthGuard} from '../auth/auth.guard';
+import {TagsSpecificBlogListComponent} from './tags-specific-blog-list/tags-specific-blog-list.component';
+import {ImageBlogCreateComponent} from './image-blog-create/image-blog-create.component';
 
 const routes: Routes = [
   {
     path: 'newBlog',
     component: BlogCreateComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'newImageBlog',
+    component: ImageBlogCreateComponent,
+    // canActivate: [AuthGuard]
   },
   {
     path: 'blogDetail/:id',
@@ -30,6 +37,10 @@ const routes: Routes = [
     path: 'userBlogList',
     component: UserSpecificBlogListComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'tagsSearch',
+    component: TagsSpecificBlogListComponent
   }
 ];
 
