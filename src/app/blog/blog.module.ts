@@ -30,7 +30,7 @@ import { ImageBlogPostComponent } from './image-blog-post/image-blog-post.compon
     TagsSpecificBlogListComponent,
     ImageBlogCreateComponent,
     ImageBlogDetailComponent,
-    ImageBlogPostComponent],
+    ImageBlogPostComponent,],
   imports: [
     CommonModule, BlogRouting, HttpClientModule, RouterModule, CKEditorModule, ReactiveFormsModule, FormsModule, NgxPaginationModule,
     NgxPrintModule, ShareButtonModule, MatSlideToggleModule

@@ -1,5 +1,5 @@
 <form [formGroup]="newImgBlogForm" (ngSubmit)="onSubmit()">
-<div class="form-group row">
+<div class="form-group row mt-5">
   <label class="col-3 col-form-label">Tittle:</label>
   <input class="col-6" formControlName="tittle" type="text">
 </div>
@@ -29,7 +29,5 @@
     </tbody>
   </table>
 </div>
-  <div class="form-group row" style="margin-top: 50px">
-    <button style="margin-left: 250px" class="btn btn-primary" type="Submit" (click)="onSubmit()">Submit</button>
-  </div>
+
 </form>

@@ -13,7 +13,7 @@ export class ImageBlogCreateComponent implements OnInit {
 
   imageFiles = [];
   newImgBlogForm: FormGroup;
-  selectedFile = [];
+  selectedFiles = [];
 
   constructor(private fb: FormBuilder,
               private imageBlogService: ImageBlogService,
@@ -37,22 +37,17 @@ export class ImageBlogCreateComponent implements OnInit {
       reader.onload = e => imageFile.imgPreviewUrl = reader.result.toString();
       reader.readAsDataURL(img);
       this.imageFiles.push(imageFile);
-      this.selectedFile.push(img);
+      this.selectedFiles.push(img);
     }
   }
 
   onClickCheckbox(img: File, checked: boolean) {
     if (checked) {
-      this.selectedFile.push(img);
+      this.selectedFiles.push(img);
     } else {
-      const index = this.selectedFile.indexOf(x => x === img);
-      this.selectedFile.splice(index, 1);
+      const index = this.selectedFiles.indexOf(x => x === img);
+      this.selectedFiles.splice(index, 1);
     }
-    console.log(this.selectedFile);
-  }
-
-  onSubmit() {
-    console.log(this.imageFiles);
-    console.log(this.selectedFile);
+    console.log(this.selectedFiles);
   }
 }
