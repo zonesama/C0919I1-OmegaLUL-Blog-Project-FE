@@ -1,4 +1,4 @@
-<form [formGroup]="newImgBlogForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="newImgBlogForm" (ngSubmit)="newImgBlogForm.valid && onSubmit()">
   <div class="form-group row">
     <label class="col-3 col-form-label">Tittle:</label>
     <input class="col-6" formControlName="tittle" type="text">
@@ -10,6 +10,9 @@
   <div class="form-group row">
     <label class="col-3 col-form-label">Images: </label>
     <input class="col-3" type="file" multiple style="margin-left: 10%; color: magenta" (change)="onSelectedFiles($event)">
+  </div>
+  <div class="form-group row">
+    <button style="margin: auto" class="btn btn-info" type="Submit">Submit</button>
   </div>
   <div *ngIf="imageFiles" class="form-group row table-wrapper-scroll-y my-custom-scrollbar">
     <table class="table table-striped table-hover table-bordered col-6 offset-3">

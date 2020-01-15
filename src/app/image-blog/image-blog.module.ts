@@ -8,11 +8,14 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ImageBlogRouting} from './image-blog-routing.module';
 import {httpInterceptorProviders} from '../auth/auth-interceptor';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { ImageBlogListComponent } from './image-blog-list/image-blog-list.component';
+import { ImageBlogPostComponent } from './image-blog-post/image-blog-post.component';
+import { ImageBlogDetailComponent } from './image-blog-detail/image-blog-detail.component';
 
 
 
 @NgModule({
-  declarations: [ImageBlogCreateComponent],
+  declarations: [ImageBlogCreateComponent, ImageBlogListComponent, ImageBlogPostComponent, ImageBlogDetailComponent],
     imports: [
         CommonModule, NgxPaginationModule, NgxPrintModule, HttpClientModule, FormsModule, ReactiveFormsModule, ImageBlogRouting,
       MatSlideToggleModule

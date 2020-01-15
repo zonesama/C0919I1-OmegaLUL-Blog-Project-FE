@@ -22,16 +22,25 @@ export class ImageBlogCreateComponent implements OnInit {
   ngOnInit() {
     this.newImgBlogForm = this.fb.group({
       tittle: ['', [Validators.required]],
-      imageUrls: ['', [Validators.required]],
+      imageUrls: [''],
       username: [this.token.getUsername()],
       isPrivate: []
-  })
+    })
     ;
   }
 
   onSubmit() {
-    console.log(this.imageFiles);
     console.log(this.selectedFile);
+    const imageBlogForm = this.newImgBlogForm.value;
+    const formData = new FormData();
+    formData.append('imageBlogInfo', JSON.stringify(imageBlogForm));
+    for (const file of this.selectedFile) {
+      formData.append('images', file);
+    }
+    this.imageBlogService.createNewImageBlog(formData).subscribe(result => {
+      const imageBlog = result;
+      alert('Created new Image Blog with Tiitle: ' + imageBlog.tittle);
+    });
   }
 
   onSelectedFiles(event) {

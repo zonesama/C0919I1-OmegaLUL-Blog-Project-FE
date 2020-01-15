@@ -1,7 +1,7 @@
 export class ImageBlogForm {
-  private id: number;
-  private tittle: string;
-  private imageUrls: string;
-  private username: string;
-  private isPrivate: boolean;
+   id: number;
+   tittle: string;
+   imageUrls: string;
+   username: string;
+   isPrivate: boolean;
 }
