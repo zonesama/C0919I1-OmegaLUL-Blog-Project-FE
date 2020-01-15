@@ -17,7 +17,6 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {RegisterComponent} from './auth/register/register.component';
 import { TestUploadComponent } from './test-upload/test-upload.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
