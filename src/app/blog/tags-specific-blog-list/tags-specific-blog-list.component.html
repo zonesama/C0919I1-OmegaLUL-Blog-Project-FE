@@ -1,26 +1,28 @@
-<div class="accordion" id="accordionExample">
-  <div class="card">
-    <div class="card-header" id="headingOne">
-      <h2 class="mb-0">
-        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
-                aria-expanded="true" aria-controls="collapseOne">
-          Tags
-        </button>
-      </h2>
-    </div>
-    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-      <div class="card-body">
-        <div class="form-group row">
-          <label class="col-2 col-form-label">Tag:</label>
-          <div class="col-0.5" *ngFor="let item of tagList">
-            <input type="checkbox" (change)="onChangeBox(item.id,$event.target.checked)">&nbsp;{{item.name}}&nbsp;&nbsp;
+<div class="row" style="width: 100%;">
+  <div class="accordion col-8 offset-1" id="accordionExample">
+    <div class="card border-bottom">
+      <div class="card-header" id="headingOne">
+        <h2 class="mb-0">
+          <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                  aria-expanded="true" aria-controls="collapseOne">
+            Tags
+          </button>
+        </h2>
+      </div>
+      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body">
+          <div class="form-group row">
+            <label class="col-2 col-form-label">Tag:</label>
+            <div class="col-0.5" *ngFor="let item of tagList">
+              <input type="checkbox" (change)="onChangeBox(item.id,$event.target.checked)">&nbsp;{{item.name}}&nbsp;&nbsp;
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<div class="row">
+<div class="row" style="margin: 20px">
   <div class="col-3" *ngFor="let item of blogList |  paginate:{itemsPerPage: count, currentPage: p}" style="padding-top: 10px; margin-top: 10px">
     <app-blog-post [blog]="item" (viewClicked)="goToBlogDetail(item)" (editClicked)="goToEditBlog(item)"></app-blog-post>
   </div>

@@ -1,6 +1,6 @@
 export class ImageFile {
-  private _imgFile: File;
-  private _imgPreviewUrl: string;
+   private _imgFile: File;
+   private _imgPreviewUrl: string;
 
   constructor(imgFile: File, imgPreviewUrl: string) {
     this._imgFile = imgFile;

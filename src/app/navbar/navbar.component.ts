@@ -5,9 +5,13 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {LoginForm} from '../auth/login-form';
 import {TokenStorageService} from '../auth/token-storage.service';
-import {AuthService} from '../auth/auth.service';
+import {AuthServiceNormal} from '../auth/auth.service';
 import {InitBlogListDataService} from '../init-blog-list-data.service';
 import {Blog} from '../blog/blog';
+import {GoogleLoginProvider, FacebookLoginProvider, AuthService} from 'angular-6-social-login';
+import {SocialLoginModule, AuthServiceConfig} from 'angular-6-social-login';
+import {Socialusers} from '../auth/socialusers';
+import {SocialloginService} from '../auth/sociallogin.service';
 
 @Component({
   selector: 'app-navbar',
@@ -15,6 +19,8 @@ import {Blog} from '../blog/blog';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  response;
+  socialusers = new Socialusers();
   @ViewChild('searchInput', {static: false}) searchInput: ElementRef;
   loginInfo: FormGroup;
   loginForm: LoginForm;
@@ -26,8 +32,10 @@ export class NavbarComponent implements OnInit {
               private blogService: BlogService,
               private fb: FormBuilder,
               public token: TokenStorageService,
-              private authService: AuthService,
-              private initBlogListDataService: InitBlogListDataService) {
+              private authService: AuthServiceNormal,
+              private initBlogListDataService: InitBlogListDataService,
+              public OAuth: AuthService,
+              private socialloginService: SocialloginService) {
   }
 
   ngOnInit() {
@@ -49,7 +57,8 @@ export class NavbarComponent implements OnInit {
     } else {
       let searchedBlogLists = [];
       for (let item of blogs) {
-        if (item.tittle.toLowerCase().includes(keyword.toLowerCase()) || item.content.toLowerCase().includes(keyword.toLowerCase())|| item.description.toLowerCase().includes(keyword.toLowerCase())) {
+        if (item.tittle.toLowerCase().includes(keyword.toLowerCase()) || item.content.toLowerCase().includes(keyword.toLowerCase())
+          || item.description.toLowerCase().includes(keyword.toLowerCase())) {
           searchedBlogLists.push(item);
         }
       }
@@ -101,6 +110,25 @@ export class NavbarComponent implements OnInit {
       return false;
     }
     return true;
+  }
+
+  socialSignIn(socialProvider: string) {
+    let socialPlatformProvider;
+    if (socialProvider === 'facebook') {
+      socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
+    } else if (socialProvider === 'google') {
+      socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+    }
+    this.OAuth.signIn(socialPlatformProvider).then(socialusers => {
+      console.log(socialProvider, socialusers);
+      console.log(socialusers);
+      this.socialloginService.SavesResponse(socialusers).subscribe(data => {
+        this.token.saveToken(data.accessToken);
+        this.token.saveUsername(data.username);
+        this.token.saveAuthorities(data.authorities);
+        window.location.reload();
+      });
+    });
   }
 }
 

@@ -17,6 +17,10 @@ export class ImageBlogService {
     return this.http.post<ImageBlog>(this.ApiUrl + 'newImageBlog', formData);
   }
 
+  getFullImageBlog(): Observable<ImageBlog[]> {
+    return this.http.get<ImageBlog[]>(this.ApiUrl + 'imagBlogList');
+  }
+
   getImageBlog(id: number): Observable<ImageBlog> {
     return this.http.get<ImageBlog>(this.ApiUrl + 'imageBlog/' + id);
   }

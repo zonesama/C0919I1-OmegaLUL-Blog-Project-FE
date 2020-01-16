@@ -10,7 +10,7 @@ import {TokenStorageService} from '../../auth/token-storage.service';
   styleUrls: ['./image-blog-create.component.scss']
 })
 export class ImageBlogCreateComponent implements OnInit {
-  imageFiles = [];
+  imageFiles: ImageFile[] = [];
   newImgBlogForm: FormGroup;
   selectedFile = [];
 
@@ -22,6 +22,7 @@ export class ImageBlogCreateComponent implements OnInit {
   ngOnInit() {
     this.newImgBlogForm = this.fb.group({
       tittle: ['', [Validators.required]],
+      description: ['', [Validators.required]],
       imageUrls: [''],
       username: [this.token.getUsername()],
       isPrivate: []
@@ -46,12 +47,22 @@ export class ImageBlogCreateComponent implements OnInit {
   onSelectedFiles(event) {
     const images = event.target.files;
     for (const img of images) {
-      const imageFile = new ImageFile(img, '');
-      const reader = new FileReader();
-      reader.onload = e => imageFile.imgPreviewUrl = reader.result.toString();
-      reader.readAsDataURL(img);
-      this.imageFiles.push(imageFile);
-      this.selectedFile.push(img);
+      let founded = false;
+      for (const item of this.imageFiles) {
+        if (img.name === item.imgFile.name && img.type === item.imgFile.type
+          && img.size === item.imgFile.size && img.lastModified === item.imgFile.lastModified) {
+          founded = true;
+          break;
+        }
+      }
+      if (!founded) {
+        const newImageFile = new ImageFile(img, '');
+        const reader = new FileReader();
+        reader.onload = e => newImageFile.imgPreviewUrl = reader.result.toString();
+        reader.readAsDataURL(img);
+        this.imageFiles.push(newImageFile);
+        this.selectedFile.push(img);
+      }
     }
   }
 

@@ -11,11 +11,12 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { ImageBlogListComponent } from './image-blog-list/image-blog-list.component';
 import { ImageBlogPostComponent } from './image-blog-post/image-blog-post.component';
 import { ImageBlogDetailComponent } from './image-blog-detail/image-blog-detail.component';
+import { ImageBlogEditComponent } from './image-blog-edit/image-blog-edit.component';
 
 
 
 @NgModule({
-  declarations: [ImageBlogCreateComponent, ImageBlogListComponent, ImageBlogPostComponent, ImageBlogDetailComponent],
+  declarations: [ImageBlogCreateComponent, ImageBlogListComponent, ImageBlogPostComponent, ImageBlogDetailComponent, ImageBlogEditComponent],
     imports: [
         CommonModule, NgxPaginationModule, NgxPrintModule, HttpClientModule, FormsModule, ReactiveFormsModule, ImageBlogRouting,
       MatSlideToggleModule

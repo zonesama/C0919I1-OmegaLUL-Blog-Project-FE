@@ -15,7 +15,7 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthServiceNormal {
   private loginUrl = environment.apiUrl + 'auth/signin';
   private signupUrl = environment.apiUrl + 'auth/signup';
 

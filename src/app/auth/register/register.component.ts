@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {AuthService} from '../auth.service';
+import {AuthServiceNormal} from '../auth.service';
 import validate = WebAssembly.validate;
 import {Router} from '@angular/router';
 import {SignUpForm} from '../sign-up-form';
@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
   result;
 
   constructor(private fb: FormBuilder,
-              private authService: AuthService,
+              private authService: AuthServiceNormal,
               private router: Router) {
   }
 

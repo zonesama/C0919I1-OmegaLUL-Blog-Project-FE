@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ImageBlogPostComponent } from './image-blog-post.component';
+import { ImageBlogEditComponent } from './image-blog-edit.component';
 
-describe('ImageBlogPostComponent', () => {
-  let component: ImageBlogPostComponent;
-  let fixture: ComponentFixture<ImageBlogPostComponent>;
+describe('ImageBlogEditComponent', () => {
+  let component: ImageBlogEditComponent;
+  let fixture: ComponentFixture<ImageBlogEditComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ImageBlogPostComponent ]
+      declarations: [ ImageBlogEditComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ImageBlogPostComponent);
+    fixture = TestBed.createComponent(ImageBlogEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -15,8 +15,20 @@ import {LoginComponent} from './login/login.component';
 import {httpInterceptorProviders} from './auth/auth-interceptor';
 import {ReactiveFormsModule} from '@angular/forms';
 import {RegisterComponent} from './auth/register/register.component';
-import { TestUploadComponent } from './test-upload/test-upload.component';
+import {TestUploadComponent} from './test-upload/test-upload.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import {AuthService, AuthServiceConfig, GoogleLoginProvider} from 'angular-6-social-login';
+
+
+export function socialsConfig() {
+  const config = new AuthServiceConfig([
+    {
+      id: GoogleLoginProvider.PROVIDER_ID,
+      provider: new GoogleLoginProvider('1038712425413-1akfk6vev4m0pla0thn0is1ajcjke2qp.apps.googleusercontent.com')
+    }
+  ]);
+  return config;
+}
 
 @NgModule({
   declarations: [
@@ -39,7 +51,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     ReactiveFormsModule,
     NgxPaginationModule
   ],
-  providers: [httpInterceptorProviders],
+  providers: [httpInterceptorProviders, AuthService,
+    {provide: AuthServiceConfig, useFactory: socialsConfig}],
   bootstrap: [AppComponent]
 })
 export class AppModule {
