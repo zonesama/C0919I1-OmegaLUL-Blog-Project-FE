@@ -16,7 +16,7 @@ const routes: Routes = [
     component: ImageBlogListComponent
   },
   {
-    path: 'imgBlog/:id',
+    path: 'imgBlogDetails/:id',
     component: ImageBlogDetailComponent
   },
   {

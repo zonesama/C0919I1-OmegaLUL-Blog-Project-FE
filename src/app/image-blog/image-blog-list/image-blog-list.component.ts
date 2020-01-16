@@ -11,6 +11,7 @@ import {ImageBlog} from '../image-blog';
 })
 export class ImageBlogListComponent implements OnInit, OnDestroy {
   imageBlogList: ImageBlog[];
+  imageFullBlogList: ImageBlog[];
   p = 1;
   count = 8;
   navigationSubscription;
@@ -43,6 +44,7 @@ export class ImageBlogListComponent implements OnInit, OnDestroy {
   }
 
   goToBlogDetail(item: ImageBlog) {
+    this.router.navigateByUrl('/imgBlog/imgBlogDetails/' + item.id);
   }
 
   goToEditBlog(item: ImageBlog) {
@@ -51,13 +53,22 @@ export class ImageBlogListComponent implements OnInit, OnDestroy {
 
   private loadBlogList() {
     this.imageBlogList = this.initBlogListDataService.getFullImageBlogList();
+    this.imageFullBlogList = this.initBlogListDataService.getFullImageBlogList();
   }
+
   ngOnDestroy() {
     if (this.navigationSubscription) {
       this.navigationSubscription.unsubscribe();
     }
   }
 
-  searchList($event: Event) {
+  searchList(event) {
+    let tmp: ImageBlog[] = [];
+    for (const item of this.imageFullBlogList) {
+      if (item.tittle.toLowerCase().includes(event.target.value.toLowerCase())) {
+        tmp.push(item);
+      }
+    }
+    this.imageBlogList = tmp;
   }
 }
