@@ -18,13 +18,14 @@ import {RegisterComponent} from './auth/register/register.component';
 import {TestUploadComponent} from './test-upload/test-upload.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {AuthService, AuthServiceConfig, FacebookLoginProvider, GoogleLoginProvider} from 'angular-6-social-login';
+import {environment} from '../environments/environment';
 
 
 export function socialsConfig() {
   const config = new AuthServiceConfig([
     {
       id: GoogleLoginProvider.PROVIDER_ID,
-      provider: new GoogleLoginProvider('1038712425413-1akfk6vev4m0pla0thn0is1ajcjke2qp.apps.googleusercontent.com')
+      provider: new GoogleLoginProvider(environment.googleAppId)
     },
     {
       id: FacebookLoginProvider.PROVIDER_ID,

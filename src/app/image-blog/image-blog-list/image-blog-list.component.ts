@@ -57,4 +57,7 @@ export class ImageBlogListComponent implements OnInit, OnDestroy {
       this.navigationSubscription.unsubscribe();
     }
   }
+
+  searchList($event: Event) {
+  }
 }
