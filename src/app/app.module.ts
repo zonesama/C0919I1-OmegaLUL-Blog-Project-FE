@@ -17,7 +17,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {RegisterComponent} from './auth/register/register.component';
 import {TestUploadComponent} from './test-upload/test-upload.component';
 import {NgxPaginationModule} from 'ngx-pagination';
-import {AuthService, AuthServiceConfig, GoogleLoginProvider} from 'angular-6-social-login';
+import {AuthService, AuthServiceConfig, FacebookLoginProvider, GoogleLoginProvider} from 'angular-6-social-login';
 
 
 export function socialsConfig() {
@@ -25,7 +25,11 @@ export function socialsConfig() {
     {
       id: GoogleLoginProvider.PROVIDER_ID,
       provider: new GoogleLoginProvider('1038712425413-1akfk6vev4m0pla0thn0is1ajcjke2qp.apps.googleusercontent.com')
-    }
+    },
+    {
+      id: FacebookLoginProvider.PROVIDER_ID,
+      provider: new FacebookLoginProvider('486275401920877')
+    },
   ]);
   return config;
 }
