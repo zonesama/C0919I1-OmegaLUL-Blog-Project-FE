@@ -16,6 +16,7 @@ import {httpInterceptorProviders} from './auth/auth-interceptor';
 import {ReactiveFormsModule} from '@angular/forms';
 import {RegisterComponent} from './auth/register/register.component';
 import { TestUploadComponent } from './test-upload/test-upload.component';
+import { ImageBlogPostComponent } from './image-blog-post/image-blog-post.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { TestUploadComponent } from './test-upload/test-upload.component';
     FooterComponent,
     LoginComponent,
     RegisterComponent,
-    TestUploadComponent
+    TestUploadComponent,
+    ImageBlogPostComponent
   ],
   imports: [
     BrowserModule,
