@@ -22,6 +22,7 @@ import { TagsSpecificBlogListComponent } from './tags-specific-blog-list/tags-sp
 import { ImageBlogCreateComponent } from './image-blog-create/image-blog-create.component';
 import { ImageBlogDetailComponent } from './image-blog-detail/image-blog-detail.component';
 import { ImageBlogPostComponent } from './image-blog-post/image-blog-post.component';
+import { ImageBlogEditComponent } from './image-blog-edit/image-blog-edit.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { ImageBlogPostComponent } from './image-blog-post/image-blog-post.compon
     TagsSpecificBlogListComponent,
     ImageBlogCreateComponent,
     ImageBlogDetailComponent,
-    ImageBlogPostComponent,],
+    ImageBlogPostComponent,
+    ImageBlogEditComponent,],
   imports: [
     CommonModule, BlogRouting, HttpClientModule, RouterModule, CKEditorModule, ReactiveFormsModule, FormsModule, NgxPaginationModule,
     NgxPrintModule, ShareButtonModule, MatSlideToggleModule
