@@ -120,8 +120,8 @@ export class NavbarComponent implements OnInit {
       socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
     }
     this.OAuth.signIn(socialPlatformProvider).then(socialusers => {
-      console.log(socialProvider, socialusers);
-      console.log(socialusers);
+      // console.log(socialProvider, socialusers);
+      // console.log(socialusers);
       this.socialloginService.SavesResponse(socialusers).subscribe(data => {
         this.token.saveToken(data.accessToken);
         this.token.saveUsername(data.username);

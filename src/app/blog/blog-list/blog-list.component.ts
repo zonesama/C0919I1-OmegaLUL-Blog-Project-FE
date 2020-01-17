@@ -12,7 +12,7 @@ import {InitBlogListDataService} from '../../init-blog-list-data.service';
 })
 export class BlogListComponent implements OnInit, OnDestroy {
   blogList: Blog[];
-  count = 8;
+  count = 9;
   p = 1;
   navigationSubscription;
 

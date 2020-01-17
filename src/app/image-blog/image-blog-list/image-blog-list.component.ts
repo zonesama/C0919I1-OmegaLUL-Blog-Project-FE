@@ -13,7 +13,7 @@ export class ImageBlogListComponent implements OnInit, OnDestroy {
   imageBlogList: ImageBlog[];
   imageFullBlogList: ImageBlog[];
   p = 1;
-  count = 8;
+  count = 9;
   navigationSubscription;
 
   constructor(private router: Router,
@@ -48,7 +48,7 @@ export class ImageBlogListComponent implements OnInit, OnDestroy {
   }
 
   goToEditBlog(item: ImageBlog) {
-
+    this.router.navigateByUrl('/imgBlog/updateImgBlog/' + item.id);
   }
 
   private loadBlogList() {

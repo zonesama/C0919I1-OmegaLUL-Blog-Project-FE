@@ -1,4 +1,4 @@
-<form [formGroup]="newImgBlogForm" (ngSubmit)="newImgBlogForm.valid && onSubmit()" style="margin-top: 5%">
+<form [formGroup]="ImgBlogForm" (ngSubmit)="ImgBlogForm.valid && onSubmit()" style="margin-top: 5%">
   <div class="form-group row">
     <label class="col-3 col-form-label">Tittle:</label>
     <input class="col-6" formControlName="tittle" type="text">
@@ -28,6 +28,11 @@
       </tr>
       </thead>
       <tbody>
+      <tr *ngFor="let imgUrl of imageUrls">
+        <td>{{imgUrl.split('/')[6]}}</td>
+        <td><img src="{{imgUrl}}" style="width: 350px; height: 250px"></td>
+        <td><input type="checkbox" checked="true" (change)="onClickCheckboxUrl(imgUrl,$event.target.checked)"></td>
+      </tr>
       <tr *ngFor="let img of imageFiles">
         <td>{{img.imgFile.name}}</td>
         <td><img src="{{img.imgPreviewUrl}}" style="width: 350px; height: 250px"></td>

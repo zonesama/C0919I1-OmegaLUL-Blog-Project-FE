@@ -4,6 +4,7 @@ import {AuthGuard} from '../auth/auth.guard';
 import {NgModule} from '@angular/core';
 import {ImageBlogListComponent} from './image-blog-list/image-blog-list.component';
 import {ImageBlogDetailComponent} from './image-blog-detail/image-blog-detail.component';
+import {ImageBlogEditComponent} from './image-blog-edit/image-blog-edit.component';
 
 const routes: Routes = [
   {
@@ -21,7 +22,7 @@ const routes: Routes = [
   },
   {
     path: 'updateImgBlog/:id',
-    component: ImageBlogDetailComponent,
+    component: ImageBlogEditComponent,
     // canActivate: [AuthGuard]
   }
 ];
