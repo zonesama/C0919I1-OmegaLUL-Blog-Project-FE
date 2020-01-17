@@ -13,7 +13,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'imgBlogList',
+    path: '',
     component: ImageBlogListComponent
   },
   {
@@ -23,7 +23,7 @@ const routes: Routes = [
   {
     path: 'updateImgBlog/:id',
     component: ImageBlogEditComponent,
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   }
 ];
 

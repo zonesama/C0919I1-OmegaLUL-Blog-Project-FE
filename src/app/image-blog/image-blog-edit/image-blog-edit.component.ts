@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ImageBlogService} from '../image-blog.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ImageBlog} from '../image-blog';
 import {ImageFile} from '../image-file';
 import {TokenStorageService} from '../../auth/token-storage.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-image-blog-edit',
@@ -18,12 +19,14 @@ export class ImageBlogEditComponent implements OnInit {
   imageUrls: string[];
   imageBlog: ImageBlog;
   selectedImgUrl: string[];
+  errorMsg;
 
   constructor(private fb: FormBuilder,
               private imageBlogService: ImageBlogService,
               private router: Router,
               private route: ActivatedRoute,
-              private token: TokenStorageService) {
+              private token: TokenStorageService,
+              private location: Location) {
   }
 
   ngOnInit() {
@@ -34,8 +37,8 @@ export class ImageBlogEditComponent implements OnInit {
       this.selectedImgUrl = data.imageUrls.split(',');
       this.ImgBlogForm = this.fb.group({
         id: [this.imageBlog.id],
-        tittle: [this.imageBlog.tittle],
-        description: [this.imageBlog.description],
+        tittle: [this.imageBlog.tittle, [Validators.required]],
+        description: [this.imageBlog.description, [Validators.required]],
         username: [this.token.getUsername()],
         isPrivate: [this.imageBlog.isPrivate],
         imageUrls: [this.imageBlog.imageUrls]
@@ -44,16 +47,20 @@ export class ImageBlogEditComponent implements OnInit {
   }
 
   onSubmit() {
-    const newImgUrls = this.selectedImgUrl.join(',');
-    this.ImgBlogForm.controls['imageUrls'].setValue(newImgUrls);
-    const formData = new FormData();
-    formData.append('imageBlogInfo', JSON.stringify(this.ImgBlogForm.value));
-    for (const imgfile of this.selectedFile) {
-      formData.append('images', imgfile);
+    if (confirm('Are You Sure?')) {
+      const newImgUrls = this.selectedImgUrl.join(',');
+      this.ImgBlogForm.controls['imageUrls'].setValue(newImgUrls);
+      const formData = new FormData();
+      formData.append('imageBlogInfo', JSON.stringify(this.ImgBlogForm.value));
+      for (const imgfile of this.selectedFile) {
+        formData.append('images', imgfile);
+      }
+      this.imageBlogService.updateBlog(formData).subscribe(result => {
+        console.log('OK');
+      }, error => {
+        this.errorMsg = error.error.message;
+      });
     }
-    this.imageBlogService.updateBlog(formData).subscribe(result => {
-      console.log('OK');
-    });
   }
 
   onSelectedFiles(event) {
@@ -96,5 +103,20 @@ export class ImageBlogEditComponent implements OnInit {
       this.selectedImgUrl.splice(index, 1);
     }
     console.log(this.selectedImgUrl);
+  }
+
+  goBack() {
+    this.location.back();
+  }
+
+  deleteImageBlog() {
+    if (confirm('Are You Sure?')) {
+      this.imageBlogService.deleteImageBlog(this.imageBlog.id).subscribe(result => {
+        alert('Deleted Image Blog with ID: ' + result.id + ', Tittle: ' + result.tittle);
+        this.router.navigateByUrl('/imgBlog').then(() => {
+          window.location.reload();
+        });
+      });
+    }
   }
 }

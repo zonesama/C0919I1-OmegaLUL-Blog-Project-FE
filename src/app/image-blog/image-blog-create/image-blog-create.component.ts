@@ -13,6 +13,7 @@ export class ImageBlogCreateComponent implements OnInit {
   imageFiles: ImageFile[] = [];
   newImgBlogForm: FormGroup;
   selectedFile = [];
+  errorMsg;
 
   constructor(private fb: FormBuilder,
               private imageBlogService: ImageBlogService,
@@ -31,17 +32,21 @@ export class ImageBlogCreateComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.selectedFile);
-    const imageBlogForm = this.newImgBlogForm.value;
-    const formData = new FormData();
-    formData.append('imageBlogInfo', JSON.stringify(imageBlogForm));
-    for (const file of this.selectedFile) {
-      formData.append('images', file);
+    // console.log(this.selectedFile);
+    if (confirm('Are You Sure?')) {
+      const imageBlogForm = this.newImgBlogForm.value;
+      const formData = new FormData();
+      formData.append('imageBlogInfo', JSON.stringify(imageBlogForm));
+      for (const file of this.selectedFile) {
+        formData.append('images', file);
+      }
+      this.imageBlogService.createNewImageBlog(formData).subscribe(result => {
+        const imageBlog = result;
+        alert('Created new Image Blog with Tiitle: ' + imageBlog.tittle);
+      }, error => {
+        this.errorMsg = error.error.message;
+      });
     }
-    this.imageBlogService.createNewImageBlog(formData).subscribe(result => {
-      const imageBlog = result;
-      alert('Created new Image Blog with Tiitle: ' + imageBlog.tittle);
-    });
   }
 
   onSelectedFiles(event) {
@@ -76,3 +81,4 @@ export class ImageBlogCreateComponent implements OnInit {
     console.log(this.selectedFile);
   }
 }
+

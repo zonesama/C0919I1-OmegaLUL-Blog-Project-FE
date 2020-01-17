@@ -130,5 +130,13 @@ export class NavbarComponent implements OnInit {
       });
     });
   }
+
+  goToNewImgBlog() {
+    this.router.navigateByUrl('imgBlog/newImgBlog');
+  }
+
+  goToImgBlogList() {
+    this.router.navigateByUrl('imgBlog/imgBlogList');
+  }
 }
 
