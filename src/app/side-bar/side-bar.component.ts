@@ -11,5 +11,7 @@ export class SideBarComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  w3_close() {
+    document.getElementById('mySidebar').style.display = 'none';
+  }
 }

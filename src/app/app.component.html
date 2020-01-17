@@ -17,11 +17,11 @@
       <div class="col-2" style="margin-top: 3%">
         <app-side-bar></app-side-bar>
       </div>
-      <div class="col-9 offset-1" style="margin-top: 4%">
+      <div class="col-10" style="margin-top: 4%" (click)="w3_close()">
         <router-outlet></router-outlet>
       </div>
     </div>
-    <div class="row">
+    <div class="row" (click)="w3_close()">
       <div class="col-12">
         <app-footer></app-footer>
       </div>

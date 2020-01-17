@@ -138,5 +138,9 @@ export class NavbarComponent implements OnInit {
   goToImgBlogList() {
     this.router.navigateByUrl('imgBlog/imgBlogList');
   }
+  w3_open() {
+    document.getElementById('mySidebar').style.display = 'block';
+  }
+
 }
 

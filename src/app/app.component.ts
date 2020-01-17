@@ -24,4 +24,7 @@ export class AppComponent implements OnInit {
       this.initBlogListDataService.setFullImageBlogList(data);
     });
   }
+  w3_close() {
+    document.getElementById('mySidebar').style.display = 'none';
+  }
 }
