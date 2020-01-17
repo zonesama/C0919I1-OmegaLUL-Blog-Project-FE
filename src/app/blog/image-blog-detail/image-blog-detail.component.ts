@@ -4,7 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {faFacebookSquare} from '@fortawesome/free-brands-svg-icons/faFacebookSquare';
 import {faTwitterSquare} from '@fortawesome/free-brands-svg-icons/faTwitterSquare';
 import {faGoogle} from '@fortawesome/free-brands-svg-icons/faGoogle';
-import {BlogService} from '../blog.service';
+import {ImageBlogService} from '../image-blog.service';
 import {TokenStorageService} from '../../auth/token-storage.service';
 import {Location} from '@angular/common';
 
@@ -20,23 +20,22 @@ export class ImageBlogDetailComponent implements OnInit {
   ggIcon = faGoogle;
   imageBlog: ImageBlog;
   tags = 'Tags: ';
+  imageUrls;
 
 
   constructor(private router: Router,
               private route: ActivatedRoute,
-              private imageBlogService: BlogService,
+              private imageBlogService: ImageBlogService,
               private tokenStorageService: TokenStorageService,
               private location: Location) { }
 
   ngOnInit() {
     // tslint:disable-next-line:radix
     const id = parseInt(this.route.snapshot.paramMap.get('id'));
-    this.imageBlogService.getBlogById(id).subscribe(data => {
+    this.imageBlogService.getImageBlog(id).subscribe(data => {
       this.imageBlog = data;
-      for (let item of this.imageBlog.tagList) {
-        this.tags += item.name + ', ';
-      }
-      this.tags = this.tags.substring(0, this.tags.length - 2);
+      this.imageUrls = this.imageBlog.imageUrls.split(',');
+      console.log(this.imageUrls);
     });
   }
   checkPrivate() {

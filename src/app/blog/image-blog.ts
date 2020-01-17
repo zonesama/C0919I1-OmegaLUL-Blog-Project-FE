@@ -9,6 +9,7 @@ export class ImageBlog {
   tagList: Tag[];
   createdDate: Date;
   lastUpdatedDate: Date;
+  imageUrls: string;
   user: User;
   isPrivate: boolean;
 }
