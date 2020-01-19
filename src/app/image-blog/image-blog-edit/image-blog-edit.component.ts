@@ -56,7 +56,10 @@ export class ImageBlogEditComponent implements OnInit {
         formData.append('images', imgfile);
       }
       this.imageBlogService.updateBlog(formData).subscribe(result => {
-        console.log('OK');
+        alert('Updated Image Blog Id: ' + result.id + ', Tittle: ' + result.tittle);
+        this.router.navigateByUrl('/imgBlog').then(() => {
+          window.location.reload();
+        });
       }, error => {
         this.errorMsg = error.error.message;
       });

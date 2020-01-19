@@ -2,9 +2,10 @@
   {{errorMsg}}
 </div>
 <form [formGroup]="ImgBlogForm" (ngSubmit)="ImgBlogForm.valid && onSubmit()" style="margin-top: 5%">
+  <input hidden formControlName="id">
   <div class="form-group row">
     <label class="col-3 col-form-label">Tittle:</label>
-    <input class="col-6" formControlName="tittle" type="text">
+    <input class="col-6" formControlName="tittle">
   </div>
   <div class="alert alert-danger col-2 offset-3" role="alert" *ngIf="ImgBlogForm.get('tittle').invalid && ImgBlogForm.get('tittle').touched">
     Please enter an tittle :)

@@ -3,6 +3,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ImageBlogService} from '../image-blog.service';
 import {ImageFile} from '../image-file';
 import {TokenStorageService} from '../../auth/token-storage.service';
+import {Router} from '@angular/router';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-image-blog-create',
@@ -17,7 +19,9 @@ export class ImageBlogCreateComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private imageBlogService: ImageBlogService,
-              private token: TokenStorageService) {
+              private token: TokenStorageService,
+              private router: Router,
+              private location: Location) {
   }
 
   ngOnInit() {
@@ -43,6 +47,9 @@ export class ImageBlogCreateComponent implements OnInit {
       this.imageBlogService.createNewImageBlog(formData).subscribe(result => {
         const imageBlog = result;
         alert('Created new Image Blog with Tiitle: ' + imageBlog.tittle);
+        this.router.navigateByUrl('/imgBlog').then(() => {
+          window.location.reload();
+        });
       }, error => {
         this.errorMsg = error.error.message;
       });
@@ -79,6 +86,10 @@ export class ImageBlogCreateComponent implements OnInit {
       this.selectedFile.splice(index, 1);
     }
     console.log(this.selectedFile);
+  }
+
+  goBack() {
+    this.location.back();
   }
 }
 

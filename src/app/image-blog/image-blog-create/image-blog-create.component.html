@@ -25,7 +25,9 @@
     <input class="col-3" type="file" multiple style="margin-left: 10%; color: magenta" (change)="onSelectedFiles($event)">
   </div>
   <div class="form-group row">
-    <button style="margin: auto" class="btn btn-info" type="Submit">Submit</button>
+    <button style="margin-left: 25%" type="Button" class="btn btn-outline-dark btn-info" (click)="goBack()">Back
+    </button>
+    <button style="margin-left: 300px" class="btn btn-info" type="Submit">Submit</button>
   </div>
   <div *ngIf="imageFiles" class="form-group row table-wrapper-scroll-y my-custom-scrollbar">
     <table class="table table-striped table-hover table-bordered col-6 offset-3">
