@@ -5,6 +5,7 @@ import {ImageFile} from '../image-file';
 import {TokenStorageService} from '../../auth/token-storage.service';
 import {Router} from '@angular/router';
 import {Location} from '@angular/common';
+import {InitBlogListDataService} from '../../init-blog-list-data.service';
 
 @Component({
   selector: 'app-image-blog-create',
@@ -21,7 +22,8 @@ export class ImageBlogCreateComponent implements OnInit {
               private imageBlogService: ImageBlogService,
               private token: TokenStorageService,
               private router: Router,
-              private location: Location) {
+              private location: Location,
+              private initBlogListDataService: InitBlogListDataService) {
   }
 
   ngOnInit() {
@@ -47,8 +49,11 @@ export class ImageBlogCreateComponent implements OnInit {
       this.imageBlogService.createNewImageBlog(formData).subscribe(result => {
         const imageBlog = result;
         alert('Created new Image Blog with Tiitle: ' + imageBlog.tittle);
-        this.router.navigateByUrl('/imgBlog').then(() => {
-          window.location.reload();
+        this.imageBlogService.getFullImageBlog().subscribe(data => {
+          this.initBlogListDataService.setFullImageBlogList(data);
+          this.router.navigateByUrl('/imgBlog').then(() => {
+            window.location.reload();
+          });
         });
       }, error => {
         this.errorMsg = error.error.message;

@@ -28,6 +28,7 @@ export class ImageBlogListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.imageBlogList = this.initBlogListDataService.getFullImageBlogList();
   }
 
   private initialiseInvites() {
