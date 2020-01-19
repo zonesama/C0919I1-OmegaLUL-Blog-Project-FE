@@ -127,6 +127,8 @@ export class NavbarComponent implements OnInit {
         this.token.saveUsername(data.username);
         this.token.saveAuthorities(data.authorities);
         window.location.reload();
+      }, error => {
+        this.errorMessage = error.error.message;
       });
     });
   }
@@ -138,8 +140,14 @@ export class NavbarComponent implements OnInit {
   goToImgBlogList() {
     this.router.navigateByUrl('imgBlog/imgBlogList');
   }
+
   w3_open() {
-    document.getElementById('mySidebar').style.display = 'block';
+    const sidebar = document.getElementById('mySidebar');
+    if (sidebar.style.display === 'none') {
+      sidebar.style.display = 'block';
+    } else {
+      sidebar.style.display = 'none';
+    }
   }
 
 }
