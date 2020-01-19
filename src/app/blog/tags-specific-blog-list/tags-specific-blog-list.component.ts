@@ -116,7 +116,9 @@ function searchTag(BlogList: Blog[], searchedBlogs: Blog[], selectedTags: number
 
 function searchText(BlogList: Blog[], searchedBlogs: Blog[], keyword: string) {
   for (const item of BlogList) {
-    if (item.tittle.toLowerCase().includes(keyword.toLowerCase())) {
+    if (item.tittle.toLowerCase().includes(keyword.toLowerCase())
+      || item.description.toLowerCase().includes(keyword.toLowerCase())
+      || item.content.toLowerCase().includes(keyword.toLowerCase())) {
       searchedBlogs.push(item);
     }
   }
