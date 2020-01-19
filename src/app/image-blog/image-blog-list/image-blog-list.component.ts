@@ -36,12 +36,7 @@ export class ImageBlogListComponent implements OnInit, OnDestroy {
   }
 
   private fetchBlogList() {
-    const tmp = this.dataTransferService.getSearchedImageBlog();
-    if (tmp === undefined) {
-      this.loadBlogList();
-    } else {
-      this.imageBlogList = tmp;
-    }
+    this.imageBlogList = this.initBlogListDataService.getFullImageBlogList();
   }
 
   goToBlogDetail(item: ImageBlog) {

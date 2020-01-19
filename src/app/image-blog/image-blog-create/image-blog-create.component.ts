@@ -51,9 +51,7 @@ export class ImageBlogCreateComponent implements OnInit {
         alert('Created new Image Blog with Tiitle: ' + imageBlog.tittle);
         this.imageBlogService.getFullImageBlog().subscribe(data => {
           this.initBlogListDataService.setFullImageBlogList(data);
-          this.router.navigateByUrl('/imgBlog').then(() => {
-            window.location.reload();
-          });
+          this.router.navigateByUrl('/imgBlog');
         });
       }, error => {
         this.errorMsg = error.error.message;
