@@ -3,6 +3,7 @@ import {NavigationEnd, Router} from '@angular/router';
 import {DataTranferService} from '../../data-tranfer.service';
 import {InitBlogListDataService} from '../../init-blog-list-data.service';
 import {ImageBlog} from '../image-blog';
+import {ImageBlogService} from '../image-blog.service';
 
 @Component({
   selector: 'app-image-blog-list',
@@ -18,7 +19,8 @@ export class ImageBlogListComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router,
               private dataTransferService: DataTranferService,
-              private initBlogListDataService: InitBlogListDataService) {
+              private initBlogListDataService: InitBlogListDataService,
+              private imageBlogService: ImageBlogService) {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       // If it is a NavigationEnd event re-initalise the component
       if (e instanceof NavigationEnd) {
@@ -28,7 +30,9 @@ export class ImageBlogListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.imageBlogList = this.initBlogListDataService.getFullImageBlogList();
+    this.imageBlogService.getFullImageBlog().subscribe(data => {
+      this.imageBlogList = data;
+    });
   }
 
   private initialiseInvites() {
