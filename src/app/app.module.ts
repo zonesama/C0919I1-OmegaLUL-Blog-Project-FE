@@ -19,6 +19,7 @@ import {TestUploadComponent} from './test-upload/test-upload.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {AuthService, AuthServiceConfig, FacebookLoginProvider, GoogleLoginProvider} from 'angular-6-social-login';
 import {environment} from '../environments/environment';
+import { HomeComponent } from './home/home.component';
 
 
 export function socialsConfig() {
@@ -44,7 +45,8 @@ export function socialsConfig() {
     FooterComponent,
     LoginComponent,
     RegisterComponent,
-    TestUploadComponent
+    TestUploadComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

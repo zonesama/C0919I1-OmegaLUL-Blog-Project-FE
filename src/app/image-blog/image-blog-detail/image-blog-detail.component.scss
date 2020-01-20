@@ -1,0 +1,12 @@
+input[type=checkbox] {
+  display: none;
+}
+ngb-carousel{
+  transition: transform 0.25s ease;
+  cursor: zoom-in;
+}
+
+input[type=checkbox]:checked ~ label > ngb-carousel {
+  transform: scale(1.5,1.3);
+  cursor: zoom-out;
+}

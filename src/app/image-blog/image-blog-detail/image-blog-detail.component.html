@@ -24,15 +24,18 @@
     </div>
     <div class="row">
       <div class="col-11">
-        <ngb-carousel *ngIf="imageUrls">
-          <div *ngFor="let item of imageUrls">
-            <ng-template ngbSlide>
-              <div class="picsum-img-wrapper">
-                <img [src]="item" class="d-block w-100" style="width:border-box;height:800px">
-              </div>
-            </ng-template>
-          </div>
-        </ngb-carousel>
+        <input type="checkbox" id="zoomCheck" (click)="w3_close()">
+       <label for="zoomCheck">
+         <ngb-carousel *ngIf="imageUrls">
+           <div *ngFor="let item of imageUrls">
+             <ng-template ngbSlide>
+               <div class="picsum-img-wrapper">
+                 <img [src]="item" class="d-block w-100" style="width:border-box;height:800px">
+               </div>
+             </ng-template>
+           </div>
+         </ngb-carousel>
+       </label>
       </div>
     </div>
   </form>

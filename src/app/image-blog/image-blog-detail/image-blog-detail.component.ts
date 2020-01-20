@@ -53,7 +53,23 @@ export class ImageBlogDetailComponent implements OnInit {
 
     window.open(url, 'sharer', 'toolbar=0,status=0,width=648,height=395');
   }
+
   goBack() {
     this.location.back();
+  }
+
+  w3_close() {
+    const sideBar = document.getElementById('mySidebar');
+    const navBar = document.getElementById('myNavBar');
+    const footer = document.getElementById('myFooter');
+    if (navBar.style.display === 'none') {
+      sideBar.style.display = 'block';
+      navBar.style.display = '';
+      footer.style.display = '';
+    } else {
+      sideBar.style.display = 'none';
+      navBar.style.display = 'none';
+      footer.style.display = 'none';
+    }
   }
 }
