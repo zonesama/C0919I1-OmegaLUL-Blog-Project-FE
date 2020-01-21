@@ -19,25 +19,17 @@ import {CKEditorModule} from 'ckeditor4-angular';
 import {httpInterceptorProviders} from '../auth/auth-interceptor';
 import {UserSpecificBlogListComponent} from './user-specific-blog-list/user-specific-blog-list.component';
 import { TagsSpecificBlogListComponent } from './tags-specific-blog-list/tags-specific-blog-list.component';
-import { ImageBlogCreateComponent } from './image-blog-create/image-blog-create.component';
-import { ImageBlogDetailComponent } from './image-blog-detail/image-blog-detail.component';
-import { ImageBlogPostComponent } from './image-blog-post/image-blog-post.component';
-import { ImageBlogEditComponent } from './image-blog-edit/image-blog-edit.component';
-import {NgbCarouselModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
   declarations: [BlogCreateComponent, BlogDetailComponent, BlogPostComponent, BlogListComponent, BlogEditComponent, SafeHtmlPipe,
     UserSpecificBlogListComponent,
     TagsSpecificBlogListComponent,
-    ImageBlogCreateComponent,
-    ImageBlogDetailComponent,
-    ImageBlogPostComponent,
-    ImageBlogEditComponent],
-    imports: [
-        CommonModule, BlogRouting, HttpClientModule, RouterModule, CKEditorModule, ReactiveFormsModule, FormsModule, NgxPaginationModule,
-        NgxPrintModule, ShareButtonModule, MatSlideToggleModule, NgbCarouselModule
-    ],
+  ],
+  imports: [
+    CommonModule, BlogRouting, HttpClientModule, RouterModule, CKEditorModule, ReactiveFormsModule, FormsModule, NgxPaginationModule,
+    NgxPrintModule, ShareButtonModule, MatSlideToggleModule
+  ],
   providers: [BlogService, httpInterceptorProviders]
 })
 export class BlogModule {

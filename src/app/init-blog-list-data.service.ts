@@ -7,6 +7,7 @@ import {Blog} from './blog/blog';
 export class InitBlogListDataService {
   private fullBlogList;
   private userFullBlogList;
+  private fullImageBlogList;
 
   constructor() {
   }
@@ -25,5 +26,12 @@ export class InitBlogListDataService {
 
   getUserFullBlogList() {
     return this.userFullBlogList;
+  }
+
+  setFullImageBlogList(data) {
+    this.fullImageBlogList = data;
+  }
+  getFullImageBlogList() {
+    return this.fullImageBlogList;
   }
 }

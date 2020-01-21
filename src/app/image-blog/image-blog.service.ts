@@ -1,9 +1,8 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs';
 import {ImageBlog} from './image-blog';
-
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +10,8 @@ import {ImageBlog} from './image-blog';
 export class ImageBlogService {
   private ApiUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   createNewImageBlog(formData: FormData): Observable<ImageBlog> {
     return this.http.post<ImageBlog>(this.ApiUrl + 'newImageBlog', formData);

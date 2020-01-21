@@ -1,0 +1,57 @@
+<div class="alert alert-danger" role="alert" *ngIf="errorMsg">
+  {{errorMsg}}
+</div>
+<form [formGroup]="ImgBlogForm" (ngSubmit)="ImgBlogForm.valid && onSubmit()" style="margin-top: 5%">
+  <input hidden formControlName="id">
+  <div class="form-group row">
+    <label class="col-3 col-form-label">Tittle:</label>
+    <input class="col-6" formControlName="tittle">
+  </div>
+  <div class="alert alert-danger col-2 offset-3" role="alert" *ngIf="ImgBlogForm.get('tittle').invalid && ImgBlogForm.get('tittle').touched">
+    Please enter an tittle :)
+  </div>
+  <div class="form-group row">
+    <label class="col-3 col-form-label">Description:</label>
+    <textarea formControlName="description" class="col-6"></textarea>
+  </div>
+  <div class="alert alert-danger col-3 offset-3" role="alert" *ngIf="ImgBlogForm.get('description').invalid && ImgBlogForm.get('description').touched">
+    Please enter a description:)
+  </div>
+  <div class="form-group row">
+    <label class="col-3 col-form-label">Private:</label>
+    <mat-slide-toggle formControlName="isPrivate"></mat-slide-toggle>
+  </div>
+  <div class="form-group row">
+    <label class="col-3 col-form-label">Images: </label>
+    <input class="col-3" type="file" multiple style="margin-left: 10%; color: magenta" (change)="onSelectedFiles($event)">
+  </div>
+  <div class="form-group row" style="margin-top: 15px">
+    <button style="margin-left: 250px" type="Button" class="btn btn-outline-dark btn-info" (click)="goBack()">Back
+    </button>
+    <button style="margin-left: 100px" class="btn btn-info" type="Submit">Submit</button>
+    <button class="btn btn-danger" style="margin-left: 100px" (click)="deleteImageBlog()" type="Button">Delete</button>
+  </div>
+  <div *ngIf="imageFiles" class="form-group row table-wrapper-scroll-y my-custom-scrollbar">
+    <table class="table table-striped table-hover table-bordered col-6 offset-3">
+      <thead>
+      <tr>
+        <th class="text-center">Image Name</th>
+        <th class="text-center">Preview</th>
+        <th class="text-center">Select</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let imgUrl of imageUrls">
+        <td>{{imgUrl.split('/')[6]}}</td>
+        <td><img src="{{imgUrl}}" style="width: 350px; height: 250px"></td>
+        <td><input type="checkbox" checked="true" (change)="onClickCheckboxUrl(imgUrl,$event.target.checked)"></td>
+      </tr>
+      <tr *ngFor="let img of imageFiles">
+        <td>{{img.imgFile.name}}</td>
+        <td><img src="{{img.imgPreviewUrl}}" style="width: 350px; height: 250px"></td>
+        <td><input type="checkbox" checked="true" (change)="onClickCheckbox(img.imgFile,$event.target.checked)"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</form>

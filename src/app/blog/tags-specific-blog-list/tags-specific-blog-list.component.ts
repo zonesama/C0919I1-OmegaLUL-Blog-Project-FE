@@ -18,6 +18,8 @@ export class TagsSpecificBlogListComponent implements OnInit {
   selectedTags = [];
   count = 8;
   p = 1;
+  tagSearchedList: Blog[];
+  textSearchedList: Blog[];
   navigationSubscription;
 
   constructor(
@@ -32,6 +34,8 @@ export class TagsSpecificBlogListComponent implements OnInit {
     this.loadTagList();
     this.blogService.getBlogList().subscribe(data => {
       this.initBlogListDataService.setFullBlogList(data);
+      this.tagSearchedList = data;
+      this.textSearchedList = data;
       this.fetchBlogList();
     });
   }
@@ -67,30 +71,55 @@ export class TagsSpecificBlogListComponent implements OnInit {
   }
 
   onChangeBox(id: number, checked: boolean) {
-    const fullBlogList: Blog[] = this.initBlogListDataService.getFullBlogList();
-    const searchedBlogs = [];
+    const fullBlogList = this.initBlogListDataService.getFullBlogList();
+    const searchedTextBlogs: Blog[] = [];
+    const finalSearchedBlog: Blog[] = [];
     if (checked) {
       this.selectedTags.push(id);
     } else {
       const index = this.selectedTags.indexOf(id);
       this.selectedTags.splice(index, 1);
     }
-    for (const item of fullBlogList) {
-      let count = 0;
-      // tslint:disable-next-line:max-line-length
-      for (const tag of item.tagList) {
-        for (const tagId of this.selectedTags) {
-          if (tag.id === tagId) {
-            count++;
-          }
+    // @ts-ignore
+    searchText(fullBlogList, searchedTextBlogs, document.getElementById('textSearch').value);
+    searchTag(searchedTextBlogs, finalSearchedBlog, this.selectedTags);
+    this.blogList = finalSearchedBlog;
+  }
+
+  searchList(event) {
+    const keyword = event.target.value;
+    const fullBlogList = this.initBlogListDataService.getFullBlogList();
+    const searchedTagBlog: Blog[] = [];
+    const finalSearchBlog: Blog[] = [];
+    searchTag(fullBlogList, searchedTagBlog, this.selectedTags);
+    searchText(searchedTagBlog, finalSearchBlog, keyword);
+    this.blogList = finalSearchBlog;
+  }
+}
+
+function searchTag(BlogList: Blog[], searchedBlogs: Blog[], selectedTags: number[]) {
+  for (const item of BlogList) {
+    let count = 0;
+    // tslint:disable-next-line:max-line-length
+    for (const tag of item.tagList) {
+      for (const tagId of selectedTags) {
+        if (tag.id === tagId) {
+          count++;
         }
       }
-      if (count === this.selectedTags.length) {
-        searchedBlogs.push(item);
-      }
     }
-    this.blogList = searchedBlogs;
-    // this.dataTransferService.setSearchedOwnBlog(this.selectedTags);
-    // this.router.navigateByUrl('/blog/tagsSearch');
+    if (count === selectedTags.length) {
+      searchedBlogs.push(item);
+    }
+  }
+}
+
+function searchText(BlogList: Blog[], searchedBlogs: Blog[], keyword: string) {
+  for (const item of BlogList) {
+    if (item.tittle.toLowerCase().includes(keyword.toLowerCase())
+      || item.description.toLowerCase().includes(keyword.toLowerCase())
+      || item.content.toLowerCase().includes(keyword.toLowerCase())) {
+      searchedBlogs.push(item);
+    }
   }
 }

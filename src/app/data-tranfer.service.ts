@@ -6,6 +6,7 @@ import {Injectable} from '@angular/core';
 export class DataTranferService {
   private searchedBlogs;
   private searchedOwnBlogs;
+  private searchedImageBlogs;
 
   constructor() {
   }
@@ -29,4 +30,12 @@ export class DataTranferService {
   // clearData() {
   //   this.data = undefined;
   // }
+
+  setSearchedImageBlog(data) {
+    this.searchedImageBlogs = data;
+  }
+
+  getSearchedImageBlog() {
+    return this.searchedImageBlogs;
+  }
 }

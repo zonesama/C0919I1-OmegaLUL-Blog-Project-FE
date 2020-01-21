@@ -15,10 +15,26 @@ import {LoginComponent} from './login/login.component';
 import {httpInterceptorProviders} from './auth/auth-interceptor';
 import {ReactiveFormsModule} from '@angular/forms';
 import {RegisterComponent} from './auth/register/register.component';
-import { TestUploadComponent } from './test-upload/test-upload.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {TestUploadComponent} from './test-upload/test-upload.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+import {AuthService, AuthServiceConfig, FacebookLoginProvider, GoogleLoginProvider} from 'angular-6-social-login';
+import {environment} from '../environments/environment';
 import { HomeComponent } from './home/home.component';
-import { TagBarComponent } from './tag-bar/tag-bar.component';
+
+
+export function socialsConfig() {
+  const config = new AuthServiceConfig([
+    {
+      id: GoogleLoginProvider.PROVIDER_ID,
+      provider: new GoogleLoginProvider(environment.googleAppId)
+    },
+    {
+      id: FacebookLoginProvider.PROVIDER_ID,
+      provider: new FacebookLoginProvider('486275401920877')
+    },
+  ]);
+  return config;
+}
 
 @NgModule({
   declarations: [
@@ -30,20 +46,20 @@ import { TagBarComponent } from './tag-bar/tag-bar.component';
     LoginComponent,
     RegisterComponent,
     TestUploadComponent,
-    HomeComponent,
-    TagBarComponent,
+    HomeComponent
   ],
   imports: [
-    NgbModule,
     BrowserModule,
     AppRoutingModule,
     RouterModule,
     CKEditorModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ],
-  providers: [httpInterceptorProviders],
+  providers: [httpInterceptorProviders, AuthService,
+    {provide: AuthServiceConfig, useFactory: socialsConfig}],
   bootstrap: [AppComponent]
 })
 export class AppModule {

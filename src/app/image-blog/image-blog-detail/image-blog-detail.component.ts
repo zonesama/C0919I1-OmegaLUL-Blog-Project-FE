@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ImageBlog} from '../image-blog';
 import {ActivatedRoute, Router} from '@angular/router';
 import {faFacebookSquare} from '@fortawesome/free-brands-svg-icons/faFacebookSquare';
 import {faTwitterSquare} from '@fortawesome/free-brands-svg-icons/faTwitterSquare';
 import {faGoogle} from '@fortawesome/free-brands-svg-icons/faGoogle';
-import {ImageBlogService} from '../image-blog.service';
 import {TokenStorageService} from '../../auth/token-storage.service';
 import {Location} from '@angular/common';
+import {ImageBlogService} from '../image-blog.service';
 
 
 @Component({
@@ -19,15 +19,14 @@ export class ImageBlogDetailComponent implements OnInit {
   tweetIcon = faTwitterSquare;
   ggIcon = faGoogle;
   imageBlog: ImageBlog;
-  tags = 'Tags: ';
   imageUrls;
-
 
   constructor(private router: Router,
               private route: ActivatedRoute,
               private imageBlogService: ImageBlogService,
               private tokenStorageService: TokenStorageService,
-              private location: Location) { }
+              private location: Location) {
+  }
 
   ngOnInit() {
     // tslint:disable-next-line:radix
@@ -38,6 +37,7 @@ export class ImageBlogDetailComponent implements OnInit {
       console.log(this.imageUrls);
     });
   }
+
   checkPrivate() {
     if (this.imageBlog.user.username === this.tokenStorageService.getUsername() || !this.imageBlog.isPrivate) {
       return false;
@@ -54,14 +54,22 @@ export class ImageBlogDetailComponent implements OnInit {
     window.open(url, 'sharer', 'toolbar=0,status=0,width=648,height=395');
   }
 
-  isLoggedIn() {
-    if (this.imageBlog.user.username === this.tokenStorageService.getUsername()) {
-      return true;
-    }
-    return false;
-  }
-
   goBack() {
     this.location.back();
+  }
+
+  w3_close() {
+    const sideBar = document.getElementById('mySidebar');
+    const navBar = document.getElementById('myNavBar');
+    const footer = document.getElementById('myFooter');
+    if (navBar.style.display === 'none') {
+      sideBar.style.display = 'block';
+      navBar.style.display = '';
+      footer.style.display = '';
+    } else {
+      sideBar.style.display = 'none';
+      navBar.style.display = 'none';
+      footer.style.display = 'none';
+    }
   }
 }

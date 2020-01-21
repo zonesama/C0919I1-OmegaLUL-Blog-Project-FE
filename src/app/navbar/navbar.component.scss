@@ -1,6 +1,6 @@
 @import "//netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css";
 
-.mainLoginInput{
+.mainLoginInput {
   height: 40px;
   padding: 0px;
   font-size: 25px;
@@ -18,7 +18,7 @@
   color: hsl(9, 40%, 60%);
 }
 
-.mainLoginInput::-moz-placeholder  {
+.mainLoginInput::-moz-placeholder {
   font-family: FontAwesome;
   font-weight: normal;
   overflow: visible;
@@ -29,7 +29,7 @@
   color: hsl(9, 40%, 60%);
 }
 
-.mainLoginInput:-ms-input-placeholder  {
+.mainLoginInput:-ms-input-placeholder {
   font-family: FontAwesome;
   font-weight: normal;
   overflow: visible;
@@ -38,4 +38,17 @@
   padding-left: 5px;
   padding-top: 2px;
   color: hsl(9, 40%, 60%);
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background: transparent;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #16c7ff;
 }

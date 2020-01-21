@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {AuthService} from '../auth/auth.service';
+import {AuthServiceNormal} from '../auth/auth.service';
 import {TokenStorageService} from '../auth/token-storage.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {LoginForm} from '../auth/login-form';
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   private loginForm: LoginForm;
 
   constructor(private router: Router,
-              private authService: AuthService,
+              private authService: AuthServiceNormal,
               private tokenStorageService: TokenStorageService,
               private fb: FormBuilder) {
   }

@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import { ImageBlog} from '../image-blog';
+import {ImageBlog} from '../image-blog';
 import {TokenStorageService} from '../../auth/token-storage.service';
-
 
 @Component({
   selector: 'app-image-blog-post',
@@ -12,10 +11,21 @@ export class ImageBlogPostComponent implements OnInit {
   @Input() imageBlog: ImageBlog;
   @Output() viewClicked = new EventEmitter();
   @Output() editClicked = new EventEmitter();
+  thumbnail;
 
-  constructor(private token: TokenStorageService) { }
+  constructor(private token: TokenStorageService) {
+  }
 
   ngOnInit() {
+    const imageUrls = this.imageBlog.imageUrls.split(',');
+    this.thumbnail = imageUrls[0];
+  }
+
+  checkUser() {
+    if (this.imageBlog.user.username === this.token.getUsername()) {
+      return true;
+    }
+    return false;
   }
 
   emitView() {
@@ -24,12 +34,5 @@ export class ImageBlogPostComponent implements OnInit {
 
   emitEdit() {
     this.editClicked.emit();
-  }
-
-  checkUser() {
-    if (this.imageBlog.user.username === this.token.getUsername()) {
-      return true;
-    }
-    return false;
   }
 }
