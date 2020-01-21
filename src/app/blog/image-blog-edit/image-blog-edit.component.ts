@@ -50,4 +50,6 @@ export class ImageBlogEditComponent implements OnInit {
     }
     console.log(this.selectedFiles);
   }
+
+  onSubmit() {}
 }

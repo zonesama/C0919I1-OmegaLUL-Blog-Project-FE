@@ -17,6 +17,8 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {RegisterComponent} from './auth/register/register.component';
 import { TestUploadComponent } from './test-upload/test-upload.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { HomeComponent } from './home/home.component';
+import { TagBarComponent } from './tag-bar/tag-bar.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     LoginComponent,
     RegisterComponent,
     TestUploadComponent,
+    HomeComponent,
+    TagBarComponent,
   ],
   imports: [
     NgbModule,
