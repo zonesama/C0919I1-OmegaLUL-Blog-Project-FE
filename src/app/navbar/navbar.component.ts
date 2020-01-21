@@ -12,6 +12,7 @@ import {GoogleLoginProvider, FacebookLoginProvider, AuthService} from 'angular-6
 import {SocialLoginModule, AuthServiceConfig} from 'angular-6-social-login';
 import {Socialusers} from '../auth/socialusers';
 import {SocialloginService} from '../auth/sociallogin.service';
+import {User} from '../auth/user';
 
 @Component({
   selector: 'app-navbar',
@@ -21,6 +22,7 @@ import {SocialloginService} from '../auth/sociallogin.service';
 export class NavbarComponent implements OnInit {
   response;
   socialusers = new Socialusers();
+  currentUser: User;
   @ViewChild('searchInput', {static: false}) searchInput: ElementRef;
   loginInfo: FormGroup;
   loginForm: LoginForm;
@@ -46,6 +48,11 @@ export class NavbarComponent implements OnInit {
       username: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
+    if (sessionStorage.length >= 0) {
+      this.authService.getUserByUsername(this.token.getUsername()).subscribe(data => {
+        this.currentUser = data;
+      });
+    }
   }
 
   SearchBlog(event) {

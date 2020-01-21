@@ -6,6 +6,7 @@ import {JwtResponse} from './jwt-response';
 import {SignUpForm} from './sign-up-form';
 import {TokenStorageService} from './token-storage.service';
 import {environment} from '../../environments/environment';
+import {User} from './user';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -18,6 +19,7 @@ const httpOptions = {
 export class AuthServiceNormal {
   private loginUrl = environment.apiUrl + 'auth/signin';
   private signupUrl = environment.apiUrl + 'auth/signup';
+  private userApi = environment.apiUrl + 'auth/user';
 
   constructor(private http: HttpClient,
               private token: TokenStorageService) {
@@ -36,5 +38,9 @@ export class AuthServiceNormal {
       return false;
     }
     return true;
+  }
+
+  getUserByUsername(username: string): Observable<User> {
+    return this.http.post<User>(this.userApi, username);
   }
 }
