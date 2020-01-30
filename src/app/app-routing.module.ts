@@ -4,6 +4,8 @@ import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './auth/register/register.component';
 import {TestUploadComponent} from './test-upload/test-upload.component';
+import {ChangePasswordComponent} from './auth/change-password/change-password.component';
+import {AuthGuard} from './auth/auth.guard';
 
 
 
@@ -29,6 +31,11 @@ const routes: Routes = [
   {
     path: 'uploadTest',
     component: TestUploadComponent
+  },
+  {
+    path: 'changePass',
+    component: ChangePasswordComponent,
+    canActivate: [AuthGuard]
   }
 ];
 

@@ -17,6 +17,22 @@
       <input class="form-control" formControlName="username">
     </label>
   </div>
+  <div class="form-group row">
+    <label class="col">
+      Avatar
+      <input type="text" class="form-control" formControlName="avatar" (change)="addAvatarUrl($event)">
+    </label>
+  </div>
+  <div class="form-group row">
+    <input style="margin-left: 20%" type="file"  (change)="addAvatarFile($event)">
+    <button type="button" (click)="uploadAvatar()">Upload</button>
+  </div>
+  <div class="form-group row" *ngIf="avatarPreviewUrl" >
+    <label style="margin-top: 10px">
+      Preview:
+      <img src="{{avatarPreviewUrl}}" style="height: 200px; width: 300px">
+    </label>
+  </div>
   <div class="alert alert-danger" role="alert" *ngIf="registerForm.get('username').invalid && registerForm.get('username').touched">
     Please enter an username :)
   </div>

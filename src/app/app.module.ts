@@ -20,6 +20,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import {AuthService, AuthServiceConfig, FacebookLoginProvider, GoogleLoginProvider} from 'angular-6-social-login';
 import {environment} from '../environments/environment';
 import { HomeComponent } from './home/home.component';
+import { ChangePasswordComponent } from './auth/change-password/change-password.component';
 
 
 export function socialsConfig() {
@@ -46,7 +47,8 @@ export function socialsConfig() {
     LoginComponent,
     RegisterComponent,
     TestUploadComponent,
-    HomeComponent
+    HomeComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,

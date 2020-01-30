@@ -20,6 +20,8 @@ export class AuthServiceNormal {
   private loginUrl = environment.apiUrl + 'auth/signin';
   private signupUrl = environment.apiUrl + 'auth/signup';
   private userApi = environment.apiUrl + 'auth/user';
+  private avatarUploadUrl = environment.apiUrl + 'auth/avatarUpload';
+  private changePasswordUrl = environment.apiUrl + 'auth/changePass';
 
   constructor(private http: HttpClient,
               private token: TokenStorageService) {
@@ -42,5 +44,13 @@ export class AuthServiceNormal {
 
   getUserByUsername(username: string): Observable<User> {
     return this.http.post<User>(this.userApi, username);
+  }
+
+  uploadAvatar(formData: FormData): Observable<string> {
+    return this.http.post(this.avatarUploadUrl, formData, {responseType: 'text'});
+  }
+
+  changePassword(formData: FormData): Observable<any> {
+    return this.http.post<any>(this.changePasswordUrl, formData);
   }
 }
