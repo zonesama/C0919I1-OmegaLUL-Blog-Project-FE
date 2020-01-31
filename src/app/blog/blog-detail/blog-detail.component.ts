@@ -63,7 +63,7 @@ export class BlogDetailComponent implements OnInit {
   }
 
   isLoggedIn() {
-    if (this.tokenStorageService.getUsername() !== undefined) {
+    if (sessionStorage.length !== 0) {
       return true;
     }
     return false;
