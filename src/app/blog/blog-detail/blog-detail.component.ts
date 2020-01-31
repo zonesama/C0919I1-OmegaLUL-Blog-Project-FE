@@ -11,7 +11,6 @@ import {CommentForm} from '../../comment/comment-form';
 import {CommentService} from '../../comment/comment.service';
 
 
-
 @Component({
   selector: 'app-blog-detail',
   templateUrl: './blog-detail.component.html',
@@ -56,8 +55,15 @@ export class BlogDetailComponent implements OnInit {
     window.open(url, 'sharer', 'toolbar=0,status=0,width=648,height=395');
   }
 
-  isLoggedIn() {
+  isLoggedInAuthor() {
     if (this.blog.user.username === this.tokenStorageService.getUsername()) {
+      return true;
+    }
+    return false;
+  }
+
+  isLoggedIn() {
+    if (this.tokenStorageService.getUsername() !== undefined) {
       return true;
     }
     return false;

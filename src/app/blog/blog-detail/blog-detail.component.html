@@ -4,7 +4,7 @@
       Author: {{blog.user.username}} can view ! Plss Contact him/her to change it to public</h4>
   </div>
   <form *ngIf="!checkPrivate()">
-    <div class="form-group row" *ngIf="isLoggedIn()">
+    <div class="form-group row" *ngIf="isLoggedInAuthor()">
       <share-button button="facebook" theme="circles-dark" [icon]=fbIcon></share-button>
       <share-button button="twitter" theme="circles-dark" [icon]=tweetIcon></share-button>
       <button style="border: none; background: transparent; margin-left: 8px" (click)="ShareOnGmail()"><i
