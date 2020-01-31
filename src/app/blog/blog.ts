@@ -10,6 +10,7 @@ export class Blog {
   content: string;
   createdDate: Date;
   lastUpdatedDate: Date;
+  view: number;
   user: User;
   isPrivate: boolean;
 }

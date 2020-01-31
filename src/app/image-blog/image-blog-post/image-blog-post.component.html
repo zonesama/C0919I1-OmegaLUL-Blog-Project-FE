@@ -1,9 +1,10 @@
-<div class="card" style="width: 18rem;height: 40rem">
+<div class="card" style="width: 18rem;height: 43rem">
   <img [src]="thumbnail" class="card-img-top" alt="..." style="width: 18rem; height: 300px">
   <div class="card-body">
     <h5 class="card-title" style="color: blue; text-shadow: magenta 2px 2px 6px"
         (click)="emitView()"> {{ this.imageBlog.tittle }}</h5>
     <p class="card-text"> {{ this.imageBlog.description }} </p>
+    <h6 style="color: black; text-shadow: magenta 2px 2px 6px">View: {{imageBlog.view}}</h6>
     <button style="position: absolute; bottom: 2%" class="btn btn-primary" (click)="emitView()">View</button>
     <button *ngIf="checkUser()" class="btn btn-danger" style="position: absolute; bottom: 2%;margin-left: 68%" (click)="emitEdit()">Edit
     </button>
