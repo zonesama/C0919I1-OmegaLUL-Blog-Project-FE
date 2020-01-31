@@ -1,12 +1,14 @@
 <div class="row">
   <div *ngIf="checkPrivate()">
-    <h4 style="text-shadow: 2px 2px 6px #5cb85c; margin-top: 15%">This Blog is currently a private Blog that only the Author: {{blog.user.username}} can view ! Plss Contact him/her to change it to public</h4>
+    <h4 style="text-shadow: 2px 2px 6px #5cb85c; margin-top: 15%">This Blog is currently a private Blog that only the
+      Author: {{blog.user.username}} can view ! Plss Contact him/her to change it to public</h4>
   </div>
   <form *ngIf="!checkPrivate()">
     <div class="form-group row" *ngIf="isLoggedIn()">
       <share-button button="facebook" theme="circles-dark" [icon]=fbIcon></share-button>
       <share-button button="twitter" theme="circles-dark" [icon]=tweetIcon></share-button>
-      <button style="border: none; background: transparent; margin-left: 8px"  (click)="ShareOnGmail()"><i class="fa fa-google" aria-hidden="true"></i></button>
+      <button style="border: none; background: transparent; margin-left: 8px" (click)="ShareOnGmail()"><i
+        class="fa fa-google" aria-hidden="true"></i></button>
     </div>
     <div class="form-group row">
       <h1 style="text-align: center; text-shadow: #5cb85c 2px 2px 7px">{{blog.tittle}}</h1>
@@ -25,7 +27,7 @@
     <div class="form-group row">
       <h6 style="text-align: center">Last updated on: {{blog.lastUpdatedDate}}</h6>
     </div>
-    <div class="form-group row" >
+    <div class="form-group row">
       <fieldset>
         <legend>Content</legend>
         <div id="print-section" class="col-8 offset-1" [innerHTML]="blog.content | safeHtml"></div>
@@ -36,4 +38,43 @@
     </div>
   </form>
 </div>
+<div class="form-group row">
+  <div class="col-9 offset-1">
+    <h5 style="color: blue; text-shadow: magenta 2px 2px 6px">COMMENTS</h5>
+  </div>
+</div>
+<div *ngIf="!isLoggedIn()">
+  <div class="row">
+    <div class="col-9 offset-2">
+      <textarea style="width: 60%;height: 80px;border-radius: 10px" id="comment"></textarea>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-5 offset-4">
+      <button class=" btn btn-info" type="Button" (click)="postComment()">Post</button>
+    </div>
+  </div>
+</div>
+<div class="row" style="margin-top: 5%">
+  <table class="table-borderless col 10 offset-2">
+    <tr *ngFor="let item of commentList |  paginate:{itemsPerPage: count, currentPage: p}">
+      <td>
+        <p
+          style="width: fit-content;height: fit-content; border-radius: 10px; border:solid #1e2229;background: #6c7b88">
+          <label style="color: blue; font-weight: bolder;margin-top: 1%">&nbsp;&nbsp;&nbsp;&nbsp;{{item.user.username}}:&nbsp;&nbsp;
+            <textarea cdkTextareaAutosize
+                      style="width: 700px;overflow:hidden;border: none;background: #6c7b88;color: white;vertical-align: top;"
+                      readonly>{{item.comment}}</textarea>
+          </label>
+        </p>
+      </td>
+    </tr>
+  </table>
+</div>
+<div class="row">
+  <div class="text-center col-3 offset-3" style="margin-top: 30px">
+    <pagination-controls (pageChange)="p= $event"></pagination-controls>
+  </div>
+</div>
+
 

@@ -19,7 +19,7 @@ import {CKEditorModule} from 'ckeditor4-angular';
 import {httpInterceptorProviders} from '../auth/auth-interceptor';
 import {UserSpecificBlogListComponent} from './user-specific-blog-list/user-specific-blog-list.component';
 import { TagsSpecificBlogListComponent } from './tags-specific-blog-list/tags-specific-blog-list.component';
-
+import {TextFieldModule} from '@angular/cdk/text-field';
 
 @NgModule({
   declarations: [BlogCreateComponent, BlogDetailComponent, BlogPostComponent, BlogListComponent, BlogEditComponent, SafeHtmlPipe,
@@ -28,7 +28,7 @@ import { TagsSpecificBlogListComponent } from './tags-specific-blog-list/tags-sp
   ],
   imports: [
     CommonModule, BlogRouting, HttpClientModule, RouterModule, CKEditorModule, ReactiveFormsModule, FormsModule, NgxPaginationModule,
-    NgxPrintModule, ShareButtonModule, MatSlideToggleModule
+    NgxPrintModule, ShareButtonModule, MatSlideToggleModule, TextFieldModule
   ],
   providers: [BlogService, httpInterceptorProviders]
 })
