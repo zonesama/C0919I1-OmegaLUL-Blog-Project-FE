@@ -48,7 +48,7 @@ export class NavbarComponent implements OnInit {
       username: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
-    if (sessionStorage.length >= 0) {
+    if (sessionStorage.length > 0) {
       this.authService.getUserByUsername(this.token.getUsername()).subscribe(data => {
         this.currentUser = data;
       });
