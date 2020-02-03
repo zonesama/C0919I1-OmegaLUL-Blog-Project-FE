@@ -46,6 +46,7 @@ export class HomeComponent implements OnInit {
     }
     this.blogService.getTopViewBlogByTag(id).subscribe(data => {
       this.fullBlogList = data;
+      console.log(data);
       this.blogList = this.fullBlogList.slice(1, this.fullBlogList.length);
     });
   }

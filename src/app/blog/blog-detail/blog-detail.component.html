@@ -4,7 +4,7 @@
       Author: {{blog.user.username}} can view ! Plss Contact him/her to change it to public</h4>
   </div>
   <form *ngIf="!checkPrivate()">
-    <div class="form-group row" *ngIf="isLoggedInAuthor()">
+    <div class="form-group row">
       <share-button button="facebook" theme="circles-dark" [icon]=fbIcon></share-button>
       <share-button button="twitter" theme="circles-dark" [icon]=tweetIcon></share-button>
       <button style="border: none; background: transparent; margin-left: 8px" (click)="ShareOnGmail()"><i
@@ -38,7 +38,7 @@
     </div>
   </form>
 </div>
-<div class="form-group row">
+<div class="form-group row" *ngIf="!checkPrivate()">
   <div class="col-9 offset-1">
     <h5 style="color: blue; text-shadow: magenta 2px 2px 6px">COMMENTS</h5>
   </div>
@@ -61,7 +61,9 @@
       <td>
         <p
           style="width: fit-content;height: fit-content; border-radius: 10px; border:solid #1e2229;background: #6c7b88">
-          <label style="color: blue; font-weight: bolder;margin-top: 1%">&nbsp;&nbsp;&nbsp;&nbsp;{{item.user.username}}:&nbsp;&nbsp;
+          <label style="color: blue; font-weight: bolder;margin-top: 1%">&nbsp;<img class="zoom" src="{{item.user.avatar}}"
+                                                                              style="border-radius: 50%; width: 30px; height: 30px">&nbsp;&nbsp;{{item.user.username}}
+            :&nbsp;&nbsp;
             <textarea cdkTextareaAutosize
                       style="width: 700px;overflow:hidden;border: none;background: #6c7b88;color: white;vertical-align: top;"
                       readonly>{{item.comment}}</textarea>
