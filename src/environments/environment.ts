@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8080/api/',
+  apiUrl: 'https://blog-pj--omegalul.herokuapp.com/api/',
   googleAppId: '1038712425413-1akfk6vev4m0pla0thn0is1ajcjke2qp.apps.googleusercontent.com'
 };
 

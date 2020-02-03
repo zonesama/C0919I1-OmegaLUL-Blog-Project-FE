@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TagBarComponent } from './tag-bar.component';
+import { TagCarouselComponent } from './tag-carousel.component';
 
-describe('TagBarComponent', () => {
-  let component: TagBarComponent;
-  let fixture: ComponentFixture<TagBarComponent>;
+describe('TagCarouselComponent', () => {
+  let component: TagCarouselComponent;
+  let fixture: ComponentFixture<TagCarouselComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TagBarComponent ]
+      declarations: [ TagCarouselComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TagBarComponent);
+    fixture = TestBed.createComponent(TagCarouselComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
