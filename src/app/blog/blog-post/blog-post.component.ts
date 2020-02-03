@@ -11,6 +11,7 @@ export class BlogPostComponent implements OnInit {
   @Input() blog: Blog;
   @Output() viewClicked = new EventEmitter();
   @Output() editClicked = new EventEmitter();
+  @Input()requestFromHome: boolean;
 
   constructor(private token: TokenStorageService) {
   }

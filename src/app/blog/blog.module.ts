@@ -30,6 +30,9 @@ import {TextFieldModule} from '@angular/cdk/text-field';
     CommonModule, BlogRouting, HttpClientModule, RouterModule, CKEditorModule, ReactiveFormsModule, FormsModule, NgxPaginationModule,
     NgxPrintModule, ShareButtonModule, MatSlideToggleModule, TextFieldModule
   ],
+  exports: [
+    BlogPostComponent
+  ],
   providers: [BlogService, httpInterceptorProviders]
 })
 export class BlogModule {

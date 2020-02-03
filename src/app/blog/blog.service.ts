@@ -52,4 +52,8 @@ export class BlogService {
   uploadMultipleImage(formData: FormData): Observable<string[]> {
     return this.http.post<string[]>(this.ApiUrl + 'upload-multi', formData);
   }
+
+  getTopViewBlogByTag(id: number): Observable<Blog[]> {
+    return this.http.get<Blog[]>(this.ApiUrl + 'blog/topView/' + id);
+  }
 }

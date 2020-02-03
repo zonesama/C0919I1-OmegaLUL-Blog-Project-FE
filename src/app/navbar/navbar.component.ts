@@ -86,6 +86,10 @@ export class NavbarComponent implements OnInit {
     document.getElementById('modalRegisterForm');
   }
 
+  goToChangePassword() {
+    this.router.navigateByUrl('/changePass');
+  }
+
   onSubmit() {
     this.loginForm = this.loginInfo.value;
     this.authService.signIn(this.loginForm).subscribe(data => {

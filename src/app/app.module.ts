@@ -21,6 +21,8 @@ import {AuthService, AuthServiceConfig, FacebookLoginProvider, GoogleLoginProvid
 import {environment} from '../environments/environment';
 import { HomeComponent } from './home/home.component';
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {BlogModule} from './blog/blog.module';
 
 
 export function socialsConfig() {
@@ -58,7 +60,9 @@ export function socialsConfig() {
     BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgbModule,
+    BlogModule
   ],
   providers: [httpInterceptorProviders, AuthService,
     {provide: AuthServiceConfig, useFactory: socialsConfig}],
