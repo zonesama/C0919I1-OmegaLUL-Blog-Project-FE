@@ -9,6 +9,7 @@ import {Location} from '@angular/common';
 import {BlogForm} from '../blog-form';
 import {InitBlogListDataService} from '../../init-blog-list-data.service';
 import {environment} from '../../../environments/environment';
+import {AuthServiceNormal} from '../../auth/auth.service';
 
 
 @Component({
@@ -48,13 +49,15 @@ export class BlogCreateComponent implements OnInit {
   BlogForm: FormGroup;
   blog: Blog;
   currentThumpnail: string;
+  thumpnailFile;
 
   constructor(private fb: FormBuilder,
               private router: Router,
               private blogService: BlogService,
               private token: TokenStorageService,
               private location: Location,
-              private initBlogListDataService: InitBlogListDataService) {
+              private initBlogListDataService: InitBlogListDataService,
+              private authService: AuthServiceNormal) {
   }
 
   ngOnInit() {
@@ -109,6 +112,24 @@ export class BlogCreateComponent implements OnInit {
     // this.location.back();
     this.router.navigateByUrl('/blog/userBlogList').then(() => {
       window.location.reload();
+    });
+  }
+
+  addThumpnail(event) {
+    const avatarFile: File = event.target.files[0];
+    console.log(avatarFile);
+    this.thumpnailFile = avatarFile;
+    const reader = new FileReader();
+    reader.onload = e => this.currentThumpnail = reader.result.toString();
+    reader.readAsDataURL(avatarFile);
+  }
+
+  uploadThumpnail() {
+    const formData = new FormData();
+    formData.append('avatarImg', this.thumpnailFile);
+    this.authService.uploadAvatar(formData).subscribe(data => {
+      this.currentThumpnail = data;
+      this.BlogForm.get('thumbnail').setValue(data);
     });
   }
 }

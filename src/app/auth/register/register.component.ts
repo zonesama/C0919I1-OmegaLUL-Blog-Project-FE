@@ -53,7 +53,6 @@ export class RegisterComponent implements OnInit {
   }
 
   uploadAvatar() {
-    console.log(this.avatarFile);
     const formData = new FormData();
     formData.append('avatarImg', this.avatarFile);
     console.log(formData);

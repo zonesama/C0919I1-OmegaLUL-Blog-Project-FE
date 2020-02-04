@@ -1,0 +1,38 @@
+<form [formGroup]="changeInfoForm" (ngSubmit)="changeInfoForm.valid && Submit()" class="mt-4 col-md-6 offset-md-2">
+  <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+    {{errorMessage}}
+  </div>
+  <div class="form-group row">
+    <label class="col">
+      Name
+      <input type="text" class="form-control" formControlName="name">
+    </label>
+  </div>
+  <div class="alert alert-danger" role="alert" *ngIf="changeInfoForm.get('name').invalid && changeInfoForm.get('name').touched">
+    Please enter your name :)
+  </div>
+  <div class="form-group row">
+    <label class="col">
+      Avatar
+      <input type="text" id="avatarUrl" class="form-control" formControlName="avatarUrl"
+             (change)="addAvatarUrl($event)">
+    </label>
+  </div>
+  <div class="alert alert-danger" role="alert" *ngIf="changeInfoForm.get('avatarUrl').invalid && changeInfoForm.get('avatarUrl').touched">
+    Please enter an avatar Url or upload one :)
+  </div>
+  <div class="form-group row">
+    <input style="margin-left: 20%" type="file" (change)="addAvatarFile($event)">
+    <button type="button" (click)="uploadAvatar()">Upload</button>
+  </div>
+  <div class="form-group row" *ngIf="avatarPreviewUrl">
+    <label style="margin-top: 10px">
+      Preview:
+      <img src="{{avatarPreviewUrl}}" style="height: 200px; width: 300px">
+    </label>
+  </div>
+  <div class="form-group">
+    <button class="btn btn-danger col-1 offset-2" (click)="goBack()" type="button">Back</button>
+    <button class="btn btn-info col-2 offset-4"  type="submit">Submit</button>
+  </div>
+</form>

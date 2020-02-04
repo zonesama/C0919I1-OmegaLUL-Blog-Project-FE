@@ -4,6 +4,7 @@ import {BlogService} from '../blog.service';
 import {NavigationEnd, Router} from '@angular/router';
 import {DataTranferService} from '../../data-tranfer.service';
 import {InitBlogListDataService} from '../../init-blog-list-data.service';
+import {TokenStorageService} from '../../auth/token-storage.service';
 
 @Component({
   selector: 'app-user-specific-blog-list',
@@ -19,7 +20,8 @@ export class UserSpecificBlogListComponent implements OnInit, OnDestroy {
   constructor(private blogService: BlogService,
               private router: Router,
               private dataTransferService: DataTranferService,
-              private initBlogListDataService: InitBlogListDataService) {
+              private initBlogListDataService: InitBlogListDataService,
+              private token: TokenStorageService) {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       // If it is a NavigationEnd event re-initalise the component
       if (e instanceof NavigationEnd) {
@@ -33,6 +35,7 @@ export class UserSpecificBlogListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    console.log(this.token.getUsername());
     this.blogService.getUserSpecificBlog().subscribe(data => {
       this.initBlogListDataService.setUserFullBlogList(data);
       this.fetchBlogList();

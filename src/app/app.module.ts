@@ -23,6 +23,7 @@ import { HomeComponent } from './home/home.component';
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {BlogModule} from './blog/blog.module';
+import { ChangeUserInfoComponent } from './auth/change-user-info/change-user-info.component';
 
 
 export function socialsConfig() {
@@ -50,7 +51,8 @@ export function socialsConfig() {
     RegisterComponent,
     TestUploadComponent,
     HomeComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    ChangeUserInfoComponent
   ],
   imports: [
     BrowserModule,

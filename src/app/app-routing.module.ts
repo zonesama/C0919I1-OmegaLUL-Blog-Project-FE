@@ -7,6 +7,7 @@ import {TestUploadComponent} from './test-upload/test-upload.component';
 import {ChangePasswordComponent} from './auth/change-password/change-password.component';
 import {AuthGuard} from './auth/auth.guard';
 import {HomeComponent} from './home/home.component';
+import {ChangeUserInfoComponent} from './auth/change-user-info/change-user-info.component';
 
 
 const routes: Routes = [
@@ -39,6 +40,11 @@ const routes: Routes = [
     {
       path: '',
       component: HomeComponent
+    },
+    {
+      path: 'changeInfo',
+      component: ChangeUserInfoComponent,
+      canActivate: [AuthGuard]
     }
   ]
 ;

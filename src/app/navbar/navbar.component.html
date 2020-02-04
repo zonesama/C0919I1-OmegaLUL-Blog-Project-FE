@@ -1,6 +1,6 @@
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow" style="height: 7%;" id="myNavBar">
   <a style="margin-left: 15px"><button type="button" class="openbtn" (click)="w3_open()">&#9776;</button>
-    <a class="navbar-brand col-sm-3 col-md-2 mr-0">Omega LuL</a></a>
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" routerLink="/" style="color: blue; text-shadow: magenta 2px 2px 6px">Omega LuL</a></a>
   <input class="form-control form-control-dark col-sm-3 col-md-5 mr-0" type="text" id="searchBox" #searchInput placeholder="Search" aria-label="Search" (input)="SearchBlog($event)">
   <div class="dropdown" *ngIf="isLoggedIn()">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -17,9 +17,9 @@
       <button class="dropdown-item" type="button">
         <a (click)="goToNewImgBlog()">New Image Blog</a>
       </button>
-      <button class="dropdown-item" type="button">
-        <a (click)="goToImgBlogList()">My Image Blogs</a>
-      </button>
+<!--      <button class="dropdown-item" type="button">-->
+<!--        <a (click)="goToImgBlogList()">My Image Blogs</a>-->
+<!--      </button>-->
       <button class="dropdown-item" type="button">
         <a href="#">Toang</a>
       </button>
@@ -35,7 +35,7 @@
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
         <button class="dropdown-item" type="button">
-          <a (click)="goToNewBlog()">My Profile</a>
+          <a (click)="goToChangeUserInfo()">Change Profile Info</a>
         </button>
         <button class="dropdown-item" type="button">
           <a (click)="goToChangePassword()">Change Password</a>

@@ -46,7 +46,7 @@ export class BlogService {
   }
 
   getUserSpecificBlog(): Observable<Blog[]> {
-    return this.http.get<Blog[]>(this.ApiUrl + 'blog/userBlogs/' + this.token.getUsername());
+    return this.http.post<Blog[]>(this.ApiUrl + 'blog/userBlogs', this.token.getUsername());
   }
 
   uploadMultipleImage(formData: FormData): Observable<string[]> {

@@ -3,6 +3,7 @@ import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/form
 import {TokenStorageService} from '../token-storage.service';
 import {LoginForm} from '../login-form';
 import {AuthServiceNormal} from '../auth.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-change-password',
@@ -16,7 +17,8 @@ export class ChangePasswordComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private authService: AuthServiceNormal,
-              private tokenStorageService: TokenStorageService) {
+              private tokenStorageService: TokenStorageService,
+              private location: Location) {
   }
 
   ngOnInit() {
@@ -42,6 +44,9 @@ export class ChangePasswordComponent implements OnInit {
     }, error => {
       this.errorMessage = error.error.message;
     });
+  }
+  goBack() {
+    this.location.back();
   }
 }
 

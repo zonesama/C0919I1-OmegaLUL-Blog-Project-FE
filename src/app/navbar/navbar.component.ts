@@ -161,5 +161,8 @@ export class NavbarComponent implements OnInit {
     }
   }
 
+  goToChangeUserInfo() {
+    this.router.navigateByUrl('/changeInfo');
+  }
 }
 
