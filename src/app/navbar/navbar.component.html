@@ -37,7 +37,7 @@
         <button class="dropdown-item" type="button">
           <a (click)="goToChangeUserInfo()">Change Profile Info</a>
         </button>
-        <button class="dropdown-item" type="button">
+        <button class="dropdown-item" type="button" *ngIf="currentUser.provider === 'OmegaLUL'">
           <a (click)="goToChangePassword()">Change Password</a>
         </button>
         <button class="dropdown-item" type="button">
