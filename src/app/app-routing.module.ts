@@ -8,6 +8,7 @@ import {ChangePasswordComponent} from './auth/change-password/change-password.co
 import {AuthGuard} from './auth/auth.guard';
 import {HomeComponent} from './home/home.component';
 import {ChangeUserInfoComponent} from './auth/change-user-info/change-user-info.component';
+import {UserGuard} from './auth/user.guard';
 
 
 const routes: Routes = [
@@ -35,7 +36,7 @@ const routes: Routes = [
     {
       path: 'changePass',
       component: ChangePasswordComponent,
-      canActivate: [AuthGuard]
+      canActivate: [AuthGuard, UserGuard]
     },
     {
       path: '',

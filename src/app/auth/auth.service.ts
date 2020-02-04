@@ -43,6 +43,17 @@ export class AuthServiceNormal {
     return true;
   }
 
+  // public isSocialUset(): boolean {
+  //   let user: User;
+  //   this.getUserByUsername(this.token.getUsername()).subscribe(data => {
+  //     user = data;
+  //     if (user.provider === 'OmegaLUL') {
+  //       return false;
+  //     }
+  //     return true;
+  //   });
+  // }
+
   getUserByUsername(username: string): Observable<User> {
     return this.http.post<User>(this.userApi, username);
   }
