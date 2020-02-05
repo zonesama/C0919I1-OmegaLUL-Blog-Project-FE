@@ -35,10 +35,10 @@ export class SocialLoginFirstTimeComponent implements OnInit {
 
   submit() {
     if (confirm('Are You Sure?')) {
-      const dob: Date = this.extraUserInfo.get('dob').value;
+      const dob = this.extraUserInfo.get('dob').value;
       const gender = this.extraUserInfo.get('gender').value;
       const formData = new FormData();
-      formData.append('dob', JSON.stringify(dob));
+      formData.append('dob', dob);
       formData.append('gender', gender);
       formData.append('socialUser', JSON.stringify(this.socialUser));
       this.socialloginService.FirstTimeLogin(formData).subscribe(data => {
