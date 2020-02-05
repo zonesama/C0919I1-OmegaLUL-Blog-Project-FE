@@ -9,6 +9,7 @@ import {AuthGuard} from './auth/auth.guard';
 import {HomeComponent} from './home/home.component';
 import {ChangeUserInfoComponent} from './auth/change-user-info/change-user-info.component';
 import {UserGuard} from './auth/user.guard';
+import {SocialLoginFirstTimeComponent} from './auth/social-login-first-time/social-login-first-time.component';
 
 
 const routes: Routes = [
@@ -46,6 +47,10 @@ const routes: Routes = [
       path: 'changeInfo',
       component: ChangeUserInfoComponent,
       canActivate: [AuthGuard]
+    },
+    {
+      path: 'socialFirstLogin',
+      component: SocialLoginFirstTimeComponent
     }
   ]
 ;

@@ -131,15 +131,22 @@ export class NavbarComponent implements OnInit {
       socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
     }
     this.OAuth.signIn(socialPlatformProvider).then(socialusers => {
-      // console.log(socialProvider, socialusers);
-      // console.log(socialusers);
-      this.socialloginService.SavesResponse(socialusers).subscribe(data => {
-        this.token.saveToken(data.accessToken);
-        this.token.saveUsername(data.username);
-        this.token.saveAuthorities(data.authorities);
-        window.location.reload();
-      }, error => {
-        this.errorMessage = error.error.message;
+      this.authService.checkIfUserExist(socialusers.email).subscribe(result => {
+        const isUserExist: boolean = result;
+        if (isUserExist) {
+          this.socialloginService.SavesResponse(socialusers).subscribe(data => {
+            this.token.saveToken(data.accessToken);
+            this.token.saveUsername(data.username);
+            this.token.saveAuthorities(data.authorities);
+            window.location.reload();
+          }, error => {
+            this.errorMessage = error.error.message;
+          });
+        } else {
+          document.getElementById('closeBtn').click();
+          this.dataTransferService.setSocialUser(socialusers);
+          this.router.navigateByUrl('/socialFirstLogin');
+        }
       });
     });
   }

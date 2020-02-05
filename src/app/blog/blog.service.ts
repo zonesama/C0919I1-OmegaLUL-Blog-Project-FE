@@ -56,4 +56,8 @@ export class BlogService {
   getTopViewBlogByTag(id: number): Observable<Blog[]> {
     return this.http.get<Blog[]>(this.ApiUrl + 'blog/topView/' + id);
   }
+
+  sendData(formData: FormData): Observable<any> {
+    return this.http.post<any>(this.ApiUrl + 'auth/testData', formData);
+  }
 }

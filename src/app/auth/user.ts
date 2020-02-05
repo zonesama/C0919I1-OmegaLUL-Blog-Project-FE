@@ -5,5 +5,7 @@ export class User {
   password: string;
   provider: string;
   avatar: string;
+  dob: Date;
+  gender: string;
   role: string[];
 }

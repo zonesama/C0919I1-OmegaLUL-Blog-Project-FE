@@ -7,6 +7,7 @@ export class DataTranferService {
   private searchedBlogs;
   private searchedOwnBlogs;
   private searchedImageBlogs;
+  private socialUser;
 
   constructor() {
   }
@@ -25,6 +26,14 @@ export class DataTranferService {
 
   getSearchedOwnBlog() {
     return this.searchedOwnBlogs;
+  }
+
+  setSocialUser(data) {
+    this.socialUser = data;
+  }
+
+  getSocialUser() {
+    return this.socialUser;
   }
 
   // clearData() {

@@ -43,19 +43,12 @@ export class AuthServiceNormal {
     return true;
   }
 
-  // public isSocialUset(): boolean {
-  //   let user: User;
-  //   this.getUserByUsername(this.token.getUsername()).subscribe(data => {
-  //     user = data;
-  //     if (user.provider === 'OmegaLUL') {
-  //       return false;
-  //     }
-  //     return true;
-  //   });
-  // }
-
   getUserByUsername(username: string): Observable<User> {
     return this.http.post<User>(this.userApi, username);
+  }
+
+  checkIfUserExist(username: string): Observable<any> {
+    return this.http.post<any>(this.userApi + '/checkUser', username);
   }
 
   uploadAvatar(formData: FormData): Observable<string> {

@@ -24,6 +24,7 @@ import { ChangePasswordComponent } from './auth/change-password/change-password.
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {BlogModule} from './blog/blog.module';
 import { ChangeUserInfoComponent } from './auth/change-user-info/change-user-info.component';
+import { SocialLoginFirstTimeComponent } from './auth/social-login-first-time/social-login-first-time.component';
 
 
 export function socialsConfig() {
@@ -52,7 +53,8 @@ export function socialsConfig() {
     TestUploadComponent,
     HomeComponent,
     ChangePasswordComponent,
-    ChangeUserInfoComponent
+    ChangeUserInfoComponent,
+    SocialLoginFirstTimeComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,23 @@
+<form [formGroup]="extraUserInfo" (ngSubmit)="extraUserInfo.valid && submit()" class="mt-2 col-md-4 offset-md-3">
+  <div class="form-row">
+    <label class="col-5">
+      Date Of Birth:
+      <input type="date" class="form-control"  formControlName="dob" id="dob">
+    </label>
+  </div>
+  <div class="form-row">
+    <label class="col-3">
+      Gender: &nbsp;
+      <select class="form-control"  formControlName="gender" id="gender">
+        <option value=""></option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+    </label>
+  </div>
+  <div class="form-group">
+    <button class="btn btn-danger col-2 offset-2" (click)="goBack()" type="button">Back</button>
+    <button class="btn btn-info col-2 offset-4"  type="submit">Submit</button>
+  </div>
+</form>

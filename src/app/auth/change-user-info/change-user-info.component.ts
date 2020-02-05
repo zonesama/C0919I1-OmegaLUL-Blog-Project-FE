@@ -26,14 +26,23 @@ export class ChangeUserInfoComponent implements OnInit {
   ngOnInit() {
     this.changeInfoForm = this.fb.group({
       name: ['', [Validators.required]],
+      dob: ['', Validators.required],
+      gender: ['', Validators.required],
       avatarUrl: ['', [Validators.required]]
     });
     this.authService.getUserByUsername(this.token.getUsername()).subscribe(result => {
       this.currentUser = result;
+      // @ts-ignore
+      document.getElementById('dob').value = this.currentUser.dob;
+      // @ts-ignore
+      document.getElementById('gender').value = this.currentUser.gender;
       // document.getElementById('avatarUrl').value = this.currentUser.avatar;
       this.changeInfoForm.get('avatarUrl').setValue(this.currentUser.avatar);
       this.changeInfoForm.get('name').setValue(this.currentUser.name);
+      this.changeInfoForm.get('dob').setValue(this.currentUser.dob);
+      this.changeInfoForm.get('name').setValue(this.currentUser.gender);
       this.avatarPreviewUrl = this.currentUser.avatar;
+      console.log(this.changeInfoForm);
     });
   }
 
@@ -67,6 +76,8 @@ export class ChangeUserInfoComponent implements OnInit {
       const formData = new FormData();
       formData.append('name', this.changeInfoForm.get('name').value);
       formData.append('avatarUrl', this.changeInfoForm.get('avatarUrl').value);
+      formData.append('dob', this.changeInfoForm.get('dob').value);
+      formData.append('gender', this.changeInfoForm.get('gender').value);
       formData.append('username', this.token.getUsername());
       this.authService.changeUserInfo(formData).subscribe(result => {
         alert(result.message);

@@ -42,4 +42,19 @@ export class TestUploadComponent implements OnInit {
     //   console.log(this.imagesUrl);
     // });
   }
+
+  Test() {
+    // @ts-ignore
+    const date: Date = document.getElementById('date').value;
+    // @ts-ignore
+    const gender = document.getElementById('gender').value;
+    console.log(date);
+    console.log(gender);
+    const formData = new FormData();
+    formData.append('dob', JSON.stringify(date));
+    formData.append('gender', gender);
+    this.blogService.sendData(formData).subscribe(data => {
+
+    });
+  }
 }

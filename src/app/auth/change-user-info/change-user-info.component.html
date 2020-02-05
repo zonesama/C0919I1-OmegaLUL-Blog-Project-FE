@@ -13,6 +13,23 @@
   </div>
   <div class="form-group row">
     <label class="col">
+      Date Of Birth
+      <input type="date" class="form-control" id="dob" formControlName="dob">
+    </label>
+  </div>
+  <div class="form-group row">
+    <label class="col">
+      Gender
+      <select class="form-control"  formControlName="gender" id="gender">
+        <option value=""></option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+    </label>
+  </div>
+  <div class="form-group row">
+    <label class="col">
       Avatar
       <input type="text" id="avatarUrl" class="form-control" formControlName="avatarUrl"
              (change)="addAvatarUrl($event)">
