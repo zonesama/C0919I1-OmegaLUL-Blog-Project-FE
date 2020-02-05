@@ -40,7 +40,7 @@ export class ChangeUserInfoComponent implements OnInit {
       this.changeInfoForm.get('avatarUrl').setValue(this.currentUser.avatar);
       this.changeInfoForm.get('name').setValue(this.currentUser.name);
       this.changeInfoForm.get('dob').setValue(this.currentUser.dob);
-      this.changeInfoForm.get('name').setValue(this.currentUser.gender);
+      this.changeInfoForm.get('gender').setValue(this.currentUser.gender);
       this.avatarPreviewUrl = this.currentUser.avatar;
       console.log(this.changeInfoForm);
     });
