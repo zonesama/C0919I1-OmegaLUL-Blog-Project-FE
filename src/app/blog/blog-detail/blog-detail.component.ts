@@ -86,7 +86,6 @@ export class BlogDetailComponent implements OnInit {
       this.commentList = data;
       // @ts-ignore
       this.commentList.sort((a, b) => a.id - b.id);
-      console.log(this.commentList);
     }, error => {
       this.errorMessage = error.error.message;
     });

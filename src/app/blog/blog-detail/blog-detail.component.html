@@ -1,9 +1,9 @@
-<div class="row">
-  <div *ngIf="checkPrivate()">
-    <h4 style="text-shadow: 2px 2px 6px #5cb85c; margin-top: 15%">This Blog is currently a private Blog that only the
-      Author: {{blog.user.username}} can view ! Plss Contact him/her to change it to public</h4>
-  </div>
-  <form *ngIf="!checkPrivate()">
+<div class="row" *ngIf="blog">
+    <div *ngIf="checkPrivate()">
+      <h4 style="text-shadow: 2px 2px 6px #5cb85c; margin-top: 15%">This Blog is currently a private Blog that only the
+        Author: {{blog.user.username}} can view ! Plss Contact him/her to change it to public</h4>
+    </div>
+  <form *ngIf="!checkPrivate() && blog">
     <div class="form-group row">
       <share-button button="facebook" theme="circles-dark" [icon]=fbIcon></share-button>
       <share-button button="twitter" theme="circles-dark" [icon]=tweetIcon></share-button>
@@ -38,44 +38,46 @@
     </div>
   </form>
 </div>
-<div class="form-group row" *ngIf="!checkPrivate()">
-  <div class="col-9 offset-1">
-    <h5 style="color: blue; text-shadow: magenta 2px 2px 6px">COMMENTS</h5>
-  </div>
-</div>
-<div *ngIf="isLoggedIn() && !checkPrivate() ">
-  <div class="row">
-    <div class="col-9 offset-2">
-      <textarea style="width: 60%;height: 80px;border-radius: 10px" id="comment"></textarea>
+<div *ngIf="blog">
+  <div class="form-group row" *ngIf="!checkPrivate()">
+    <div class="col-9 offset-1">
+      <h5 style="color: blue; text-shadow: magenta 2px 2px 6px">COMMENTS</h5>
     </div>
   </div>
-  <div class="row">
-    <div class="col-5 offset-4">
-      <button class=" btn btn-info" type="Button" (click)="postComment()">Post</button>
+  <div *ngIf="isLoggedIn() && !checkPrivate() ">
+    <div class="row">
+      <div class="col-9 offset-2">
+        <textarea style="width: 60%;height: 80px;border-radius: 10px" id="comment"></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-5 offset-4">
+        <button class=" btn btn-info" type="Button" (click)="postComment()">Post</button>
+      </div>
     </div>
   </div>
-</div>
-<div class="row" style="margin-top: 5%">
-  <table class="table-borderless col 10 offset-2">
-    <tr *ngFor="let item of commentList |  paginate:{itemsPerPage: count, currentPage: p}">
-      <td>
-        <p
-          style="width: fit-content;height: fit-content; border-radius: 10px; border:solid #1e2229;background: #6c7b88">
-          <label style="color: blue; font-weight: bolder;margin-top: 1%">&nbsp;<img class="zoom" src="{{item.user.avatar}}"
-                                                                              style="border-radius: 50%; width: 30px; height: 30px">&nbsp;&nbsp;{{item.user.username}}
-            :&nbsp;&nbsp;
-            <textarea cdkTextareaAutosize
-                      style="width: 700px;overflow:hidden;border: none;background: #6c7b88;color: white;vertical-align: top;"
-                      readonly>{{item.comment}}</textarea>
-          </label>
-        </p>
-      </td>
-    </tr>
-  </table>
-</div>
-<div class="row">
-  <div class="text-center col-3 offset-3" style="margin-top: 30px">
-    <pagination-controls (pageChange)="p= $event"></pagination-controls>
+  <div class="row" style="margin-top: 5%">
+    <table class="table-borderless col 10 offset-2">
+      <tr *ngFor="let item of commentList |  paginate:{itemsPerPage: count, currentPage: p}">
+        <td>
+          <p
+            style="width: fit-content;height: fit-content; border-radius: 10px; border:solid #1e2229;background: #6c7b88">
+            <label style="color: blue; font-weight: bolder;margin-top: 1%">&nbsp;<img class="zoom" src="{{item.user.avatar}}"
+                                                                                      style="border-radius: 50%; width: 30px; height: 30px">&nbsp;&nbsp;{{item.user.username}}
+              :&nbsp;&nbsp;
+              <textarea cdkTextareaAutosize
+                        style="width: 700px;overflow:hidden;border: none;background: #6c7b88;color: white;vertical-align: top;"
+                        readonly>{{item.comment}}</textarea>
+            </label>
+          </p>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="row">
+    <div class="text-center col-3 offset-3" style="margin-top: 30px">
+      <pagination-controls (pageChange)="p= $event"></pagination-controls>
+    </div>
   </div>
 </div>
 

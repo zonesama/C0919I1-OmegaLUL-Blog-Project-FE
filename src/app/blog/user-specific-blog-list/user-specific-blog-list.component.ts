@@ -35,7 +35,6 @@ export class UserSpecificBlogListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    console.log(this.token.getUsername());
     this.blogService.getUserSpecificBlog().subscribe(data => {
       this.initBlogListDataService.setUserFullBlogList(data);
       this.fetchBlogList();

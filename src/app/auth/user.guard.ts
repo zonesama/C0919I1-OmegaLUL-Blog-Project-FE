@@ -21,9 +21,11 @@ export class UserGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
-    if (this.user.provider !== 'OmegaLUL') {
-      return false;
+    if (this.user !== undefined) {
+      if (this.user.provider !== 'OmegaLUL') {
+        return false;
+      }
+      return true;
     }
-    return true;
   }
 }

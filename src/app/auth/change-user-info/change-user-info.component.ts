@@ -42,14 +42,12 @@ export class ChangeUserInfoComponent implements OnInit {
       this.changeInfoForm.get('dob').setValue(this.currentUser.dob);
       this.changeInfoForm.get('gender').setValue(this.currentUser.gender);
       this.avatarPreviewUrl = this.currentUser.avatar;
-      console.log(this.changeInfoForm);
     });
   }
 
   uploadAvatar() {
     const formData = new FormData();
     formData.append('avatarImg', this.avatarFile);
-    console.log(formData);
     this.authService.uploadAvatar(formData).subscribe(data => {
       console.log(data);
       this.avatarPreviewUrl = data;

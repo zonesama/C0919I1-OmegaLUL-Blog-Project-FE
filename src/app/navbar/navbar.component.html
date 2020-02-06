@@ -25,27 +25,29 @@
       </button>
     </div>
   </div>
-  <div *ngIf="isLoggedIn()">
-    <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-<!--        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>-->
-<!--        <i class="fa fa-user-o" aria-hidden="true"></i>-->
-        <img class="zoom" src="{{currentUser.avatar}}" style="border-radius: 50%; width: 30px; height: 30px">
-        {{currentUser.username}}
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-        <button class="dropdown-item" type="button">
-          <a (click)="goToChangeUserInfo()">Change Profile Info</a>
-        </button>
-        <button class="dropdown-item" type="button" *ngIf="currentUser.provider === 'OmegaLUL'">
-          <a (click)="goToChangePassword()">Change Password</a>
-        </button>
-        <button class="dropdown-item" type="button">
-          <a (click)="logOut()">Logout</a>
-        </button>
-      </div>
-    </div>
-  </div>
+ <div *ngIf="currentUser">
+   <div *ngIf="isLoggedIn()">
+     <div class="dropdown">
+       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         <!--        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>-->
+         <!--        <i class="fa fa-user-o" aria-hidden="true"></i>-->
+         <img class="zoom" src="{{currentUser.avatar}}" style="border-radius: 50%; width: 30px; height: 30px">
+         {{currentUser.username}}
+       </button>
+       <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+         <button class="dropdown-item" type="button">
+           <a (click)="goToChangeUserInfo()">Change Profile Info</a>
+         </button>
+         <button class="dropdown-item" type="button" *ngIf="currentUser.provider === 'OmegaLUL'">
+           <a (click)="goToChangePassword()">Change Password</a>
+         </button>
+         <button class="dropdown-item" type="button">
+           <a (click)="logOut()">Logout</a>
+         </button>
+       </div>
+     </div>
+   </div>
+ </div>
   <div>
   <li *ngIf="!isLoggedIn()">
     <button class="nav-item mr-5 px-1 py-1 btn btn-info" href="#"  data-toggle="modal" data-target="#modalRegisterForm" (click)="onLoginButtonClicked()">Login</button>

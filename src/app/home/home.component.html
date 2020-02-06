@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" *ngIf="tagList">
   <ngb-pagination class="col-10 offset-2" [collectionSize]="tagList.length" [(page)]="page" [pageSize]="1" [maxSize]="6"
                   [boundaryLinks]="true" [rotate]="true"
                   [ellipses]="false" size="lg">
@@ -12,19 +12,21 @@
 <div class="row">
   <h5>Top View Blogs of: {{selectedTag}} Blogs</h5>
 </div>
-<div class="row" *ngIf="fullBlogList.length >0">
-  <div class="jumbotron col-8 text-white rounded bg-dark">
-    <div class="col-12">
-      <h1 class="display-4 font-italic">{{fullBlogList[0].tittle}}</h1>
-      <p class="lead my-3">{{fullBlogList[0].description}}</p>
-      <p class="lead my-3" style="color: chartreuse; text-shadow: magenta 2px 2px 6px">
-        Views:&nbsp;&nbsp; {{fullBlogList[0].view}}</p>
-      <p class="lead mb-0"><a href="javascript:" (click)="goToBlogDetail(fullBlogList[0])"
-                              class="text-white font-weight-bold">Continue reading...</a></p>
+<div *ngIf="fullBlogList">
+  <div class="row" *ngIf="fullBlogList.length >0">
+    <div class="jumbotron col-8 text-white rounded bg-dark">
+      <div class="col-12">
+        <h1 class="display-4 font-italic">{{fullBlogList[0].tittle}}</h1>
+        <p class="lead my-3">{{fullBlogList[0].description}}</p>
+        <p class="lead my-3" style="color: chartreuse; text-shadow: magenta 2px 2px 6px">
+          Views:&nbsp;&nbsp; {{fullBlogList[0].view}}</p>
+        <p class="lead mb-0"><a href="javascript:" (click)="goToBlogDetail(fullBlogList[0])"
+                                class="text-white font-weight-bold">Continue reading...</a></p>
+      </div>
     </div>
-  </div>
-  <div class="jumbotron col-3 text-white rounded bg-dark">
-    <img class="col-12" style="height: 250px; width: 350px;" src="{{fullBlogList[0].thumbnail}}">
+    <div class="jumbotron col-3 text-white rounded bg-dark">
+      <img class="col-12" style="height: 250px; width: 350px;" src="{{fullBlogList[0].thumbnail}}">
+    </div>
   </div>
 </div>
 <div class="row">
