@@ -34,7 +34,6 @@ export class ImageBlogDetailComponent implements OnInit {
     this.imageBlogService.getImageBlog(id).subscribe(data => {
       this.imageBlog = data;
       this.imageUrls = this.imageBlog.imageUrls.split(',');
-      console.log(this.imageUrls);
     });
   }
 

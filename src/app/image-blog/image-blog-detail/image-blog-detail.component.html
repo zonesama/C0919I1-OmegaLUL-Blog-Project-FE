@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="imageBlog">
   <div *ngIf="checkPrivate()">
     <h4 style="text-shadow: 2px 2px 6px #5cb85c; margin-top: 15%">This Blog is currently a private Blog that only the
       Author: {{imageBlog.user.username}} can view ! Please Contact him/her to change it to public</h4>
