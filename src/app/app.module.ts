@@ -25,6 +25,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {BlogModule} from './blog/blog.module';
 import { ChangeUserInfoComponent } from './auth/change-user-info/change-user-info.component';
 import { SocialLoginFirstTimeComponent } from './auth/social-login-first-time/social-login-first-time.component';
+import {ShowHidePasswordModule} from 'ngx-show-hide-password';
 
 
 export function socialsConfig() {
@@ -66,7 +67,8 @@ export function socialsConfig() {
     ReactiveFormsModule,
     NgxPaginationModule,
     NgbModule,
-    BlogModule
+    BlogModule,
+    ShowHidePasswordModule
   ],
   providers: [httpInterceptorProviders, AuthService,
     {provide: AuthServiceConfig, useFactory: socialsConfig}],

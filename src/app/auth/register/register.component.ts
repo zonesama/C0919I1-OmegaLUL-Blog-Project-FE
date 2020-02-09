@@ -26,6 +26,7 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.fb.group({
       name: ['', Validators.required],
       username: ['', Validators.required],
+      displayName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       avatar: ['', Validators.required],
       gender: ['', Validators.required],
@@ -43,7 +44,8 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     const signUpForm = new SignUpForm(0, this.registerForm.get('name').value.toString(), this.registerForm.get('username').value.toString(),
-      this.registerForm.get('email').value.toString(), this.registerForm.get('pwGroup').get('password').value.toString(),
+      this.registerForm.get('displayName').value.toString(), this.registerForm.get('email').value.toString(),
+      this.registerForm.get('pwGroup').get('password').value.toString(),
       this.registerForm.get('avatar').value.toString(), this.registerForm.get('dob').value, this.registerForm.get('gender').value,
       ['user']);
     this.authService.signUp(signUpForm).subscribe(data => {

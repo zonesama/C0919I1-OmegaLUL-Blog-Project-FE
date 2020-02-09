@@ -26,6 +26,7 @@ export class ChangeUserInfoComponent implements OnInit {
   ngOnInit() {
     this.changeInfoForm = this.fb.group({
       name: ['', [Validators.required]],
+      displayName:['', Validators.required],
       dob: ['', Validators.required],
       gender: ['', Validators.required],
       avatarUrl: ['', [Validators.required]]
@@ -41,6 +42,7 @@ export class ChangeUserInfoComponent implements OnInit {
       this.changeInfoForm.get('name').setValue(this.currentUser.name);
       this.changeInfoForm.get('dob').setValue(this.currentUser.dob);
       this.changeInfoForm.get('gender').setValue(this.currentUser.gender);
+      this.changeInfoForm.get('displayName').setValue(this.currentUser.displayName);
       this.avatarPreviewUrl = this.currentUser.avatar;
     });
   }
@@ -76,6 +78,7 @@ export class ChangeUserInfoComponent implements OnInit {
       formData.append('avatarUrl', this.changeInfoForm.get('avatarUrl').value);
       formData.append('dob', this.changeInfoForm.get('dob').value);
       formData.append('gender', this.changeInfoForm.get('gender').value);
+      formData.append('displayName', this.changeInfoForm.get('displayName').value);
       formData.append('username', this.token.getUsername());
       this.authService.changeUserInfo(formData).subscribe(result => {
         alert(result.message);

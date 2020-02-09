@@ -51,6 +51,10 @@ export class AuthServiceNormal {
     return this.http.post<any>(this.userApi + '/checkUser', username);
   }
 
+  checkIfDisplayNameTaken(displayName: string): Observable<any> {
+    return this.http.post<any>(this.userApi + '/checkDisplayName', displayName);
+  }
+
   uploadAvatar(formData: FormData): Observable<string> {
     return this.http.post(this.avatarUploadUrl, formData, {responseType: 'text'});
   }

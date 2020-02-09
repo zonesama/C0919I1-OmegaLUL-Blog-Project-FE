@@ -2,6 +2,7 @@ export class SignUpForm {
   id: number;
   name: string;
   username: string;
+  displayName: string;
   email: string;
   password: string;
   avatar: string;
@@ -9,11 +10,12 @@ export class SignUpForm {
   gender: string;
   role: string[];
 
-  constructor(id: number, name: string, username: string, email: string, password: string, avatar: string, dob: Date,
-              gender: string, role: string[]) {
+  constructor(id: number, name: string, username: string, displayName: string, email: string, password: string, avatar: string,
+              dob: Date, gender: string, role: string[]) {
     this.id = id;
     this.name = name;
     this.username = username;
+    this.displayName = displayName;
     this.email = email;
     this.password = password;
     this.avatar = avatar;

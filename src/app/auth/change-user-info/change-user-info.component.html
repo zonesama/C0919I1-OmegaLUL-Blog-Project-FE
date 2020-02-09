@@ -13,6 +13,15 @@
   </div>
   <div class="form-group row">
     <label class="col">
+      Display Name
+      <input type="text" class="form-control" formControlName="displayName">
+    </label>
+  </div>
+  <div class="alert alert-danger" role="alert" *ngIf="changeInfoForm.get('displayName').invalid && changeInfoForm.get('displayName').touched">
+    Please enter a display Name:)
+  </div>
+  <div class="form-group row">
+    <label class="col">
       Date Of Birth
       <input type="date" class="form-control" id="dob" formControlName="dob">
     </label>

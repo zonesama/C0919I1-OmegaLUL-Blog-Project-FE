@@ -7,5 +7,6 @@ export class User {
   avatar: string;
   dob: Date;
   gender: string;
+  displayName: string;
   role: string[];
 }

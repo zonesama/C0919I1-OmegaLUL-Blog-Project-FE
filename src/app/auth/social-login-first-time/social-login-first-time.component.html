@@ -1,4 +1,19 @@
 <form [formGroup]="extraUserInfo" (ngSubmit)="extraUserInfo.valid && submit()" class="mt-2 col-md-4 offset-md-3">
+  <div class="row">
+    <h4>Please complete the form below for your first time social user login</h4>
+  </div>
+  <div class="alert alert-danger" role="alert" *ngIf="errorMsg">
+    {{errorMsg}}
+  </div>
+  <div class="form-row">
+    <label class="col-5">
+      Display Name
+      <input class="form-control"  formControlName="displayName" id="displayName">
+    </label>
+  </div>
+  <div class="alert alert-danger" role="alert" *ngIf="extraUserInfo.get('displayName').invalid && extraUserInfo.get('displayName').touched">
+    Please enter a display Name :)
+  </div>
   <div class="form-row">
     <label class="col-5">
       Date Of Birth:

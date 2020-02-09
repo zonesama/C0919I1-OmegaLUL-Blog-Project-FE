@@ -5,7 +5,7 @@
   <div class="form-group row">
     <label class="col">
       Name
-      <input class="form-control" formControlName="name">
+      <input class="form-control" type="text" formControlName="name">
     </label>
   </div>
   <div class="alert alert-danger" role="alert" *ngIf="registerForm.get('name').invalid && registerForm.get('name').touched">
@@ -19,6 +19,15 @@
   </div>
   <div class="alert alert-danger" role="alert" *ngIf="registerForm.get('username').invalid && registerForm.get('username').touched">
     Please enter an username :)
+  </div>
+  <div class="form-group row">
+    <label class="col">
+      Display Name
+      <input type="text" class="form-control" formControlName="displayName">
+    </label>
+  </div>
+  <div class="alert alert-danger" role="alert" *ngIf="registerForm.get('displayName').invalid && registerForm.get('displayName').touched">
+    Please enter a display Name:)
   </div>
   <div class="form-group row">
     <label class="col">
@@ -66,13 +75,13 @@
     <div class="form-group row">
       <label class="col">
         Password
-        <input type="password" class="form-control" formControlName="password">
+        <input  type="password" class="form-control" formControlName="password" >
       </label>
     </div>
     <div class="form-group row">
       <label class="col">
         Confirm Password
-        <input type="password" class="form-control" formControlName="confirmPassword">
+        <input   type="password" class="form-control" formControlName="confirmPassword">
       </label>
     </div>
   </fieldset>
