@@ -147,6 +147,8 @@ export class NavbarComponent implements OnInit {
           this.dataTransferService.setSocialUser(socialusers);
           this.router.navigateByUrl('/socialFirstLogin');
         }
+      }, error => {
+        this.errorMessage = error.error.message;
       });
     });
   }
